@@ -1,31 +1,32 @@
-/* General body styles */
-body {
-    font-family: 'Arial', sans-serif;
+/* Reset margins and padding */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
     background-color: #fff;
     color: #333;
 }
 
-/* Header and footer styles */
 header, footer {
     background-color: #f8f8f8;
     padding: 1rem;
     text-align: center;
 }
 
-/* Navigation styles */
 nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 nav ul li {
-    padding: 10px;
+    margin: 0 10px;
 }
 
 nav ul li a {
@@ -34,29 +35,27 @@ nav ul li a {
     font-weight: bold;
 }
 
-/* Responsive sections */
 section {
     padding: 20px;
-    margin: 0 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    margin: 10px;
 }
 
 h1, h2 {
     color: #555;
 }
 
-/* Media queries for smaller devices */
-@media (max-width: 600px) {
+/* Responsive adjustments */
+@media (max-width: 768px) {
     nav ul {
         flex-direction: column;
+        align-items: center;
     }
 
-    nav ul li a {
-        padding: 10px;
+    nav ul li {
+        margin-bottom: 10px;
     }
 }
 
-/* Dark mode specific styles */
 .dark-mode {
     background-color: #333;
     color: #f8f8f8;
