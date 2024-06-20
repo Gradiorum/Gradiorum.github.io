@@ -1,7 +1,7 @@
-// Load header and footer across all pages
 function loadHeaderFooter() {
     const headerHTML = `
         <header>
+            <img src="images/logo.png" alt="FallingPlanet Logo" class="logo">
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -15,7 +15,6 @@ function loadHeaderFooter() {
     const footerHTML = `
         <footer>
             <p>&copy; 2024 Your Name. All rights reserved.</p>
-            <p>Follow us on [Social Media Links]</p>
         </footer>`;
 
     document.body.insertAdjacentHTML('afterbegin', headerHTML);
