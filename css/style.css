@@ -5,32 +5,47 @@
     --text-color: #ffffff;
 }
 
+/* Set the entire body background to use the background.png */
 body {
-    font-family: 'Arial', sans-serif;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    background-image: url('/path-to-your-background-image/starry-sky.png');
-    background-size: cover;
-    background-attachment: fixed;
+    background-image: url('images/background.png'); /* Make sure the path matches your project structure */
+    background-size: cover; /* Ensure the background covers the entire viewing area */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Fixed background on scroll */
+    background-repeat: no-repeat; /* Prevent the background from repeating */
+    color: white; /* Assuming a dark background, use white text for contrast */
+    font-family: Arial, sans-serif; /* Styling the font */
 }
 
-header, footer {
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent */
-    color: var(--secondary-color);
+
+/* Style for the header containing the logo */
+header {
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+    color: white;
     text-align: center;
-    padding: 1rem;
-    backdrop-filter: blur(10px);
+    padding: 10px 0;
+    backdrop-filter: blur(8px); /* Softening the background behind the header */
 }
 
+/* CSS for the logo itself */
+.logo {
+    height: 80px; /* Adjust the size as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between logo and navigation if in line */
+    vertical-align: middle; /* Aligns the logo with the navigation links if in line */
+}
+
+/* Navigation styling, assuming logo is inline with navigation */
 nav ul {
-    display: flex;
-    justify-content: center;
+    display: inline-block;
     padding: 0;
 }
 
 nav ul li {
-    margin: 0 10px;
+    display: inline;
+    margin-left: 20px;
+    list-style-type: none;
 }
+
 
 a {
     text-decoration: none;
