@@ -12,7 +12,7 @@ body {
     background-position: center; /* Center the background image */
     background-attachment: fixed; /* Fixed background on scroll */
     background-repeat: no-repeat; /* Prevent the background from repeating */
-    color: white; /* Assuming a dark background, use white text for contrast */
+    color: rgb(0, 0, 0); /* Assuming a dark background, use white text for contrast */
     font-family: Arial, sans-serif; /* Styling the font */
 }
 
