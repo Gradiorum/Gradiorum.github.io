@@ -1,10 +1,10 @@
 # FallingPlanet
 
-Welcome to the official repository of FallingPlanet, a platform dedicated to showcasing the innovative projects of William Aaron Stigall. FallingPlanet serves as a digital space not only to display personal accomplishments but also to foster collaboration and free expression within the tech community.
+Welcome to the official repository of FallingPlanet, a platform dedicated to showcasing the innovative projects of William A. Stigall. FallingPlanet serves as a digital space not only to display personal accomplishments but also to foster collaboration and free expression within the tech community.
 
 ## About FallingPlanet
 
-FallingPlanet is currently a personal project and has not been formalized as an LLC. It represents an abstraction of William Aaron Stigall's work, focusing on sharing creative and technical projects with the world. This repository and its associated website are open source, reflecting a commitment to open collaboration.
+FallingPlanet is currently a personal project and has not been formalized as an LLC. It represents an abstraction of William A. Stigall's work, focusing on sharing creative and technical projects with the world. This repository and its associated website are open source, reflecting a commitment to open collaboration.
 
 ## Contribution
 
