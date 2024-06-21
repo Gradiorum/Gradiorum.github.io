@@ -7,6 +7,16 @@ body, html {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    color: #fff; /* Default text color for dark mode */
+    background-color: #121212; /* Dark background color */
+}
+
+/* Use media query to adjust for users who prefer light mode */
+@media (prefers-color-scheme: light) {
+    body {
+        color: #333; /* Dark text color for light mode */
+        background-color: #fff; /* Light background color */
+    }
 }
 
 /* Header with logo */
@@ -21,7 +31,7 @@ header {
 }
 
 header img.logo {
-    height: 60px; /* Adjust based on your preference */
+    height: 60px;
     margin-left: 20px;
 }
 
