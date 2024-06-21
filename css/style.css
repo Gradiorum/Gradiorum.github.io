@@ -11,11 +11,11 @@ body, html {
     background-color: #121212; /* Dark background color */
 }
 
-/* Use media query to adjust for users who prefer light mode */
+/* Adjust for users who prefer light mode */
 @media (prefers-color-scheme: light) {
     body {
-        color: #333; /* Dark text color for light mode */
-        background-color: #fff; /* Light background color */
+        background-color: #fff; /* lighter background for light mode */
+        color: #333; /* darker text for light mode */
     }
 }
 
@@ -70,6 +70,23 @@ button, .btn {
 
 button:hover, .btn:hover {
     background-color: #2980b9;
+}
+/* Center the welcome section specifically */
+.hero {
+    text-align: center;
+    position: relative; /* For positioning the button at the bottom */
+}
+
+.hero h1, .hero p {
+    display: block; /* Ensures full width for center alignment */
+}
+
+/* Position the button at the bottom center of the hero section */
+.hero button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Footer styling */
