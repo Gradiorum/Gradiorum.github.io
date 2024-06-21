@@ -1,0 +1,32 @@
+name: Automate Blog Posts
+
+on:
+  push:
+    paths:
+      - 'posts/**/*.docx'
+
+jobs:
+  process-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Pandoc
+        run: sudo apt-get install pandoc
+
+      - name: Convert DOCX to HTML
+        run: pandoc posts/*.docx -o src/blog.html
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add src/blog.html
+          git commit -m "Add new blog post"
+          git push
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-pages
+          folder: src
