@@ -2,24 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>FallingPlanet - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Include common.js before the closing head tag -->
+    <script src="js/common.js"></script>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <img src="assets/logo.png" alt="FallingPlanet Logo" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="videos.html">Videos</a></li>
-                    <li><a href="papers.html">Papers</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Include the header using data-include -->
+    <div data-include="header.html"></div>
     <main>
         <section class="hero">
             <h1>Welcome to FallingPlanet</h1>
@@ -61,14 +51,8 @@
             </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 FallingPlanet. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://twitter.com/FallingPlanet">Twitter</a>
-            <a href="https://facebook.com/FallingPlanet">Facebook</a>
-            <a href="https://linkedin.com/company/FallingPlanet">LinkedIn</a>
-        </div>
-    </footer>
+    <!-- Include the footer using data-include -->
+    <div data-include="footer.html"></div>
     <script src="js/main.js"></script>
 </body>
 </html>
