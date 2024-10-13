@@ -1,0 +1,545 @@
+
+# --------------------
+# File: blog.html
+# --------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Blog Post Title 3 - FallingPlanet</title>
+</head>
+<body>
+    <header>
+        <!-- Header content -->
+    </header>
+    <main>
+        <article>
+            <h1>Blog Post Title 3</h1>
+            <p>Date of Post</p>
+            <div>
+                <p>Full content of your blog post...</p>
+            </div>
+        </article>
+    </main>
+    <footer>
+        <!-- Footer content -->
+    </footer>
+</body>
+</html>
+
+
+# --------------------
+# File: export.py
+# --------------------
+
+import os
+
+def export_code(output_filename='all_code_output.txt'):
+    # Define the file extensions you want to include
+    included_extensions = {'.js', '.html', '.css', '.json', '.py', '.md'}
+
+    # Define directories to exclude
+    excluded_dirs = {'venv', '__pycache__', 'node_modules', 'browser-extension/data'}
+
+    code_files = []
+    for root, dirs, files in os.walk('.'):
+        # Modify dirs in-place to skip excluded directories
+        dirs[:] = [d for d in dirs if d not in excluded_dirs]
+        
+        for file in files:
+            file_ext = os.path.splitext(file)[1].lower()
+            if file_ext in included_extensions:
+                code_files.append(os.path.join(root, file))
+
+    all_code = ''
+    for file_path in code_files:
+        # Normalize the file path for better readability
+        normalized_path = os.path.relpath(file_path, '.')
+        all_code += f"\n# {'-'*20}\n# File: {normalized_path}\n# {'-'*20}\n\n"
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                code = f.read()
+                all_code += code + "\n"
+        except (UnicodeDecodeError, PermissionError) as e:
+            all_code += f"// Could not read file: {e}\n"
+
+    with open(output_filename, 'w', encoding='utf-8') as f:
+        f.write(all_code)
+
+    print(f"All code has been exported to {output_filename}")
+
+if __name__ == "__main__":
+    export_code()
+
+
+# --------------------
+# File: index.html
+# --------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>FallingPlanet - Home</title>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="assets/logo.png" alt="FallingPlanet Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="videos.html">Videos</a></li>
+                    <li><a href="papers.html">Papers</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Welcome to FallingPlanet</h1>
+            <p>Explore the frontier of technology and innovation with us.</p>
+            <button onclick="location.href='about.html'">Learn More</button>
+        </section>
+        <section class="featured">
+            <h2>Featured Projects</h2>
+            <div class="projects">
+                <article>
+                    <img src="assets/project1.jpg" alt="Project 1">
+                    <h3>Project 1 Title</h3>
+                    <p>Description of what Project 1 is about. A brief overview.</p>
+                    <a href="project1.html">Read More</a>
+                </article>
+                <article>
+                    <img src="assets/project2.jpg" alt="Project 2">
+                    <h3>Project 2 Title</h3>
+                    <p>Description of what Project 2 is about. A brief overview.</p>
+                    <a href="project2.html">Read More</a>
+                </article>
+            </div>
+        </section>
+        <section class="news">
+            <h2>Latest News</h2>
+            <div class="news-articles">
+                <article>
+                    <img src="assets/news1.jpg" alt="News 1">
+                    <h3>News Headline 1</h3>
+                    <p>Summary of the news article. What is the main focus?</p>
+                    <a href="news1.html">Read More</a>
+                </article>
+                <article>
+                    <img src="assets/news2.jpg" alt="News 2">
+                    <h3>News Headline 2</h3>
+                    <p>Summary of the news article. What is the main focus?</p>
+                    <a href="news2.html">Read More</a>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 FallingPlanet. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://twitter.com/FallingPlanet">Twitter</a>
+            <a href="https://facebook.com/FallingPlanet">Facebook</a>
+            <a href="https://linkedin.com/company/FallingPlanet">LinkedIn</a>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+
+# --------------------
+# File: papers.html
+# --------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>FallingPlanet - Papers</title>
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="FallingPlanet Logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="papers.html">Papers</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Our Papers</h1>
+        <section class="papers">
+            <article>
+                <h2>Paper Title 1</h2>
+                <p>Abstract or summary of the paper.</p>
+                <a href="https://example.com/paper1.pdf" target="_blank">Read Paper</a>
+            </article>
+            <article>
+                <h2>Paper Title 2</h2>
+                <p>Abstract or summary of the paper.</p>
+                <a href="https://example.com/paper2.pdf" target="_blank">Read Paper</a>
+            </article>
+            <!-- More papers can be listed here -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 FallingPlanet. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
+# --------------------
+# File: README.md
+# --------------------
+
+# FallingPlanet
+
+Welcome to the official repository of FallingPlanet, a platform dedicated to showcasing the innovative projects of William A. Stigall. FallingPlanet serves as a digital space not only to display personal accomplishments but also to foster collaboration and free expression within the tech community.
+
+## About FallingPlanet
+
+FallingPlanet is currently a personal project and has not been formalized as an LLC. It represents an abstraction of William A. Stigall's work, focusing on sharing creative and technical projects with the world. This repository and its associated website are open source, reflecting a commitment to open collaboration.
+
+## Contribution
+
+FallingPlanet welcomes contributions from everyone. Whether you're looking to contribute to the existing projects or want to share your own insights through blog posts, here’s how you can get involved:
+
+### Blog Contributions
+
+Want to share your thoughts or showcase your projects? You can contribute to our blog by submitting a DOCX file to the `posts` directory of this repository. Here's how:
+
+1. Fork the repository.
+2. Add your blog post in DOCX format to the `posts` directory.
+3. Create a pull request.
+
+We encourage contributions that foster innovation, share insightful analyses, and reflect creative thinking.
+
+### Code Contributions
+
+To contribute to the project code:
+
+1. Fork the repository.
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request.
+
+## Contact
+
+If you have any questions, proposals for collaboration, or need further information, please don't hesitate to contact us:
+
+- **Email**: fallingplanetcorp@gmail.com
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Acknowledgements
+
+- Thanks to all contributors who help make this project a reality.
+- Special thanks to those who engage with us to share innovative ideas and push the boundaries of technology.
+
+
+
+# --------------------
+# File: videos.html
+# --------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>FallingPlanet - Videos</title>
+</head>
+<body>
+    <header>
+        <img src="assets/logo.png" alt="FallingPlanet Logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="papers.html">Papers</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Visit Our YouTube Channel</h1>
+        <p>For more videos, tutorials, and live sessions, visit our YouTube channel.</p>
+        <a href="https://www.youtube.com/user/FallingPlanet" target="_blank" class="btn">Go to YouTube Channel</a>
+    </main>
+    <footer>
+        <p>&copy; 2024 FallingPlanet. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
+# --------------------
+# File: css\style.css
+# --------------------
+
+/* Basic Resets */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('../assets/images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff; /* Default text color for dark mode */
+    background-color: #121212; /* Dark background color */
+}
+
+/* Adjust for users who prefer light mode */
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #fff; /* lighter background for light mode */
+        color: #333; /* darker text for light mode */
+    }
+}
+
+/* Header with logo */
+header {
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent for better readability */
+    color: #fff;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+header img.logo {
+    src: url('../assets/images/logo.png');
+    height: 60px;
+    margin-left: 20px;
+}
+
+/* Navigation styling */
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #3498db;
+}
+
+/* Button Styling */
+button, .btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover, .btn:hover {
+    background-color: #2980b9;
+}
+/* Center the welcome section specifically */
+.hero {
+    text-align: center;
+    position: relative; /* For positioning the button at the bottom */
+}
+
+.hero h1, .hero p {
+    display: block; /* Ensures full width for center alignment */
+}
+
+/* Position the button at the bottom center of the hero section */
+.hero button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.social-links a {
+    color: white;
+    padding: 0 10px;
+}
+
+.social-links a:hover {
+    color: #3498db;
+}
+
+/* Animations for loading elements */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.main-content, .featured, .news {
+    animation: fadeIn 1s ease-in-out;
+}
+
+
+# --------------------
+# File: js\Main.js
+# --------------------
+
+import { setupThemeToggle } from './modules/themeToggle.js';
+import { setupResponsiveNav } from './modules/responsiveNav.js';
+import { setupFormHandlers } from './modules/formHandlers.js';
+import { setupLazyLoading } from './modules/lazyLoading.js';
+import { setupImageGallery } from './modules/imageGallery.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupThemeToggle();
+    setupResponsiveNav();
+    setupFormHandlers();
+    setupLazyLoading();
+    setupImageGallery();
+});
+
+
+# --------------------
+# File: js\modules\formHandlers.js
+# --------------------
+
+export function setupFormHandlers() {
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            alert('Form submitted! Check console for data.');
+            console.log(new FormData(form));
+        });
+    });
+}
+
+
+# --------------------
+# File: js\modules\imageGallery.js
+# --------------------
+
+import { showModalWithImage } from './modal.js';
+
+export function setupImageGallery() {
+    const galleryImages = document.querySelectorAll('.gallery img');
+    galleryImages.forEach(image => {
+        image.addEventListener('click', () => {
+            showModalWithImage(image.getAttribute('src'));
+        });
+    });
+}
+
+
+# --------------------
+# File: js\modules\lazyLoading.js
+# --------------------
+
+export function setupLazyLoading() {
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.getAttribute('data-src');
+                observer.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(image => {
+        imageObserver.observe(image);
+    });
+}
+
+
+# --------------------
+# File: js\modules\model.js
+# --------------------
+
+export function showModalWithImage(src) {
+    const modal = document.createElement('div');
+    modal.className = 'image-modal';
+    modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000;';
+    const img = new Image();
+    img.src = src;
+    img.style.cssText = 'max-height: 90%; max-width: 90%;';
+    modal.appendChild(img);
+    modal.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+    document.body.appendChild(modal);
+}
+
+
+# --------------------
+# File: js\modules\responsiveNav.js
+# --------------------
+
+export function setupResponsiveNav() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav ul');
+    menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+}
+
+
+# --------------------
+# File: js\modules\themeToggle.js
+# --------------------
+
+export function setupThemeToggle() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.body.setAttribute('data-theme', newTheme);
+    });
+}
+
+
+# --------------------
+# File: posts\README.md
+# --------------------
+
+
+
