@@ -1,21 +1,21 @@
-# FallingPlanet
+# Gradiorum
 
-Welcome to the official repository of FallingPlanet, a platform dedicated to showcasing the innovative projects of William A. Stigall. FallingPlanet serves as a digital space not only to display personal accomplishments but also to foster collaboration and free expression within the tech community.
+Welcome to the official repository of **Gradiorum**, a platform dedicated to showcasing innovative projects at the frontier of technology and creativity. Gradiorum serves as a digital space not only to display our accomplishments but also to foster collaboration and free expression within the tech community.
 
-## About FallingPlanet
+## About Gradiorum
 
-FallingPlanet is currently a personal project and has not been formalized as an LLC. It represents an abstraction of William A. Stigall's work, focusing on sharing creative and technical projects with the world. This repository and its associated website are open source, reflecting a commitment to open collaboration.
+Gradiorum represents the evolution of our commitment to pushing the boundaries of innovation. We focus on sharing creative and technical projects with the world, reflecting our dedication to future-facing technological leadership.
 
 ## Contribution
 
-FallingPlanet welcomes contributions from everyone. Whether you're looking to contribute to the existing projects or want to share your own insights through blog posts, here’s how you can get involved:
+Gradiorum welcomes contributions from everyone. Whether you're looking to contribute to existing projects or want to share your own insights through blog posts, here’s how you can get involved:
 
 ### Blog Contributions
 
-Want to share your thoughts or showcase your projects? You can contribute to our blog by submitting a DOCX file to the `posts` directory of this repository. Here's how:
+Want to share your thoughts or showcase your projects? You can contribute to our blog by submitting a DOCX or Markdown file to the `posts` directory of this repository. Here's how:
 
 1. Fork the repository.
-2. Add your blog post in DOCX format to the `posts` directory.
+2. Add your blog post in DOCX or Markdown format to the `posts` directory.
 3. Create a pull request.
 
 We encourage contributions that foster innovation, share insightful analyses, and reflect creative thinking.
@@ -34,7 +34,7 @@ To contribute to the project code:
 
 If you have any questions, proposals for collaboration, or need further information, please don't hesitate to contact us:
 
-- **Email**: fallingplanetcorp@gmail.com
+- **Email**: gradiorumcorp@gmail.com
 
 ## License
 
@@ -44,4 +44,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 - Thanks to all contributors who help make this project a reality.
 - Special thanks to those who engage with us to share innovative ideas and push the boundaries of technology.
-

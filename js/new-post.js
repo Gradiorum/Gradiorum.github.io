@@ -18,7 +18,7 @@ async function submitPost() {
         sha: sha || undefined,
     };
 
-    fetch(`https://api.github.com/repos/YourUsername/FallingPlanet/contents/${filePath}`, {
+    fetch(`https://api.github.com/repos/YourUsername/Gradiorum/contents/${filePath}`, {
         method: 'PUT',
         headers: {
             'Authorization': `token ${token}`,
@@ -37,7 +37,7 @@ async function submitPost() {
 }
 
 async function getFileSha(path, token) {
-    const response = await fetch(`https://api.github.com/repos/YourUsername/FallingPlanet/contents/${path}`, {
+    const response = await fetch(`https://api.github.com/repos/YourUsername/Gradiorum/contents/${path}`, {
         headers: { 'Authorization': `token ${token}` },
     });
 

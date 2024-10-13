@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchProjects() {
-    const orgName = 'FallingPlanet'; // Replace with your organization name
+    const orgName = 'Gradiorum'; // Replace with your organization name
     const userName = 'WilliamStigall'; // Replace with your GitHub username
     const projectsContainer = document.getElementById('projects-container');
 

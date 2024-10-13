@@ -1,86 +1,193 @@
-/* Existing styles */
+/* Updated styles */
 
-/* Timeline styling */
-.timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+/* Gradient-based theme */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #ffffff;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.timeline::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    background-color: #3498db;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
+body[data-theme="light"] {
+    background-color: #ffffff;
+    color: #000000;
 }
 
-.timeline-item {
-    padding: 10px 40px;
-    position: relative;
-    background-color: inherit;
-    width: 50%;
-}
-
-.timeline-item.left {
-    left: 0;
-}
-
-.timeline-item.right {
-    left: 50%;
-}
-
-.timeline-item::after {
-    content: ' ';
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    right: -17px;
-    background-color: #3498db;
-    border: 4px solid #fff;
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-.timeline-item.right::after {
-    left: -17px;
-}
-
-.timeline-content {
+/* Header and navigation */
+header {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
     padding: 20px;
-    background-color: inherit;
-    position: relative;
-    border-radius: 6px;
 }
 
-.timeline-item.left .timeline-content {
-    text-align: right;
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.timeline-item.right .timeline-content {
-    text-align: left;
+.logo {
+    height: 50px;
 }
 
-/* Responsive */
-@media screen and (max-width: 600px) {
-    .timeline::after {
-        left: 31px;
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Responsive navigation */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
     }
-    .timeline-item {
-        width: 100%;
-        left: 0;
+
+    nav ul.active {
+        display: flex;
     }
-    .timeline-item.right {
-        left: 0%;
-    }
-    .timeline-item::after {
-        left: 15px;
-    }
-    .timeline-item.right::after {
-        left: 15px;
+
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 24px;
+        cursor: pointer;
     }
 }
+
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    color: #ffffff;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Featured projects */
+.featured {
+    padding: 60px 20px;
+    background-color: #1e1e1e;
+}
+
+.featured h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.projects {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.projects article {
+    background-color: #2e2e2e;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.projects article:hover {
+    transform: scale(1.05);
+}
+
+.projects img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.projects h3 {
+    margin-top: 20px;
+}
+
+.projects p {
+    margin: 20px 0;
+}
+
+.projects a {
+    color: #4b6cb7;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.social-links a {
+    color: #ffffff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.newsletter {
+    margin-top: 20px;
+}
+
+.newsletter input {
+    padding: 10px;
+    width: 200px;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Theme transition */
+[data-theme="light"] .hero,
+[data-theme="light"] footer,
+[data-theme="light"] .featured {
+    background-color: #f9f9f9;
+    color: #000000;
+}
+
+[data-theme="light"] nav ul li a,
+[data-theme="light"] .theme-toggle,
+[data-theme="light"] .menu-toggle {
+    color: #000000;
+}
+
+/* Timeline styling remains the same as before */
