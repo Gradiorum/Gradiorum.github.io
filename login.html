@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... head elements ... -->
+    <meta charset="UTF-8">
     <title>Login - Gradiorum</title>
-    <script src="js/login.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS and Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Include common.js -->
+    <script src="js/common.js"></script>
 </head>
-<body>
+<body data-theme="default">
+    <!-- Include the header -->
+    <div data-include="header.html"></div>
     <main>
-        <h1>Admin Login</h1>
+        <h1>Creator Login</h1>
         <button onclick="authenticateWithGitHub()">Login with GitHub</button>
     </main>
+    <!-- Include the footer -->
+    <div data-include="footer.html"></div>
+    <!-- Include login.js -->
+    <script src="js/login.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 async function submitPost() {
-    const title = document.getElementById('post-title').value;
-    const content = document.getElementById('post-content').value;
+    const title = document.getElementById('post-title').value.trim();
+    const content = document.getElementById('post-content').value.trim();
     const token = sessionStorage.getItem('githubToken');
 
     if (!title || !content) {
@@ -8,7 +8,8 @@ async function submitPost() {
         return;
     }
 
-    const filePath = `posts/${title.replace(/\s+/g, '-').toLowerCase()}.md`;
+    const fileName = `${title.replace(/\s+/g, '-').toLowerCase()}.md`;
+    const filePath = `posts/${fileName}`;
     const message = `Add new post: ${title}`;
     const sha = await getFileSha(filePath, token);
 
@@ -16,6 +17,7 @@ async function submitPost() {
         message: message,
         content: btoa(unescape(encodeURIComponent(content))),
         sha: sha || undefined,
+        branch: 'main',
     };
 
     fetch(`https://api.github.com/repos/YourUsername/Gradiorum/contents/${filePath}`, {
@@ -31,7 +33,9 @@ async function submitPost() {
             alert('Post published successfully!');
             window.location.href = 'blog.html';
         } else {
-            alert('Error publishing post.');
+            response.json().then(err => {
+                alert('Error publishing post: ' + err.message);
+            });
         }
     });
 }

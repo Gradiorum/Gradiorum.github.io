@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Gradiorum - Home</title>
+    <meta name="description" content="Gradiorum is the frontier of innovation and technology. Discover our projects, blog, and more.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Gradiorum - Home">
+    <meta property="og:description" content="Gradiorum is the frontier of innovation and technology. Discover our projects, blog, and more.">
+    <meta property="og:image" content="https://yourdomain.com/assets/og-image.png">
+    <meta property="og:url" content="https://yourdomain.com/index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- CSS and Fonts -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Include common.js before the closing head tag -->
     <script src="js/common.js"></script>
 </head>
-<body data-theme="dark">
+<body data-theme="default">
     <!-- Include the header using data-include -->
     <div data-include="header.html"></div>
     <main>
-        <section class="hero" style="background: linear-gradient(135deg, #4b6cb7, #182848);">
+        <section class="hero">
             <h1>Welcome to Gradiorum</h1>
             <p>The Frontier of Innovation and Technology</p>
             <button onclick="location.href='about.html'">Learn More</button>
@@ -42,6 +51,7 @@
     </main>
     <!-- Include the footer using data-include -->
     <div data-include="footer.html"></div>
-    <script src="js/main.js"></script>
+    <!-- Include main.js as a module -->
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

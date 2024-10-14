@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog - Gradiorum</title>
+    <meta name="description" content="Read the latest articles and updates from Gradiorum.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS and Fonts -->
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/blog.js"></script>
+    <!-- Include common.js before the closing head tag -->
+    <script src="js/common.js"></script>
 </head>
-<body>
-    <header>
-        <!-- ... updated navigation ... -->
-    </header>
+<body data-theme="default">
+    <!-- Include the header -->
+    <div data-include="header.html"></div>
     <main>
         <h1>Blog</h1>
         <div id="blog-posts" class="blog-cards"></div>
         <button id="new-post-btn" style="display: none;">New Post</button>
     </main>
-    <!-- ... updated footer ... -->
+    <!-- Include the footer -->
+    <div data-include="footer.html"></div>
+    <!-- Include Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Include main.js as a module -->
+    <script type="module" src="js/main.js"></script>
+    <!-- Include blog.js -->
+    <script src="js/blog.js"></script>
 </body>
 </html>

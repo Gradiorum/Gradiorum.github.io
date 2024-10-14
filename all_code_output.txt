@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About - FallingPlanet</title>
+    <title>About - Gradiorum</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/common.js"></script>
 </head>
@@ -15,22 +15,28 @@
     <div data-include="header.html"></div>
     <main>
         <section class="about">
-            <h1>About FallingPlanet</h1>
-            <p>Welcome to FallingPlanet, the personal portfolio and organizational platform for William A. Stigall. FallingPlanet showcases innovative projects, creative endeavors, and a collection of works that span various fields of technology and art.</p>
+            <h1>About Gradiorum</h1>
+            <p>Welcome to Gradiorum, the leading platform for innovation and technological advancement. Gradiorum showcases cutting-edge projects, creative endeavors, and a collection of works that span various fields of technology and art.</p>
             <h2>Our Mission</h2>
-            <p>At FallingPlanet, our mission is to push the boundaries of innovation, foster collaboration, and share knowledge with the world. Despite being a one-person operation, we believe in the power of ideas and the impact they can have.</p>
+            <p>At Gradiorum, our mission is to pioneer future-facing technological solutions, foster collaboration, and share knowledge with the world. We are rooted in innovation, aiming to be at the forefront of AI and tech development.</p>
             <h2>Timeline</h2>
             <div class="timeline">
                 <div class="timeline-item left">
                     <div class="timeline-content">
-                        <h3>2022</h3>
-                        <p>Founded FallingPlanet as a platform to showcase innovative projects.</p>
+                        <h3>October 13, 2024</h3>
+                        <p>Official name change from "FallingPlanet" to "Gradiorum".</p>
                     </div>
                 </div>
                 <div class="timeline-item right">
                     <div class="timeline-content">
-                        <h3>2023</h3>
-                        <p>Launched the first major project focusing on AI development, the FallingPlanet-toolkit.</p>
+                        <h3>October 20, 2024</h3>
+                        <p>Completion of the toolkit rewrite:
+                            <ul>
+                                <li><strong>Via</strong> (formerly Orbit): A lightweight modular framework for AI integration.</li>
+                                <li><strong>Ascendus</strong> (formerly Quasar): An advanced AI toolkit for scaling automation and efficiency.</li>
+                                <li><strong>Motus</strong>: A new reinforcement learning library for dynamic AI solutions.</li>
+                            </ul>
+                        </p>
                     </div>
                 </div>
                 <!-- Add more timeline items as needed -->
@@ -49,20 +55,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... head elements ... -->
-    <title>Blog - FallingPlanet</title>
+    <meta charset="UTF-8">
+    <title>Blog - Gradiorum</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/blog.js"></script>
 </head>
 <body>
     <header>
-        <!-- ... navigation ... -->
+        <!-- ... updated navigation ... -->
     </header>
     <main>
         <h1>Blog</h1>
-        <div id="blog-posts"></div>
+        <div id="blog-posts" class="blog-cards"></div>
         <button id="new-post-btn" style="display: none;">New Post</button>
     </main>
-    <!-- ... footer ... -->
+    <!-- ... updated footer ... -->
 </body>
 </html>
 
@@ -92,7 +99,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact - FallingPlanet</title>
+    <title>Contact - Gradiorum</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/common.js"></script>
 </head>
@@ -103,7 +110,7 @@
             <h1>Contact Us</h1>
             <p>If you have any questions, proposals for collaboration, or need further information, please don't hesitate to contact us:</p>
             <ul>
-                <li>Email: <a href="mailto:fallingplanetcorp@gmail.com">fallingplanetcorp@gmail.com</a></li>
+                <li>Email: <a href="mailto:gradiorumcorp@gmail.com">gradiorumcorp@gmail.com</a></li>
             </ul>
         </section>
     </main>
@@ -162,11 +169,18 @@ if __name__ == "__main__":
 # --------------------
 
 <footer>
-    <p>&copy; 2024 FallingPlanet. All rights reserved.</p>
+    <p>&copy; 2024 Gradiorum. All rights reserved.</p>
     <div class="social-links">
-        <a href="https://twitter.com/FallingPlanet">Twitter</a>
-        <a href="https://facebook.com/FallingPlanet">Facebook</a>
-        <a href="https://linkedin.com/company/FallingPlanet">LinkedIn</a>
+        <a href="https://twitter.com/Gradiorum">Twitter</a>
+        <a href="https://linkedin.com/company/Gradiorum">LinkedIn</a>
+        <a href="https://youtube.com/channel/Gradiorum">YouTube</a>
+    </div>
+    <div class="newsletter">
+        <p>Join our Mailing List for Updates</p>
+        <form id="newsletter-form">
+            <input type="email" name="email" placeholder="Your email">
+            <button type="submit">Subscribe</button>
+        </form>
     </div>
 </footer>
 
@@ -177,7 +191,7 @@ if __name__ == "__main__":
 
 <header>
     <div class="header-content">
-        <img src="assets/logo.png" alt="FallingPlanet Logo" class="logo">
+        <img src="assets/logo.png" alt="Gradiorum Logo" class="logo">
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -189,6 +203,7 @@ if __name__ == "__main__":
                 <li><a href="papers.html">Papers</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <button class="menu-toggle">&#9776;</button>
         </nav>
         <button class="theme-toggle">Toggle Theme</button>
     </div>
@@ -203,52 +218,41 @@ if __name__ == "__main__":
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FallingPlanet - Home</title>
+    <title>Gradiorum - Home</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- Include common.js before the closing head tag -->
     <script src="js/common.js"></script>
 </head>
-<body>
+<body data-theme="dark">
     <!-- Include the header using data-include -->
     <div data-include="header.html"></div>
     <main>
-        <section class="hero">
-            <h1>Welcome to FallingPlanet</h1>
-            <p>Explore the frontier of technology and innovation with us.</p>
+        <section class="hero" style="background: linear-gradient(135deg, #4b6cb7, #182848);">
+            <h1>Welcome to Gradiorum</h1>
+            <p>The Frontier of Innovation and Technology</p>
             <button onclick="location.href='about.html'">Learn More</button>
         </section>
         <section class="featured">
             <h2>Featured Projects</h2>
             <div class="projects">
                 <article>
-                    <img src="assets/project1.jpg" alt="Project 1">
-                    <h3>Project 1 Title</h3>
-                    <p>Description of what Project 1 is about. A brief overview.</p>
-                    <a href="project1.html">Read More</a>
+                    <img src="assets/via.png" alt="Via Toolkit">
+                    <h3>Via</h3>
+                    <p>A lightweight modular framework for AI integration.</p>
+                    <a href="via.html">Read More</a>
                 </article>
                 <article>
-                    <img src="assets/project2.jpg" alt="Project 2">
-                    <h3>Project 2 Title</h3>
-                    <p>Description of what Project 2 is about. A brief overview.</p>
-                    <a href="project2.html">Read More</a>
+                    <img src="assets/ascendus.png" alt="Ascendus Toolkit">
+                    <h3>Ascendus</h3>
+                    <p>An advanced AI toolkit for scaling automation and efficiency.</p>
+                    <a href="ascendus.html">Read More</a>
                 </article>
             </div>
         </section>
         <section class="news">
             <h2>Latest News</h2>
             <div class="news-articles">
-                <article>
-                    <img src="assets/news1.jpg" alt="News 1">
-                    <h3>News Headline 1</h3>
-                    <p>Summary of the news article. What is the main focus?</p>
-                    <a href="news1.html">Read More</a>
-                </article>
-                <article>
-                    <img src="assets/news2.jpg" alt="News 2">
-                    <h3>News Headline 2</h3>
-                    <p>Summary of the news article. What is the main focus?</p>
-                    <a href="news2.html">Read More</a>
-                </article>
+                <!-- Dynamic content loaded via JavaScript -->
             </div>
         </section>
     </main>
@@ -267,7 +271,7 @@ if __name__ == "__main__":
 <html lang="en">
 <head>
     <!-- ... head elements ... -->
-    <title>Login - FallingPlanet</title>
+    <title>Login - Gradiorum</title>
     <script src="js/login.js"></script>
 </head>
 <body>
@@ -287,7 +291,7 @@ if __name__ == "__main__":
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Members - FallingPlanet</title>
+    <title>Members - Gradiorum</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/common.js"></script>
 </head>
@@ -299,7 +303,8 @@ if __name__ == "__main__":
             <div class="member-profile">
                 <img src="assets/william-stigall.jpg" alt="William A. Stigall">
                 <h2>William A. Stigall</h2>
-                <p>Founder and sole member of FallingPlanet. William is a passionate developer and innovator, dedicated to pushing the limits of technology and creativity.</p>
+                <p>I am a 22-year-old with a lifelong interest in Artificial Intelligence and Intelligent Agents. I believe that everyone deserves an assistant reminiscent of Halo's Cortana, and I am dedicated to bringing that vision to reality. I enjoy applying AI solutions wherever possible, focusing on developing intelligent systems that enhance everyday life.</p>
+                <p>I graduated with a Bachelor of Science in Computer Science with a concentration in AI and a minor in Data Science from Kennesaw State University. I am currently attending the Georgia Institute of Technology for a Master's of Science in Computer Science, specializing in Machine Learning.</p>
             </div>
             <!-- Future members can be added here -->
         </section>
@@ -317,7 +322,7 @@ if __name__ == "__main__":
 <html lang="en">
 <head>
     <!-- ... head elements ... -->
-    <title>New Post - FallingPlanet</title>
+    <title>New Post - Gradiorum</title>
     <script src="js/new-post.js"></script>
 </head>
 <body>
@@ -340,40 +345,31 @@ if __name__ == "__main__":
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradiorum - Papers</title>
     <link rel="stylesheet" href="css/style.css">
-    <title>FallingPlanet - Papers</title>
+    <script src="js/common.js"></script>
 </head>
 <body>
-    <header>
-        <img src="assets/logo.png" alt="FallingPlanet Logo">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="videos.html">Videos</a></li>
-                <li><a href="papers.html">Papers</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Include the header -->
+    <div data-include="header.html"></div>
     <main>
         <h1>Our Papers</h1>
         <section class="papers">
             <article>
-                <h2>Paper Title 1</h2>
-                <p>Abstract or summary of the paper.</p>
-                <a href="https://example.com/paper1.pdf" target="_blank">Read Paper</a>
+                <h2>Advancements in AI Integration</h2>
+                <p>An in-depth analysis of modern AI integration techniques using the Via framework.</p>
+                <a href="https://example.com/advancements-in-ai-integration.pdf" target="_blank">Read Paper</a>
             </article>
             <article>
-                <h2>Paper Title 2</h2>
-                <p>Abstract or summary of the paper.</p>
-                <a href="https://example.com/paper2.pdf" target="_blank">Read Paper</a>
+                <h2>Scaling Automation with Ascendus</h2>
+                <p>A comprehensive study on scaling automation and efficiency in AI systems.</p>
+                <a href="https://example.com/scaling-automation-with-ascendus.pdf" target="_blank">Read Paper</a>
             </article>
             <!-- More papers can be listed here -->
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 FallingPlanet. All rights reserved.</p>
-    </footer>
+    <!-- Include the footer -->
+    <div data-include="footer.html"></div>
 </body>
 </html>
 
@@ -386,7 +382,7 @@ if __name__ == "__main__":
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Projects - FallingPlanet</title>
+    <title>Projects - Gradiorum</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/common.js"></script>
 </head>
@@ -410,24 +406,24 @@ if __name__ == "__main__":
 # File: README.md
 # --------------------
 
-# FallingPlanet
+# Gradiorum
 
-Welcome to the official repository of FallingPlanet, a platform dedicated to showcasing the innovative projects of William A. Stigall. FallingPlanet serves as a digital space not only to display personal accomplishments but also to foster collaboration and free expression within the tech community.
+Welcome to the official repository of **Gradiorum**, a platform dedicated to showcasing innovative projects at the frontier of technology and creativity. Gradiorum serves as a digital space not only to display our accomplishments but also to foster collaboration and free expression within the tech community.
 
-## About FallingPlanet
+## About Gradiorum
 
-FallingPlanet is currently a personal project and has not been formalized as an LLC. It represents an abstraction of William A. Stigall's work, focusing on sharing creative and technical projects with the world. This repository and its associated website are open source, reflecting a commitment to open collaboration.
+Gradiorum represents the evolution of our commitment to pushing the boundaries of innovation. We focus on sharing creative and technical projects with the world, reflecting our dedication to future-facing technological leadership.
 
 ## Contribution
 
-FallingPlanet welcomes contributions from everyone. Whether you're looking to contribute to the existing projects or want to share your own insights through blog posts, here’s how you can get involved:
+Gradiorum welcomes contributions from everyone. Whether you're looking to contribute to existing projects or want to share your own insights through blog posts, here’s how you can get involved:
 
 ### Blog Contributions
 
-Want to share your thoughts or showcase your projects? You can contribute to our blog by submitting a DOCX file to the `posts` directory of this repository. Here's how:
+Want to share your thoughts or showcase your projects? You can contribute to our blog by submitting a DOCX or Markdown file to the `posts` directory of this repository. Here's how:
 
 1. Fork the repository.
-2. Add your blog post in DOCX format to the `posts` directory.
+2. Add your blog post in DOCX or Markdown format to the `posts` directory.
 3. Create a pull request.
 
 We encourage contributions that foster innovation, share insightful analyses, and reflect creative thinking.
@@ -446,7 +442,7 @@ To contribute to the project code:
 
 If you have any questions, proposals for collaboration, or need further information, please don't hesitate to contact us:
 
-- **Email**: fallingplanetcorp@gmail.com
+- **Email**: gradiorumcorp@gmail.com
 
 ## License
 
@@ -458,7 +454,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - Special thanks to those who engage with us to share innovative ideas and push the boundaries of technology.
 
 
-
 # --------------------
 # File: videos.html
 # --------------------
@@ -467,30 +462,20 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradiorum - Videos</title>
     <link rel="stylesheet" href="css/style.css">
-    <title>FallingPlanet - Videos</title>
+    <script src="js/common.js"></script>
 </head>
 <body>
-    <header>
-        <img src="assets/logo.png" alt="FallingPlanet Logo">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="videos.html">Videos</a></li>
-                <li><a href="papers.html">Papers</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Include the header -->
+    <div data-include="header.html"></div>
     <main>
         <h1>Visit Our YouTube Channel</h1>
         <p>For more videos, tutorials, and live sessions, visit our YouTube channel.</p>
-        <a href="https://www.youtube.com/user/FallingPlanet" target="_blank" class="btn">Go to YouTube Channel</a>
+        <a href="https://www.youtube.com/channel/Gradiorum" target="_blank" class="btn">Go to YouTube Channel</a>
     </main>
-    <footer>
-        <p>&copy; 2024 FallingPlanet. All rights reserved.</p>
-    </footer>
+    <!-- Include the footer -->
+    <div data-include="footer.html"></div>
 </body>
 </html>
 
@@ -499,92 +484,199 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 # File: css\style.css
 # --------------------
 
-/* Existing styles */
+/* Updated styles */
 
-/* Timeline styling */
-.timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+/* Gradient-based theme */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #ffffff;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.timeline::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    background-color: #3498db;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
+body[data-theme="light"] {
+    background-color: #ffffff;
+    color: #000000;
 }
 
-.timeline-item {
-    padding: 10px 40px;
-    position: relative;
-    background-color: inherit;
-    width: 50%;
-}
-
-.timeline-item.left {
-    left: 0;
-}
-
-.timeline-item.right {
-    left: 50%;
-}
-
-.timeline-item::after {
-    content: ' ';
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    right: -17px;
-    background-color: #3498db;
-    border: 4px solid #fff;
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-.timeline-item.right::after {
-    left: -17px;
-}
-
-.timeline-content {
+/* Header and navigation */
+header {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
     padding: 20px;
-    background-color: inherit;
-    position: relative;
-    border-radius: 6px;
 }
 
-.timeline-item.left .timeline-content {
-    text-align: right;
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.timeline-item.right .timeline-content {
-    text-align: left;
+.logo {
+    height: 50px;
 }
 
-/* Responsive */
-@media screen and (max-width: 600px) {
-    .timeline::after {
-        left: 31px;
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Responsive navigation */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
     }
-    .timeline-item {
-        width: 100%;
-        left: 0;
+
+    nav ul.active {
+        display: flex;
     }
-    .timeline-item.right {
-        left: 0%;
-    }
-    .timeline-item::after {
-        left: 15px;
-    }
-    .timeline-item.right::after {
-        left: 15px;
+
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 24px;
+        cursor: pointer;
     }
 }
+
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    color: #ffffff;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Featured projects */
+.featured {
+    padding: 60px 20px;
+    background-color: #1e1e1e;
+}
+
+.featured h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.projects {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.projects article {
+    background-color: #2e2e2e;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.projects article:hover {
+    transform: scale(1.05);
+}
+
+.projects img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.projects h3 {
+    margin-top: 20px;
+}
+
+.projects p {
+    margin: 20px 0;
+}
+
+.projects a {
+    color: #4b6cb7;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.social-links a {
+    color: #ffffff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.newsletter {
+    margin-top: 20px;
+}
+
+.newsletter input {
+    padding: 10px;
+    width: 200px;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Theme transition */
+[data-theme="light"] .hero,
+[data-theme="light"] footer,
+[data-theme="light"] .featured {
+    background-color: #f9f9f9;
+    color: #000000;
+}
+
+[data-theme="light"] nav ul li a,
+[data-theme="light"] .theme-toggle,
+[data-theme="light"] .menu-toggle {
+    color: #000000;
+}
+
+/* Timeline styling remains the same as before */
 
 
 # --------------------
@@ -606,14 +698,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchPosts() {
-    const response = await fetch('https://api.github.com/repos/YourUsername/FallingPlanet/contents/posts');
+    const response = await fetch('https://api.github.com/repos/YourUsername/Gradiorum/contents/posts');
     const posts = await response.json();
 
     const postsContainer = document.getElementById('blog-posts');
+    postsContainer.classList.add('post-grid');
     posts.forEach(async (post) => {
         if (post.name.endsWith('.md')) {
             const postContent = await fetch(post.download_url).then(res => res.text());
             const postElement = document.createElement('div');
+            postElement.classList.add('post-card');
             postElement.innerHTML = marked(postContent); // Use a Markdown parser like Marked.js
             postsContainer.appendChild(postElement);
         }
@@ -726,7 +820,7 @@ async function submitPost() {
         sha: sha || undefined,
     };
 
-    fetch(`https://api.github.com/repos/YourUsername/FallingPlanet/contents/${filePath}`, {
+    fetch(`https://api.github.com/repos/YourUsername/Gradiorum/contents/${filePath}`, {
         method: 'PUT',
         headers: {
             'Authorization': `token ${token}`,
@@ -745,7 +839,7 @@ async function submitPost() {
 }
 
 async function getFileSha(path, token) {
-    const response = await fetch(`https://api.github.com/repos/YourUsername/FallingPlanet/contents/${path}`, {
+    const response = await fetch(`https://api.github.com/repos/YourUsername/Gradiorum/contents/${path}`, {
         headers: { 'Authorization': `token ${token}` },
     });
 
@@ -767,7 +861,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchProjects() {
-    const orgName = 'FallingPlanet'; // Replace with your organization name
+    const orgName = 'Gradiorum'; // Replace with your organization name
     const userName = 'WilliamStigall'; // Replace with your GitHub username
     const projectsContainer = document.getElementById('projects-container');
 

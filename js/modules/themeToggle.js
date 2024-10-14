@@ -1,11 +1,30 @@
 export function setupThemeToggle() {
     const themeToggle = document.querySelector('.theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-theme', currentTheme);
+    let currentTheme = localStorage.getItem('theme') || 'default';
+    setTheme(currentTheme);
 
     themeToggle.addEventListener('click', () => {
-        const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        document.body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        currentTheme = document.body.getAttribute('data-theme');
+
+        if (currentTheme === 'dark') {
+            setTheme('light');
+        } else if (currentTheme === 'light') {
+            setTheme('default');
+        } else {
+            setTheme('dark');
+        }
     });
+
+    function setTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+
+        if (theme === 'dark') {
+            themeToggle.textContent = 'Light Mode';
+        } else if (theme === 'light') {
+            themeToggle.textContent = 'High Contrast Mode';
+        } else {
+            themeToggle.textContent = 'Dark Mode';
+        }
+    }
 }

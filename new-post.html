@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... head elements ... -->
+    <meta charset="UTF-8">
     <title>New Post - Gradiorum</title>
-    <script src="js/new-post.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS and Fonts -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Include common.js -->
+    <script src="js/common.js"></script>
 </head>
-<body>
+<body data-theme="default">
+    <!-- Include the header -->
+    <div data-include="header.html"></div>
     <main>
         <h1>New Blog Post</h1>
-        <input type="text" id="post-title" placeholder="Title">
-        <textarea id="post-content" placeholder="Write your post in Markdown"></textarea>
+        <input type="text" id="post-title" placeholder="Title" required>
+        <textarea id="post-content" placeholder="Write your post in Markdown" required></textarea>
         <button onclick="submitPost()">Publish</button>
     </main>
+    <!-- Include the footer -->
+    <div data-include="footer.html"></div>
+    <!-- Include main.js as a module -->
+    <script type="module" src="js/main.js"></script>
+    <!-- Include new-post.js -->
+    <script src="js/new-post.js"></script>
 </body>
 </html>

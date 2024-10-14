@@ -3,8 +3,8 @@
     const clientId = 'YOUR_GITHUB_APP_CLIENT_ID';
     const clientSecret = 'YOUR_GITHUB_APP_CLIENT_SECRET';
 
-    // Exchange code for access token via a proxy server or serverless function
-    const response = await fetch('https://your-proxy-server.com/get-token', {
+    // Exchange code for access token via a serverless function or backend endpoint
+    const response = await fetch('https://your-backend.com/api/github-auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ clientId, clientSecret, code }),

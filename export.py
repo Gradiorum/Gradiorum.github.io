@@ -5,7 +5,7 @@ def export_code(output_filename='all_code_output.txt'):
     included_extensions = {'.js', '.html', '.css', '.json', '.py', '.md'}
 
     # Define directories to exclude
-    excluded_dirs = {'venv', '__pycache__', 'node_modules', 'browser-extension/data'}
+    excluded_dirs = {'venv', '__pycache__', 'node_modules', 'browser-extension/data', '.git'}
 
     code_files = []
     for root, dirs, files in os.walk('.'):

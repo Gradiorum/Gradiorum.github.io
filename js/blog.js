@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
         newPostBtn.addEventListener('click', () => {
             window.location.href = 'new-post.html';
         });
+    } else {
+        // Show login button for creators
+        const loginBtn = document.createElement('button');
+        loginBtn.textContent = 'Creator Login';
+        loginBtn.addEventListener('click', () => {
+            authenticateWithGitHub();
+        });
+        document.body.insertBefore(loginBtn, document.body.firstChild);
     }
 
     fetchPosts();
@@ -23,8 +31,18 @@ async function fetchPosts() {
             const postContent = await fetch(post.download_url).then(res => res.text());
             const postElement = document.createElement('div');
             postElement.classList.add('post-card');
-            postElement.innerHTML = marked(postContent); // Use a Markdown parser like Marked.js
+            postElement.innerHTML = marked.parse(postContent);
             postsContainer.appendChild(postElement);
         }
     });
+}
+
+function authenticateWithGitHub() {
+    const clientId = 'YOUR_GITHUB_APP_CLIENT_ID';
+    const redirectUri = 'https://yourdomain.com/callback.html';
+    const scope = 'repo';
+
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
+
+    window.location.href = authUrl;
 }

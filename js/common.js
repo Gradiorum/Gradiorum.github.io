@@ -5,6 +5,11 @@ function includeHTML() {
         const response = await fetch(file);
         if (response.ok) {
             el.innerHTML = await response.text();
+            // Re-initialize scripts in included content
+            if (file.includes('header.html')) {
+                setupResponsiveNav();
+                setupThemeToggle();
+            }
         } else {
             console.error(`Failed to load ${file}: ${response.statusText}`);
         }
