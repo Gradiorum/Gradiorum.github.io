@@ -2,31 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Our Papers - Gradiorum</title>
+    <meta name="description" content="Explore the research and publications from Gradiorum.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradiorum - Papers</title>
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Our Papers - Gradiorum">
+    <meta property="og:description" content="Explore the research and publications from Gradiorum.">
+    <meta property="og:image" content="https://yourdomain.com/assets/og-image-papers.png">
+    <meta property="og:url" content="https://yourdomain.com/papers.html">
+    <!-- CSS and Fonts -->
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/common.js"></script>
+    <!-- Include common.js before the closing head tag -->
+    <script src="js/common.js" defer></script>
 </head>
-<body>
-    <!-- Include the header -->
+<body data-theme="default">
+    <!-- Include the header using data-include -->
     <div data-include="header.html"></div>
     <main>
         <h1>Our Papers</h1>
         <section class="papers">
             <article>
-                <h2>Advancements in AI Integration</h2>
-                <p>An in-depth analysis of modern AI integration techniques using the Via framework.</p>
-                <a href="https://example.com/advancements-in-ai-integration.pdf" target="_blank">Read Paper</a>
+                <h2>TransformingGameplay: A Transformer-Based Q-Network without Convolutional Layers</h2>
+                <p><strong>Authors:</strong> William A. Stigall, Md Abdullah Al Hafiz Khan</p>
+                <p><strong>Abstract:</strong> This paper explores the development of a transformer-based Q-Network for gameplay environments, eliminating the need for convolutional layers. We investigate the performance and limitations of a transformer-only architecture in reinforcement learning tasks, highlighting areas where traditional convolutional approaches excel and identifying the challenges inherent to transformer models in dynamic environments.</p>
+                <p><strong>Keywords:</strong> Transformer, Q-Network, Reinforcement Learning, Gameplay, Convolutional Networks</p>
+                <a href="https://arxiv.org/submit/5559985/view" target="_blank" class="btn">Read Paper</a>
             </article>
             <article>
-                <h2>Scaling Automation with Ascendus</h2>
-                <p>A comprehensive study on scaling automation and efficiency in AI systems.</p>
-                <a href="https://example.com/scaling-automation-with-ascendus.pdf" target="_blank">Read Paper</a>
+                <h2>Scaling Synthetic Data Generation for Behavioral Health Classification using Large Language Models</h2>
+                <p><strong>Authors:</strong> William Stigall, Md Abdullah Al Hafiz Khan</p>
+                <p><strong>Abstract:</strong> Behavioral health classification is critical for law enforcement and public health interventions. However, data scarcity and sensitivity pose significant challenges to developing robust classification models. This paper explores the use of large language models (LLMs), specifically Llama 3.1 8B, to generate synthetic data for scaling behavioral health classification datasets. We design a series of prompt engineering techniques and tasks, including synthetic data generation, adversarial examples, negative reasoning, random tag evaluation, and contradiction detection. Our methodology aims to expand an initial dataset of 1,050 police reports to a larger corpus while maintaining data quality and diversity. We present the implementation details, evaluation metrics, and placeholder results indicating potential improvements in classification performance. Our approach offers a viable solution for enhancing datasets in sensitive domains where data is limited.</p>
+                <p><strong>Keywords:</strong> Synthetic Data, Behavioral Health, Large Language Models, Data Augmentation, Llama 3.1</p>
+                <a href="#" target="_blank" class="btn disabled" aria-disabled="true">Read Paper (Pending)</a>
+                <p><em>Link to the paper will be available once published.</em></p>
             </article>
-            <!-- More papers can be listed here -->
+            <!-- Add more papers here as needed -->
         </section>
     </main>
-    <!-- Include the footer -->
+    <!-- Include the footer using data-include -->
     <div data-include="footer.html"></div>
+    <!-- Include main.js as a module -->
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
