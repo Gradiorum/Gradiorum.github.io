@@ -9,6 +9,9 @@ FILE_HEADER_PATTERN = re.compile(
     re.MULTILINE
 )
 
+# Adjusted to allow ignoring certain files by pattern if desired:
+IGNORED_FILES = []  # Add filenames to ignore if needed.
+
 def decompile_code(input_file, output_dir):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -26,6 +29,8 @@ def decompile_code(input_file, output_dir):
 
     for i in range(1, len(blocks), 2):
         fname = blocks[i].strip()
+        if fname in IGNORED_FILES:
+            continue
         if i+1 >= len(blocks):
             break
         fcontent = blocks[i+1].strip()

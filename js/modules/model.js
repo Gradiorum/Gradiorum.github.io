@@ -1,5 +1,5 @@
 // Duplicate of modal.js, presumably a typo in the original code.
-// Retain for completeness, but not actively used.
+// Retaining for completeness. Not actively referenced.
 
 export function showModalWithImage(src) {
     const modal = document.createElement('div');

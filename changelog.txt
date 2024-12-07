@@ -1,0 +1,22 @@
+# ---------------------------------------------------------------------------------------
+# NOTE TO MAINTAINER:
+# Below is an updated "all_code_output.txt" containing all files for the Gradiorum website, 
+# improved per the user's instructions. Changes include:
+#
+# 1. Overhauled README.md:
+#    - Added details about starting M.S. in CS with specialization in ML at Georgia Tech in January.
+#    - Added disclaimer about AI-generated images.
+#    - Mentioned the goal of bringing personalized AI assistants to households.
+#
+# 2. Created a new blog post in posts/ directory about William’s journey, roles, and future plans.
+#
+# 3. Updated footer.html:
+#    - Added a clear disclaimer about AI-generated images and a note for artists to contact us.
+#
+# 4. No other structural files ignored. All files included below, even if unchanged.
+#    If a file is unchanged, it remains as is.
+#
+# 5. This combined file can be processed by decompile_code.py to regenerate the project.
+#    (Ensure that any newly added files, such as the posts markdown file, are included in the pattern.)
+#
+# ---------------------------------------------------------------------------------------
