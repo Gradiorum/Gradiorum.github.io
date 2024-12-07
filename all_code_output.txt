@@ -1,4 +1,3 @@
-
 # --------------------
 # File: about.html
 # --------------------
@@ -8,38 +7,43 @@
 <head>
     <meta charset="UTF-8">
     <title>About - Gradiorum</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/common.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about Gradiorum, a hub of innovation and advanced AI-driven projects.">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
     <div data-include="header.html"></div>
-    <main>
-        <section class="about">
-            <h1>About Gradiorum</h1>
-            <p>Welcome to Gradiorum, the leading platform for innovation and technological advancement. Gradiorum showcases cutting-edge projects, creative endeavors, and a collection of works that span various fields of technology and art.</p>
-            <h2>Our Mission</h2>
-            <p>At Gradiorum, our mission is to pioneer future-facing technological solutions, foster collaboration, and share knowledge with the world. We are rooted in innovation, aiming to be at the forefront of AI and tech development.</p>
-            <h2>Timeline</h2>
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <h3>October 13, 2024</h3>
-                        <p>Official name change from "FallingPlanet" to "Gradiorum".</p>
+    <main class="max-w-3xl mx-auto p-6">
+        <section class="my-10">
+            <h1 class="text-4xl font-bold mb-4">About Gradiorum</h1>
+            <p class="text-lg mb-6">Gradiorum is a leading platform at the intersection of innovation, technology, and art. 
+            Here, we showcase cutting-edge projects, creative endeavors, and a range of works spanning artificial intelligence, reinforcement learning, synthetic data generation, and beyond. Our mission is to push the boundaries of what’s possible, foster collaboration, and share knowledge with the world.</p>
+            
+            <h2 class="text-2xl font-semibold mb-2">Our Mission</h2>
+            <p class="mb-6">At Gradiorum, we aim to pioneer future-facing technological solutions. We leverage advanced AI frameworks, emerging paradigms, and rigorous research to accelerate technological progress. We believe in transparency, education, and open collaboration.</p>
+            
+            <h2 class="text-2xl font-semibold mb-2">Timeline</h2>
+            <div class="relative border-l border-gray-200 dark:border-gray-700 pl-6">
+                <div class="mb-10 ml-4">
+                    <div class="flex items-center mb-1">
+                        <div class="bg-blue-500 w-3 h-3 rounded-full mr-2"></div>
+                        <h3 class="font-semibold">October 13, 2024</h3>
                     </div>
+                    <p class="text-gray-700 dark:text-gray-300">Official name change from "FallingPlanet" to "Gradiorum".</p>
                 </div>
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <h3>October 20, 2024</h3>
-                        <p>Completion of the toolkit rewrite:
-                            <ul>
-                                <li><strong>Via</strong> (formerly Orbit): A lightweight modular framework for AI integration.</li>
-                                <li><strong>Ascendus</strong> (formerly Quasar): An advanced AI toolkit for scaling automation and efficiency.</li>
-                                <li><strong>Motus</strong>: A new reinforcement learning library for dynamic AI solutions.</li>
-                            </ul>
-                        </p>
+                <div class="mb-10 ml-4">
+                    <div class="flex items-center mb-1">
+                        <div class="bg-blue-500 w-3 h-3 rounded-full mr-2"></div>
+                        <h3 class="font-semibold">October 20, 2024</h3>
                     </div>
+                    <p class="text-gray-700 dark:text-gray-300">Completion of the toolkit rewrite:</p>
+                    <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+                        <li><strong>Via</strong> (formerly Orbit): A lightweight modular framework for AI integration.</li>
+                        <li><strong>Ascendus</strong> (formerly Quasar): An advanced AI toolkit for scaling automation and efficiency.</li>
+                        <li><strong>Motus</strong>: A new reinforcement learning library for dynamic AI solutions.</li>
+                    </ul>
                 </div>
-                <!-- Add more timeline items as needed -->
             </div>
         </section>
     </main>
@@ -57,19 +61,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog - Gradiorum</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/blog.js"></script>
+    <meta name="description" content="Read the latest articles and updates from Gradiorum.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
-    <header>
-        <!-- ... updated navigation ... -->
-    </header>
-    <main>
-        <h1>Blog</h1>
-        <div id="blog-posts" class="blog-cards"></div>
-        <button id="new-post-btn" style="display: none;">New Post</button>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div data-include="header.html"></div>
+    <main class="max-w-5xl mx-auto p-6">
+        <h1 class="text-4xl font-bold mb-8">Blog</h1>
+        <div id="blog-posts" class="grid md:grid-cols-3 gap-6"></div>
+        <button id="new-post-btn" class="hidden mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">
+            New Post
+        </button>
     </main>
-    <!-- ... updated footer ... -->
+    <div data-include="footer.html"></div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script src="js/blog.js"></script>
 </body>
 </html>
 
@@ -81,12 +90,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... head elements ... -->
-    <title>GitHub OAuth Callback</title>
-    <script src="js/callback.js"></script>
+    <meta charset="UTF-8">
+    <title>Google OAuth Callback</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/common.js"></script>
 </head>
-<body>
-    <p>Processing...</p>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <p class="p-6">Processing authentication...</p>
+    <script src="js/callback.js"></script>
 </body>
 </html>
 
@@ -100,18 +111,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact - Gradiorum</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/common.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <div data-include="header.html"></div>
-    <main>
-        <section class="contact">
-            <h1>Contact Us</h1>
-            <p>If you have any questions, proposals for collaboration, or need further information, please don't hesitate to contact us:</p>
-            <ul>
-                <li>Email: <a href="mailto:gradiorumcorp@gmail.com">gradiorumcorp@gmail.com</a></li>
+    <main class="max-w-3xl mx-auto p-6">
+        <section class="my-10">
+            <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+            <p class="mb-4">For questions, proposals for collaboration, or more information:</p>
+            <ul class="mb-6">
+                <li>Email: <a href="mailto:gradiorum@gmail.com" class="text-blue-600 hover:underline">gradiorum@gmail.com</a></li>
             </ul>
+            <p>We value your feedback and look forward to hearing from you.</p>
         </section>
     </main>
     <div data-include="footer.html"></div>
@@ -120,66 +133,21 @@
 
 
 # --------------------
-# File: export.py
-# --------------------
-
-import os
-
-def export_code(output_filename='all_code_output.txt'):
-    # Define the file extensions you want to include
-    included_extensions = {'.js', '.html', '.css', '.json', '.py', '.md'}
-
-    # Define directories to exclude
-    excluded_dirs = {'venv', '__pycache__', 'node_modules', 'browser-extension/data'}
-
-    code_files = []
-    for root, dirs, files in os.walk('.'):
-        # Modify dirs in-place to skip excluded directories
-        dirs[:] = [d for d in dirs if d not in excluded_dirs]
-        
-        for file in files:
-            file_ext = os.path.splitext(file)[1].lower()
-            if file_ext in included_extensions:
-                code_files.append(os.path.join(root, file))
-
-    all_code = ''
-    for file_path in code_files:
-        # Normalize the file path for better readability
-        normalized_path = os.path.relpath(file_path, '.')
-        all_code += f"\n# {'-'*20}\n# File: {normalized_path}\n# {'-'*20}\n\n"
-        
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                code = f.read()
-                all_code += code + "\n"
-        except (UnicodeDecodeError, PermissionError) as e:
-            all_code += f"// Could not read file: {e}\n"
-
-    with open(output_filename, 'w', encoding='utf-8') as f:
-        f.write(all_code)
-
-    print(f"All code has been exported to {output_filename}")
-
-if __name__ == "__main__":
-    export_code()
-
-
-# --------------------
 # File: footer.html
 # --------------------
 
-<footer>
+<footer class="bg-gray-200 dark:bg-gray-800 py-8 mt-10 text-center text-gray-700 dark:text-gray-300">
     <p>&copy; 2024 Gradiorum. All rights reserved.</p>
-    <div class="social-links">
-        <a href="https://twitter.com/Gradiorum">Twitter</a>
-        <a href="https://linkedin.com/company/Gradiorum">LinkedIn</a>
-        <a href="https://youtube.com/channel/Gradiorum">YouTube</a>
+    <div class="flex justify-center space-x-4 mt-4">
+        <a href="https://twitter.com/Gradiorum" class="hover:underline" aria-label="Gradiorum on Twitter">Twitter</a>
+        <a href="https://linkedin.com/company/Gradiorum" class="hover:underline" aria-label="Gradiorum on LinkedIn">LinkedIn</a>
+        <a href="https://youtube.com/channel/Gradiorum" class="hover:underline" aria-label="Gradiorum on YouTube">YouTube</a>
     </div>
-    <div class="newsletter">
-        <p>Join our Mailing List for Updates</p>
-        <form id="newsletter-form">
-            <input type="email" name="email" placeholder="Your email">
-            <button type="submit">Subscribe</button>
+    <div class="mt-6">
+        <p class="mb-2">Join our Mailing List for Updates</p>
+        <form id="newsletter-form" class="flex justify-center items-center space-x-2" aria-label="Newsletter Subscription">
+            <input type="email" name="email" class="px-3 py-2 rounded border border-gray-400" placeholder="Your email" aria-label="Email Address" required>
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">Subscribe</button>
         </form>
     </div>
 </footer>
@@ -189,25 +157,101 @@ if __name__ == "__main__":
 # File: header.html
 # --------------------
 
-<header>
-    <div class="header-content">
-        <img src="assets/logo.png" alt="Gradiorum Logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="members.html">Members</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="videos.html">Videos</a></li>
-                <li><a href="papers.html">Papers</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <button class="menu-toggle">&#9776;</button>
-        </nav>
-        <button class="theme-toggle">Toggle Theme</button>
+<header class="bg-white dark:bg-gray-800 shadow-md py-4 px-6 flex justify-between items-center">
+    <a href="index.html" class="flex items-center space-x-2">
+        <img src="assets/logo.png" alt="Gradiorum Logo" class="h-8 w-auto">
+        <span class="font-bold text-xl dark:text-white">Gradiorum</span>
+    </a>
+    <nav class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="about.html" class="hover:underline">About</a>
+        <a href="members.html" class="hover:underline">Members</a>
+        <a href="projects.html" class="hover:underline">Projects</a>
+        <a href="blog.html" class="hover:underline">Blog</a>
+        <a href="videos.html" class="hover:underline">Videos</a>
+        <a href="papers.html" class="hover:underline">Papers</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+        <a href="luminaguard.html" class="hover:underline">LuminaGuard</a>
+        <a href="humanai.html" class="hover:underline">Human-AI Teaming</a>
+    </nav>
+    <div class="flex items-center space-x-4">
+        <button class="theme-toggle bg-gray-300 dark:bg-gray-700 text-sm px-2 py-1 rounded focus:outline-none" aria-label="Toggle Theme">
+            Dark Mode
+        </button>
+        <div id="google-signin-btn" class="text-sm bg-blue-600 text-white px-3 py-1 rounded cursor-pointer hover:bg-blue-500">
+            Sign In
+        </div>
+        <button class="menu-toggle md:hidden" aria-label="Toggle Navigation">
+            <svg class="w-6 h-6 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
     </div>
+    <!-- Google Sign-In Integration -->
+    <!-- Replace YOUR_GOOGLE_CLIENT_ID below with your actual Google Client ID -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        google.accounts.id.initialize({
+          client_id: "YOUR_GOOGLE_CLIENT_ID",
+          callback: (response) => {
+            // Callback once user signed in
+            sessionStorage.setItem('googleUser', JSON.stringify(response));
+            location.reload();
+          }
+        });
+        google.accounts.id.renderButton(
+          document.getElementById('google-signin-btn'),
+          { theme: "outline", size: "medium" } 
+        );
+        
+        // If already signed in
+        const user = sessionStorage.getItem('googleUser');
+        if(user) {
+          document.getElementById('google-signin-btn').textContent = "Sign Out";
+          document.getElementById('google-signin-btn').onclick = () => {
+            sessionStorage.removeItem('googleUser');
+            location.reload();
+          };
+        }
+      });
+    </script>
 </header>
+
+
+# --------------------
+# File: humanai.html
+# --------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Human-AI Teaming Research - Gradiorum</title>
+    <meta name="description" content="Explore our research on Human-AI Teaming">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div data-include="header.html"></div>
+    <main class="max-w-3xl mx-auto p-6">
+        <section class="my-10">
+            <h1 class="text-4xl font-bold mb-4">Human-AI Teaming</h1>
+            <p class="text-lg mb-6">Our ongoing research with Kennesaw State University focuses on Human-AI Teaming—exploring effective collaboration paradigms between humans and intelligent agents. The goal is to enhance trust, interpretability, and performance in complex tasks, from mission planning to critical decision-making.</p>
+            <h2 class="text-2xl font-semibold mb-2">Scope and Objectives</h2>
+            <ul class="list-disc ml-6 mb-6">
+                <li>Developing interactive interfaces where humans and AI can jointly strategize solutions.</li>
+                <li>Ensuring explainability in AI-driven recommendations and predictions.</li>
+                <li>Exploring reinforcement learning and feedback loops for continuous improvement.</li>
+            </ul>
+            <p class="mb-6">This project is still in its early phases, and we plan to publish working papers and demonstration videos as we progress. Stay tuned for updates!</p>
+        </section>
+    </main>
+    <div data-include="footer.html"></div>
+</body>
+</html>
 
 
 # --------------------
@@ -219,46 +263,52 @@ if __name__ == "__main__":
 <head>
     <meta charset="UTF-8">
     <title>Gradiorum - Home</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Include common.js before the closing head tag -->
-    <script src="js/common.js"></script>
+    <meta name="description" content="Gradiorum is at the frontier of innovation and technology. Discover our projects, research, and more.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Gradiorum - Home">
+    <meta property="og:description" content="Gradiorum is the frontier of innovation and technology. Discover our projects, blog, and more.">
+    <meta property="og:image" content="https://yourdomain.com/assets/og-image.png">
+    <meta property="og:url" content="https://yourdomain.com/index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body data-theme="dark">
-    <!-- Include the header using data-include -->
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
     <div data-include="header.html"></div>
     <main>
-        <section class="hero" style="background: linear-gradient(135deg, #4b6cb7, #182848);">
-            <h1>Welcome to Gradiorum</h1>
-            <p>The Frontier of Innovation and Technology</p>
-            <button onclick="location.href='about.html'">Learn More</button>
+        <section class="hero text-center py-20 bg-blue-500 text-white">
+            <h1 class="text-5xl font-bold mb-6">Welcome to Gradiorum</h1>
+            <p class="text-xl mb-8">The Frontier of Innovation and Technology</p>
+            <button onclick="location.href='about.html'" class="px-6 py-3 bg-white text-blue-600 rounded font-semibold hover:bg-gray-200">
+                Learn More
+            </button>
         </section>
-        <section class="featured">
-            <h2>Featured Projects</h2>
-            <div class="projects">
-                <article>
-                    <img src="assets/via.png" alt="Via Toolkit">
-                    <h3>Via</h3>
-                    <p>A lightweight modular framework for AI integration.</p>
-                    <a href="via.html">Read More</a>
+        <section class="featured max-w-5xl mx-auto p-6">
+            <h2 class="text-3xl font-bold mb-8">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="assets/via.png" alt="Via Toolkit" class="rounded mb-4">
+                    <h3 class="text-2xl font-semibold mb-2">Via</h3>
+                    <p class="mb-4">A lightweight modular framework for AI integration.</p>
+                    <a href="via.html" class="text-blue-600 hover:underline">Read More</a>
                 </article>
-                <article>
-                    <img src="assets/ascendus.png" alt="Ascendus Toolkit">
-                    <h3>Ascendus</h3>
-                    <p>An advanced AI toolkit for scaling automation and efficiency.</p>
-                    <a href="ascendus.html">Read More</a>
+                <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="assets/ascendus.png" alt="Ascendus Toolkit" class="rounded mb-4">
+                    <h3 class="text-2xl font-semibold mb-2">Ascendus</h3>
+                    <p class="mb-4">An advanced AI toolkit for scaling automation and efficiency.</p>
+                    <a href="ascendus.html" class="text-blue-600 hover:underline">Read More</a>
                 </article>
             </div>
         </section>
-        <section class="news">
-            <h2>Latest News</h2>
-            <div class="news-articles">
+        <section class="news max-w-5xl mx-auto p-6">
+            <h2 class="text-3xl font-bold mb-8">Latest News</h2>
+            <div class="news-articles grid md:grid-cols-2 gap-8" id="news-container">
                 <!-- Dynamic content loaded via JavaScript -->
             </div>
         </section>
     </main>
-    <!-- Include the footer using data-include -->
     <div data-include="footer.html"></div>
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
 
@@ -270,15 +320,68 @@ if __name__ == "__main__":
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... head elements ... -->
+    <meta charset="UTF-8">
     <title>Login - Gradiorum</title>
-    <script src="js/login.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
-    <main>
-        <h1>Admin Login</h1>
-        <button onclick="authenticateWithGitHub()">Login with GitHub</button>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div data-include="header.html"></div>
+    <main class="max-w-3xl mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">Creator Login</h1>
+        <p class="mb-4">Sign in using Google to manage and create blog posts:</p>
+        <div id="google-login-button" class="px-4 py-2 bg-blue-600 text-white rounded inline-block cursor-pointer">Login with Google</div>
     </main>
+    <div data-include="footer.html"></div>
+    <script src="js/login.js"></script>
+</body>
+</html>
+
+
+# --------------------
+# File: luminaguard.html
+# --------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LuminaGuard - Gradiorum</title>
+    <meta name="description" content="LuminaGuard is an AI-driven adaptive lighting solution.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div data-include="header.html"></div>
+    <main class="max-w-4xl mx-auto p-6">
+        <section class="my-10">
+            <h1 class="text-4xl font-bold mb-4">LuminaGuard</h1>
+            <p class="text-lg mb-6">LuminaGuard is an advanced, AI-driven adaptive lighting solution designed to enhance user well-being, productivity, and comfort. It dynamically adjusts screen brightness, color temperature, and even integrates with smart lighting systems to create harmonious environments. It uses reinforcement learning, machine learning adaptation, and scheduling to manage lighting conditions seamlessly.</p>
+            
+            <h2 class="text-2xl font-semibold mb-2">Key Features</h2>
+            <ul class="list-disc ml-6 mb-6">
+                <li>Real-time brightness adjustment and color filtering.</li>
+                <li>Smart scheduling and circadian-based color temperature changes.</li>
+                <li>Integration with Hue, LIFX, and other IoT lighting ecosystems.</li>
+                <li>Adaptive ML engine that personalizes lighting over time.</li>
+            </ul>
+
+            <p class="mb-6">Below is a snippet of the improved LuminaGuard codebase (as previously provided). For the full code and instructions, see our repository:</p>
+            <pre class="bg-gray-800 text-white p-4 rounded overflow-auto text-sm">
+# Example Snippet:
+public class BrightnessController {
+    public void SetBrightness(byte targetBrightness) {
+        // WMI call to adjust brightness
+    }
+}
+            </pre>
+
+            <a href="https://github.com/YourUsername/Gradiorum" target="_blank" class="text-blue-600 hover:underline">View Full Code on GitHub</a>
+        </section>
+    </main>
+    <div data-include="footer.html"></div>
 </body>
 </html>
 
@@ -292,21 +395,24 @@ if __name__ == "__main__":
 <head>
     <meta charset="UTF-8">
     <title>Members - Gradiorum</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/common.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet the minds behind Gradiorum">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <div data-include="header.html"></div>
-    <main>
-        <section class="members">
-            <h1>Members</h1>
-            <div class="member-profile">
-                <img src="assets/william-stigall.jpg" alt="William A. Stigall">
-                <h2>William A. Stigall</h2>
-                <p>I am a 22-year-old with a lifelong interest in Artificial Intelligence and Intelligent Agents. I believe that everyone deserves an assistant reminiscent of Halo's Cortana, and I am dedicated to bringing that vision to reality. I enjoy applying AI solutions wherever possible, focusing on developing intelligent systems that enhance everyday life.</p>
-                <p>I graduated with a Bachelor of Science in Computer Science with a concentration in AI and a minor in Data Science from Kennesaw State University. I am currently attending the Georgia Institute of Technology for a Master's of Science in Computer Science, specializing in Machine Learning.</p>
+    <main class="max-w-3xl mx-auto p-6">
+        <section class="my-10">
+            <h1 class="text-4xl font-bold mb-4">Members</h1>
+            <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-6 space-y-6 md:space-y-0">
+                <img src="assets/william-stigall.jpg" alt="William A. Stigall" class="w-32 h-32 rounded-full object-cover">
+                <div>
+                    <h2 class="text-2xl font-semibold">William A. Stigall</h2>
+                    <p class="mb-4">I am a 22-year-old with a lifelong interest in AI and Intelligent Agents. I believe everyone deserves an assistant reminiscent of Halo’s Cortana, and I’m dedicated to bringing that vision to life. With a B.S. in Computer Science (AI concentration) and a Data Science minor from Kennesaw State University, I’m currently pursuing an M.S. in Computer Science (Machine Learning) at Georgia Institute of Technology.</p>
+                    <p class="mb-4">I focus on applying AI solutions to enhance everyday life, exploring reinforcement learning, human-AI teaming, and AI-driven user experience improvements.</p>
+                </div>
             </div>
-            <!-- Future members can be added here -->
         </section>
     </main>
     <div data-include="footer.html"></div>
@@ -321,17 +427,23 @@ if __name__ == "__main__":
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... head elements ... -->
+    <meta charset="UTF-8">
     <title>New Post - Gradiorum</title>
-    <script src="js/new-post.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
-    <main>
-        <h1>New Blog Post</h1>
-        <input type="text" id="post-title" placeholder="Title">
-        <textarea id="post-content" placeholder="Write your post in Markdown"></textarea>
-        <button onclick="submitPost()">Publish</button>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div data-include="header.html"></div>
+    <main class="max-w-3xl mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">New Blog Post</h1>
+        <input type="text" id="post-title" class="w-full mb-4 px-3 py-2 border border-gray-300 rounded" placeholder="Title" required>
+        <textarea id="post-content" class="w-full mb-4 px-3 py-2 border border-gray-300 rounded h-64" placeholder="Write your post in Markdown" required></textarea>
+        <button onclick="submitPost()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">Publish</button>
     </main>
+    <div data-include="footer.html"></div>
+    <script type="module" src="js/main.js"></script>
+    <script src="js/new-post.js"></script>
 </body>
 </html>
 
@@ -344,32 +456,40 @@ if __name__ == "__main__":
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Our Papers - Gradiorum</title>
+    <meta name="description" content="Explore the research and publications from Gradiorum.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradiorum - Papers</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/common.js"></script>
+    <meta property="og:title" content="Our Papers - Gradiorum">
+    <meta property="og:description" content="Explore the research and publications from Gradiorum.">
+    <meta property="og:image" content="https://yourdomain.com/assets/og-image-papers.png">
+    <meta property="og:url" content="https://yourdomain.com/papers.html">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
-    <!-- Include the header -->
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <div data-include="header.html"></div>
-    <main>
-        <h1>Our Papers</h1>
-        <section class="papers">
-            <article>
-                <h2>Advancements in AI Integration</h2>
-                <p>An in-depth analysis of modern AI integration techniques using the Via framework.</p>
-                <a href="https://example.com/advancements-in-ai-integration.pdf" target="_blank">Read Paper</a>
+    <main class="max-w-5xl mx-auto p-6">
+        <h1 class="text-4xl font-bold mb-8">Our Papers</h1>
+        <section class="grid md:grid-cols-2 gap-8">
+            <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition">
+                <h2 class="text-2xl font-semibold mb-2">TransformingGameplay: A Transformer-Based Q-Network</h2>
+                <p class="mb-2"><strong>Authors:</strong> William A. Stigall, Jitendra Sai Kota</p>
+                <p class="mb-4 text-gray-700 dark:text-gray-300">This paper explores a transformer-based Q-Network for gameplay environments without convolutional layers, investigating performance and limitations in reinforcement learning tasks.</p>
+                <p class="mb-4"><strong>Keywords:</strong> Transformer, Q-Network, RL</p>
+                <a href="https://arxiv.org/submit/5925810/view" target="_blank" class="text-blue-600 hover:underline">Read Paper</a>
             </article>
-            <article>
-                <h2>Scaling Automation with Ascendus</h2>
-                <p>A comprehensive study on scaling automation and efficiency in AI systems.</p>
-                <a href="https://example.com/scaling-automation-with-ascendus.pdf" target="_blank">Read Paper</a>
+            <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition">
+                <h2 class="text-2xl font-semibold mb-2">Scaling Synthetic Data for Behavioral Health Classification</h2>
+                <p class="mb-2"><strong>Authors:</strong> William Stigall, Md Abdullah Al Hafiz Khan</p>
+                <p class="mb-4 text-gray-700 dark:text-gray-300">This work focuses on synthetic data generation via large language models (LLMs) for enhancing behavioral health classification datasets. It discusses prompt engineering, adversarial examples, and maintaining data quality at scale.</p>
+                <p class="mb-4"><strong>Keywords:</strong> Synthetic Data, Behavioral Health, LLMs</p>
+                <span class="inline-block px-3 py-1 bg-gray-400 text-white rounded opacity-50 cursor-not-allowed">Read Paper (Pending)</span>
+                <p class="mt-2 text-gray-500">Link will be available once published.</p>
             </article>
-            <!-- More papers can be listed here -->
         </section>
     </main>
-    <!-- Include the footer -->
     <div data-include="footer.html"></div>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
 
@@ -383,75 +503,24 @@ if __name__ == "__main__":
 <head>
     <meta charset="UTF-8">
     <title>Projects - Gradiorum</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/common.js"></script>
+    <meta name="description" content="Discover various projects under Gradiorum's umbrella.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <div data-include="header.html"></div>
-    <main>
-        <section class="projects">
-            <h1>Projects</h1>
-            <div id="projects-container"></div>
+    <main class="max-w-5xl mx-auto p-6">
+        <section class="my-10">
+            <h1 class="text-4xl font-bold mb-8">Projects</h1>
+            <div id="projects-container" class="grid md:grid-cols-2 gap-8"></div>
         </section>
     </main>
     <div data-include="footer.html"></div>
-    <!-- Include Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="js/projects.js"></script>
 </body>
 </html>
-
-
-# --------------------
-# File: README.md
-# --------------------
-
-# Gradiorum
-
-Welcome to the official repository of **Gradiorum**, a platform dedicated to showcasing innovative projects at the frontier of technology and creativity. Gradiorum serves as a digital space not only to display our accomplishments but also to foster collaboration and free expression within the tech community.
-
-## About Gradiorum
-
-Gradiorum represents the evolution of our commitment to pushing the boundaries of innovation. We focus on sharing creative and technical projects with the world, reflecting our dedication to future-facing technological leadership.
-
-## Contribution
-
-Gradiorum welcomes contributions from everyone. Whether you're looking to contribute to existing projects or want to share your own insights through blog posts, here’s how you can get involved:
-
-### Blog Contributions
-
-Want to share your thoughts or showcase your projects? You can contribute to our blog by submitting a DOCX or Markdown file to the `posts` directory of this repository. Here's how:
-
-1. Fork the repository.
-2. Add your blog post in DOCX or Markdown format to the `posts` directory.
-3. Create a pull request.
-
-We encourage contributions that foster innovation, share insightful analyses, and reflect creative thinking.
-
-### Code Contributions
-
-To contribute to the project code:
-
-1. Fork the repository.
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request.
-
-## Contact
-
-If you have any questions, proposals for collaboration, or need further information, please don't hesitate to contact us:
-
-- **Email**: gradiorumcorp@gmail.com
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgements
-
-- Thanks to all contributors who help make this project a reality.
-- Special thanks to those who engage with us to share innovative ideas and push the boundaries of technology.
 
 
 # --------------------
@@ -463,252 +532,68 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 <head>
     <meta charset="UTF-8">
     <title>Gradiorum - Videos</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/common.js"></script>
+    <meta name="description" content="Explore our video content.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
-    <!-- Include the header -->
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <div data-include="header.html"></div>
-    <main>
-        <h1>Visit Our YouTube Channel</h1>
-        <p>For more videos, tutorials, and live sessions, visit our YouTube channel.</p>
-        <a href="https://www.youtube.com/channel/Gradiorum" target="_blank" class="btn">Go to YouTube Channel</a>
+    <main class="max-w-3xl mx-auto p-6 text-center">
+        <h1 class="text-4xl font-bold mb-6">Visit Our YouTube Channel</h1>
+        <p class="mb-6">For tutorials, demos, and talks, explore our channel.</p>
+        <a href="https://www.youtube.com/channel/Gradiorum" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">Go to YouTube Channel</a>
     </main>
-    <!-- Include the footer -->
     <div data-include="footer.html"></div>
 </body>
 </html>
 
 
 # --------------------
-# File: css\style.css
+# File: css/style.css
 # --------------------
 
-/* Updated styles */
-
-/* Gradient-based theme */
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212;
-    color: #ffffff;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-body[data-theme="light"] {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-/* Header and navigation */
-header {
-    background: linear-gradient(135deg, #4b6cb7, #182848);
-    padding: 20px;
-}
-
-.header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    height: 50px;
-}
-
-nav ul {
-    list-style-type: none;
-    display: flex;
-    gap: 15px;
-}
-
-nav ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.menu-toggle {
-    display: none;
-}
-
-.theme-toggle {
-    background: none;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-/* Responsive navigation */
-@media (max-width: 768px) {
-    nav ul {
-        display: none;
-        flex-direction: column;
-    }
-
-    nav ul.active {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        color: #ffffff;
-        font-size: 24px;
-        cursor: pointer;
-    }
-}
-
-/* Hero section */
-.hero {
-    text-align: center;
-    padding: 100px 20px;
-    color: #ffffff;
-}
-
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 24px;
-    margin-bottom: 40px;
-}
-
-.hero button {
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-/* Featured projects */
-.featured {
-    padding: 60px 20px;
-    background-color: #1e1e1e;
-}
-
-.featured h2 {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.projects {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-}
-
-.projects article {
-    background-color: #2e2e2e;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.projects article:hover {
-    transform: scale(1.05);
-}
-
-.projects img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.projects h3 {
-    margin-top: 20px;
-}
-
-.projects p {
-    margin: 20px 0;
-}
-
-.projects a {
-    color: #4b6cb7;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Footer */
-footer {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    padding: 40px 20px;
-    text-align: center;
-}
-
-.social-links a {
-    color: #ffffff;
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-.newsletter {
-    margin-top: 20px;
-}
-
-.newsletter input {
-    padding: 10px;
-    width: 200px;
-}
-
-.newsletter button {
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-/* Theme transition */
-[data-theme="light"] .hero,
-[data-theme="light"] footer,
-[data-theme="light"] .featured {
-    background-color: #f9f9f9;
-    color: #000000;
-}
-
-[data-theme="light"] nav ul li a,
-[data-theme="light"] .theme-toggle,
-[data-theme="light"] .menu-toggle {
-    color: #000000;
-}
-
-/* Timeline styling remains the same as before */
+// Deprecated: now we rely on Tailwind CSS. This file can be empty or contain custom overrides.
+// If needed, place small overrides here.
 
 
 # --------------------
-# File: js\blog.js
+# File: js/blog.js
 # --------------------
 
 document.addEventListener('DOMContentLoaded', () => {
     const newPostBtn = document.getElementById('new-post-btn');
+    const user = sessionStorage.getItem('googleUser');
 
-    // Check if the user is authenticated
-    if (sessionStorage.getItem('githubToken')) {
+    // If user is logged in, show new post button
+    if (user) {
         newPostBtn.style.display = 'block';
         newPostBtn.addEventListener('click', () => {
             window.location.href = 'new-post.html';
         });
+    } else {
+        // Show a login prompt
+        const loginPrompt = document.createElement('div');
+        loginPrompt.textContent = 'Sign in to create new posts';
+        loginPrompt.className = 'text-center text-sm text-gray-600 mt-4';
+        document.querySelector('main').appendChild(loginPrompt);
     }
 
     fetchPosts();
 });
 
 async function fetchPosts() {
+    // Adjust the URL to your repository
     const response = await fetch('https://api.github.com/repos/YourUsername/Gradiorum/contents/posts');
     const posts = await response.json();
 
     const postsContainer = document.getElementById('blog-posts');
-    postsContainer.classList.add('post-grid');
     posts.forEach(async (post) => {
         if (post.name.endsWith('.md')) {
             const postContent = await fetch(post.download_url).then(res => res.text());
             const postElement = document.createElement('div');
-            postElement.classList.add('post-card');
-            postElement.innerHTML = marked(postContent); // Use a Markdown parser like Marked.js
+            postElement.classList.add('bg-white', 'dark:bg-gray-800', 'p-4', 'rounded', 'shadow', 'hover:shadow-lg', 'transition');
+            postElement.innerHTML = marked.parse(postContent);
             postsContainer.appendChild(postElement);
         }
     });
@@ -716,101 +601,139 @@ async function fetchPosts() {
 
 
 # --------------------
-# File: js\callback.js
+# File: js/callback.js
 # --------------------
 
+// Example callback after Google Sign-In, if needed.
+// Currently handled directly in header.html via inline script callback.
+// You can add logic here if you want to handle redirection after login.
+
 (async function() {
-    const code = new URLSearchParams(window.location.search).get('code');
-    const clientId = 'YOUR_GITHUB_APP_CLIENT_ID';
-    const clientSecret = 'YOUR_GITHUB_APP_CLIENT_SECRET';
-
-    // Exchange code for access token via a proxy server or serverless function
-    const response = await fetch('https://your-proxy-server.com/get-token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ clientId, clientSecret, code }),
-    });
-
-    const data = await response.json();
-    if (data.access_token) {
-        sessionStorage.setItem('githubToken', data.access_token);
-        window.location.href = 'blog.html';
-    } else {
-        alert('Authentication failed.');
-        window.location.href = 'login.html';
-    }
+    // If you had a server exchange, handle it here.
+    // For now, this might remain unused as we are using client-side only.
+    console.log("Callback page loaded. If necessary, handle token exchange here.");
 })();
 
 
 # --------------------
-# File: js\common.js
+# File: js/common.js
 # --------------------
 
-function includeHTML() {
+async function includeHTML() {
     const elements = document.querySelectorAll('[data-include]');
-    elements.forEach(async (el) => {
+    for (const el of elements) {
         const file = el.getAttribute('data-include');
         const response = await fetch(file);
         if (response.ok) {
             el.innerHTML = await response.text();
+            if (file.includes('header.html')) {
+                setupResponsiveNav();
+                setupThemeToggle();
+            }
         } else {
             console.error(`Failed to load ${file}: ${response.statusText}`);
         }
-    });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', includeHTML);
 
+function setupResponsiveNav() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('header nav');
+    if (menuToggle && nav) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+        });
+    }
+}
 
-# --------------------
-# File: js\login.js
-# --------------------
+function setupThemeToggle() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    let currentTheme = localStorage.getItem('theme') || 'default';
+    setTheme(currentTheme);
 
-function authenticateWithGitHub() {
-    const clientId = 'YOUR_GITHUB_APP_CLIENT_ID';
-    const redirectUri = 'https://yourdomain.com/callback.html';
-    const scope = 'repo';
+    themeToggle.addEventListener('click', () => {
+        currentTheme = document.body.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            setTheme('light');
+        } else if (currentTheme === 'light') {
+            setTheme('default');
+        } else {
+            setTheme('dark');
+        }
+    });
 
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
-
-    window.location.href = authUrl;
+    function setTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (theme === 'dark') {
+            themeToggle.textContent = 'Light Mode';
+        } else if (theme === 'light') {
+            themeToggle.textContent = 'High Contrast Mode';
+        } else {
+            themeToggle.textContent = 'Dark Mode';
+        }
+    }
 }
 
 
 # --------------------
-# File: js\Main.js
+# File: js/login.js
 # --------------------
 
-import { setupThemeToggle } from './modules/themeToggle.js';
-import { setupResponsiveNav } from './modules/responsiveNav.js';
-import { setupFormHandlers } from './modules/formHandlers.js';
-import { setupLazyLoading } from './modules/lazyLoading.js';
-import { setupImageGallery } from './modules/imageGallery.js';
+// Google Sign-In is handled in header.html
+// Here you can add GitHub token logic if needed.
+// For now, this page just instructs user to sign in.
+// If needed, implement code to exchange Google token for GitHub write access token via YourBackendURL.
 
-document.addEventListener('DOMContentLoaded', () => {
-    setupThemeToggle();
-    setupResponsiveNav();
-    setupFormHandlers();
-    setupLazyLoading();
-    setupImageGallery();
-});
+function authenticateWithGoogle() {
+    // Handled by GSI button in header
+}
 
 
 # --------------------
-# File: js\new-post.js
+# File: js/main.js
+# --------------------
+
+import './modules/formHandlers.js';
+import './modules/lazyLoading.js';
+import './modules/imageGallery.js';
+import './modules/responsiveNav.js';
+import './modules/themeToggle.js';
+
+// Additional initialization can be done here.
+
+
+# --------------------
+# File: js/new-post.js
 # --------------------
 
 async function submitPost() {
-    const title = document.getElementById('post-title').value;
-    const content = document.getElementById('post-content').value;
-    const token = sessionStorage.getItem('githubToken');
+    const title = document.getElementById('post-title').value.trim();
+    const content = document.getElementById('post-content').value.trim();
+    const user = sessionStorage.getItem('googleUser');
 
     if (!title || !content) {
         alert('Please fill out all fields.');
         return;
     }
 
-    const filePath = `posts/${title.replace(/\s+/g, '-').toLowerCase()}.md`;
+    if (!user) {
+        alert('You must be signed in to publish a post.');
+        return;
+    }
+
+    // For simplicity, assume user also has a GitHub token in sessionStorage (not implemented).
+    // In a real scenario, you'd have a server exchange Google token -> GitHub token or store a personal token.
+    const token = sessionStorage.getItem('githubToken');
+    if (!token) {
+        alert('No GitHub token available. Configure token retrieval.');
+        return;
+    }
+
+    const fileName = `${title.replace(/\s+/g, '-').toLowerCase()}.md`;
+    const filePath = `posts/${fileName}`;
     const message = `Add new post: ${title}`;
     const sha = await getFileSha(filePath, token);
 
@@ -818,6 +741,7 @@ async function submitPost() {
         message: message,
         content: btoa(unescape(encodeURIComponent(content))),
         sha: sha || undefined,
+        branch: 'main',
     };
 
     fetch(`https://api.github.com/repos/YourUsername/Gradiorum/contents/${filePath}`, {
@@ -833,7 +757,9 @@ async function submitPost() {
             alert('Post published successfully!');
             window.location.href = 'blog.html';
         } else {
-            alert('Error publishing post.');
+            response.json().then(err => {
+                alert('Error publishing post: ' + err.message);
+            });
         }
     });
 }
@@ -853,7 +779,7 @@ async function getFileSha(path, token) {
 
 
 # --------------------
-# File: js\projects.js
+# File: js/projects.js
 # --------------------
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -861,28 +787,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchProjects() {
-    const orgName = 'Gradiorum'; // Replace with your organization name
-    const userName = 'WilliamStigall'; // Replace with your GitHub username
+    const orgName = 'Gradiorum'; // Replace with actual org name if exists
+    const userName = 'YourUsername'; // Replace with your GitHub username
     const projectsContainer = document.getElementById('projects-container');
 
-    // Fetch organization repositories
     const orgRepos = await fetchRepos(`https://api.github.com/orgs/${orgName}/repos`);
-    // Fetch user repositories
     const userRepos = await fetchRepos(`https://api.github.com/users/${userName}/repos`);
 
-    // Separate solo and organization projects
     const soloProjects = userRepos.filter(repo => repo.owner.login === userName && !repo.organization);
     const orgProjects = orgRepos;
 
-    // Display organization projects
     const orgSection = document.createElement('section');
-    orgSection.innerHTML = '<h2>Organization Projects</h2>';
+    orgSection.innerHTML = '<h2 class="text-2xl font-bold mb-4">Organization Projects</h2>';
     await displayRepos(orgProjects, orgSection);
     projectsContainer.appendChild(orgSection);
 
-    // Display solo projects
     const soloSection = document.createElement('section');
-    soloSection.innerHTML = '<h2>Solo Projects</h2>';
+    soloSection.innerHTML = '<h2 class="text-2xl font-bold mb-4 mt-8">Solo Projects</h2>';
     await displayRepos(soloProjects, soloSection);
     projectsContainer.appendChild(soloSection);
 }
@@ -903,39 +824,38 @@ async function fetchRepos(url) {
 }
 
 async function displayRepos(repos, container) {
+    const grid = document.createElement('div');
+    grid.className = 'grid md:grid-cols-2 gap-6';
+
     for (const repo of repos) {
         const repoDiv = document.createElement('div');
-        repoDiv.className = 'repo';
+        repoDiv.className = 'bg-white dark:bg-gray-800 p-4 rounded shadow hover:shadow-lg transition';
 
-        // Repository name
         const repoName = document.createElement('h3');
+        repoName.className = 'text-xl font-semibold mb-2';
         repoName.textContent = repo.name;
         repoDiv.appendChild(repoName);
 
-        // Fetch README.md content
         const readmeContent = await fetchReadme(repo);
 
+        const readmeDiv = document.createElement('div');
         if (readmeContent) {
-            const readmeDiv = document.createElement('div');
             readmeDiv.innerHTML = marked.parse(readmeContent);
-            repoDiv.appendChild(readmeDiv);
         } else {
-            const noReadme = document.createElement('p');
-            noReadme.textContent = 'No README available.';
-            repoDiv.appendChild(noReadme);
+            readmeDiv.textContent = 'No README available.';
         }
+        repoDiv.appendChild(readmeDiv);
 
-        container.appendChild(repoDiv);
+        grid.appendChild(repoDiv);
     }
+    container.appendChild(grid);
 }
 
 async function fetchReadme(repo) {
     let readmeContent = null;
     try {
         const response = await fetch(`https://api.github.com/repos/${repo.full_name}/readme`, {
-            headers: {
-                'Accept': 'application/vnd.github.v3.raw' // Fetch raw content
-            }
+            headers: { 'Accept': 'application/vnd.github.v3.raw' }
         });
         if (response.ok) {
             readmeContent = await response.text();
@@ -950,7 +870,7 @@ async function fetchReadme(repo) {
 
 
 # --------------------
-# File: js\modules\formHandlers.js
+# File: js/modules/formHandlers.js
 # --------------------
 
 export function setupFormHandlers() {
@@ -959,14 +879,15 @@ export function setupFormHandlers() {
         form.addEventListener('submit', event => {
             event.preventDefault();
             alert('Form submitted! Check console for data.');
-            console.log(new FormData(form));
+            console.log(Object.fromEntries(new FormData(form)));
         });
     });
 }
+setupFormHandlers();
 
 
 # --------------------
-# File: js\modules\imageGallery.js
+# File: js/modules/imageGallery.js
 # --------------------
 
 import { showModalWithImage } from './modal.js';
@@ -979,10 +900,11 @@ export function setupImageGallery() {
         });
     });
 }
+setupImageGallery();
 
 
 # --------------------
-# File: js\modules\lazyLoading.js
+# File: js/modules/lazyLoading.js
 # --------------------
 
 export function setupLazyLoading() {
@@ -1001,19 +923,19 @@ export function setupLazyLoading() {
         imageObserver.observe(image);
     });
 }
+setupLazyLoading();
 
 
 # --------------------
-# File: js\modules\model.js
+# File: js/modules/modal.js
 # --------------------
 
 export function showModalWithImage(src) {
     const modal = document.createElement('div');
-    modal.className = 'image-modal';
-    modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000;';
+    modal.className = 'fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50';
     const img = new Image();
     img.src = src;
-    img.style.cssText = 'max-height: 90%; max-width: 90%;';
+    img.className = 'max-h-90% max-w-90%';
     modal.appendChild(img);
     modal.addEventListener('click', () => {
         document.body.removeChild(modal);
@@ -1023,38 +945,160 @@ export function showModalWithImage(src) {
 
 
 # --------------------
-# File: js\modules\responsiveNav.js
+# File: js/modules/responsiveNav.js
 # --------------------
 
-export function setupResponsiveNav() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav ul');
-    menuToggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
-    });
-}
+// Already handled in common.js setupResponsiveNav()
 
 
 # --------------------
-# File: js\modules\themeToggle.js
+# File: js/modules/themeToggle.js
 # --------------------
 
-export function setupThemeToggle() {
-    const themeToggle = document.querySelector('.theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-theme', currentTheme);
-
-    themeToggle.addEventListener('click', () => {
-        const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        document.body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-}
+// Already handled in common.js setupThemeToggle()
 
 
 # --------------------
-# File: posts\README.md
+# File: posts/README.md
 # --------------------
 
+// You can store your markdown posts here.
+// Example post files will appear in blog.html once pushed to GitHub.
+// Use 'new-post.html' interface to create new posts if authenticated.
 
+
+# --------------------
+# File: export.py
+# --------------------
+
+import os
+
+def export_code(output_filename='all_code_output.txt'):
+    # This script has been retained from the original code. 
+    # Adjust as needed if your directory structure changes.
+
+    included_extensions = {'.js', '.html', '.css', '.json', '.py', '.md'}
+    excluded_dirs = {'venv', '__pycache__', 'node_modules', 'browser-extension/data', '.git'}
+
+    code_files = []
+    for root, dirs, files in os.walk('.'):
+        dirs[:] = [d for d in dirs if d not in excluded_dirs]
+        for file in files:
+            file_ext = os.path.splitext(file)[1].lower()
+            if file_ext in included_extensions:
+                code_files.append(os.path.join(root, file))
+
+    all_code = ''
+    for file_path in code_files:
+        normalized_path = os.path.relpath(file_path, '.')
+        all_code += f"\n# {'-'*20}\n# File: {normalized_path}\n# {'-'*20}\n\n"
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                code = f.read()
+                all_code += code + "\n"
+        except (UnicodeDecodeError, PermissionError) as e:
+            all_code += f"// Could not read file: {e}\n"
+
+    with open(output_filename, 'w', encoding='utf-8') as f:
+        f.write(all_code)
+
+    print(f"All code has been exported to {output_filename}")
+
+if __name__ == "__main__":
+    export_code()
+
+
+# --------------------
+# File: README.md
+# --------------------
+
+# Gradiorum
+
+Gradiorum is a cutting-edge platform dedicated to showcasing technological innovation, AI-driven solutions, and creative works. It serves as both a portfolio of achievements and an open environment for knowledge sharing and collaboration.
+
+## Key Features
+
+- **Projects & Research**: Explore advanced toolkits like Via and Ascendus, delve into LuminaGuard’s adaptive lighting, and learn about ongoing human-AI teaming research.
+- **Blog**: Stay updated with the latest articles. Users can sign in via Google and contribute their own blog posts if granted the appropriate permissions.
+- **Papers & Publications**: Access our published papers and ongoing research efforts.
+
+## Architecture
+
+- **Frontend**: HTML, Tailwind CSS for styling, and vanilla JavaScript for interactivity.
+- **Auth**: Google Sign-In for user authentication. The site avoids direct user data storage.
+- **Backend**: GitHub as a backend for content storage. Blog posts are pulled from GitHub and can be pushed back using a GitHub personal access token.
+- **Deployment**: Hosted via Cloudflare.
+
+## Contribution
+
+We welcome contributions:
+- **Blog Posts**: Submit Markdown files to the `posts` directory via pull requests.
+- **Code Enhancements**: Fork the repository, create a branch, commit changes, and submit a pull request.
+
+## Google Sign-In and GitHub Integration
+
+- Obtain a Google OAuth Client ID and configure it in `header.html`.
+- For blog publishing, set up a serverless function or a secure method to exchange OAuth tokens for GitHub tokens (not fully implemented here).
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
+
+
+# --------------------
+# File: via.html
+# --------------------
+
+// Placeholder page for Via if needed. Similar structure as ascendus.html would have.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Via - Gradiorum</title>
+    <meta name="description" content="Via is a lightweight modular AI framework.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div data-include="header.html"></div>
+    <main class="max-w-3xl mx-auto p-6">
+        <section class="my-10">
+            <h1 class="text-4xl font-bold mb-4">Via</h1>
+            <p class="text-lg mb-6">Via is a lightweight, modular framework for AI integration. It simplifies plugging various AI components together, enabling rapid prototyping and scaling of intelligent systems.</p>
+            <a href="https://github.com/YourUsername/Via" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+        </section>
+    </main>
+    <div data-include="footer.html"></div>
+</body>
+</html>
+
+
+# --------------------
+# File: ascendus.html
+# --------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ascendus - Gradiorum</title>
+    <meta name="description" content="Ascendus is an advanced AI toolkit for scaling automation and efficiency.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <div data-include="header.html"></div>
+    <main class="max-w-3xl mx-auto p-6">
+        <section class="my-10">
+            <h1 class="text-4xl font-bold mb-4">Ascendus</h1>
+            <p class="text-lg mb-6">Ascendus provides a suite of AI tools designed for large-scale deployments. Its modules handle complex pipelines, orchestration, and optimization tasks, ensuring your AI solutions remain efficient and robust as they grow.</p>
+            <a href="https://github.com/YourUsername/Ascendus" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+        </section>
+    </main>
+    <div data-include="footer.html"></div>
+</body>
+</html>
 
