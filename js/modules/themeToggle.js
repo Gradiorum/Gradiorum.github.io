@@ -1,1 +1,1 @@
-// Already handled in common.js setupThemeToggle()
+// Already handled by setupThemeToggle in common.js

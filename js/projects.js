@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchProjects() {
-    const orgName = 'Gradiorum'; // Replace with actual org name if exists
-    const userName = 'YourUsername'; // Replace with your GitHub username
+    const orgName = 'Gradiorum';
+    const userName = 'YourUsername';
     const projectsContainer = document.getElementById('projects-container');
 
     const orgRepos = await fetchRepos(`https://api.github.com/orgs/${orgName}/repos`);
@@ -45,7 +45,7 @@ async function displayRepos(repos, container) {
 
     for (const repo of repos) {
         const repoDiv = document.createElement('div');
-        repoDiv.className = 'bg-white dark:bg-gray-800 p-4 rounded shadow hover:shadow-lg transition';
+        repoDiv.className = 'bg-white dark:bg-gray-800 p-4 rounded shadow hover:shadow-lg transition retro-card';
 
         const repoName = document.createElement('h3');
         repoName.className = 'text-xl font-semibold mb-2';

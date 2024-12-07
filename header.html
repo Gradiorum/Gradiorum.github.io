@@ -1,21 +1,23 @@
-<header class="bg-white dark:bg-gray-800 shadow-md py-4 px-6 flex justify-between items-center">
+<header class="bg-white dark:bg-gray-800 shadow-md py-4 px-6 flex justify-between items-center retro-header">
     <a href="index.html" class="flex items-center space-x-2">
         <img src="assets/logo.png" alt="Gradiorum Logo" class="h-8 w-auto">
         <span class="font-bold text-xl dark:text-white">Gradiorum</span>
     </a>
     <nav class="hidden md:flex space-x-6">
-        <a href="index.html" class="hover:underline">Home</a>
-        <a href="about.html" class="hover:underline">About</a>
-        <a href="members.html" class="hover:underline">Members</a>
-        <a href="projects.html" class="hover:underline">Projects</a>
-        <a href="blog.html" class="hover:underline">Blog</a>
-        <a href="videos.html" class="hover:underline">Videos</a>
-        <a href="papers.html" class="hover:underline">Papers</a>
-        <a href="contact.html" class="hover:underline">Contact</a>
-        <a href="luminaguard.html" class="hover:underline">LuminaGuard</a>
-        <a href="humanai.html" class="hover:underline">Human-AI Teaming</a>
+        <a href="index.html" class="hover:underline neon-link">Home</a>
+        <a href="about.html" class="hover:underline neon-link">About</a>
+        <a href="members.html" class="hover:underline neon-link">Members</a>
+        <a href="projects.html" class="hover:underline neon-link">Projects</a>
+        <a href="blog.html" class="hover:underline neon-link">Blog</a>
+        <a href="videos.html" class="hover:underline neon-link">Videos</a>
+        <a href="papers.html" class="hover:underline neon-link">Papers</a>
+        <a href="contact.html" class="hover:underline neon-link">Contact</a>
+        <a href="luminaguard.html" class="hover:underline neon-link">LuminaGuard</a>
+        <a href="humanai.html" class="hover:underline neon-link">Human-AI Teaming</a>
+        <a href="discordbots.html" class="hover:underline neon-link">Discord Bots</a>
     </nav>
     <div class="flex items-center space-x-4">
+        <!-- Remember to set YOUR_GOOGLE_CLIENT_ID in an environment variable or config file -->
         <button class="theme-toggle bg-gray-300 dark:bg-gray-700 text-sm px-2 py-1 rounded focus:outline-none" aria-label="Toggle Theme">
             Dark Mode
         </button>
@@ -29,15 +31,12 @@
             </svg>
         </button>
     </div>
-    <!-- Google Sign-In Integration -->
-    <!-- Replace YOUR_GOOGLE_CLIENT_ID below with your actual Google Client ID -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         google.accounts.id.initialize({
-          client_id: "YOUR_GOOGLE_CLIENT_ID",
+          client_id: "YOUR_GOOGLE_CLIENT_ID", // Set this up in your environment
           callback: (response) => {
-            // Callback once user signed in
             sessionStorage.setItem('googleUser', JSON.stringify(response));
             location.reload();
           }
@@ -47,7 +46,6 @@
           { theme: "outline", size: "medium" } 
         );
         
-        // If already signed in
         const user = sessionStorage.getItem('googleUser');
         if(user) {
           document.getElementById('google-signin-btn').textContent = "Sign Out";

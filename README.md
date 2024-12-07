@@ -1,31 +1,34 @@
 # Gradiorum
 
-Gradiorum is a cutting-edge platform dedicated to showcasing technological innovation, AI-driven solutions, and creative works. It serves as both a portfolio of achievements and an open environment for knowledge sharing and collaboration.
+Gradiorum is a platform showcasing technological innovation, AI-driven solutions, and creative works. We merge research, tools, and interactive media to inspire and inform.
 
 ## Key Features
 
-- **Projects & Research**: Explore advanced toolkits like Via and Ascendus, delve into LuminaGuard’s adaptive lighting, and learn about ongoing human-AI teaming research.
-- **Blog**: Stay updated with the latest articles. Users can sign in via Google and contribute their own blog posts if granted the appropriate permissions.
-- **Papers & Publications**: Access our published papers and ongoing research efforts.
+- **Projects & Research**: Explore advanced toolkits like Via and Ascendus, LuminaGuard’s adaptive lighting, and our human-AI teaming investigations.
+- **Blog**: Stay informed via blog articles. Authenticated users (via Google Sign-In) can contribute posts.
+- **Papers & Publications**: Access and review our academic work.
+- **Discord Bots**: Integrate GradiorumMP3 for music management, and Polishadow for monitoring political stock trades with subscription-based updates.
 
-## Architecture
+## Modernized Design
 
-- **Frontend**: HTML, Tailwind CSS for styling, and vanilla JavaScript for interactivity.
-- **Auth**: Google Sign-In for user authentication. The site avoids direct user data storage.
-- **Backend**: GitHub as a backend for content storage. Blog posts are pulled from GitHub and can be pushed back using a GitHub personal access token.
-- **Deployment**: Hosted via Cloudflare.
+We've introduced a retro-futuristic / 8-bit inspired aesthetic layered atop Tailwind CSS. This theme draws inspiration from early game consoles and cutting-edge neon cyberpunk visuals.
+
+## Authentication Setup
+
+- **Google Sign-In**: Set your `YOUR_GOOGLE_CLIENT_ID` in `header.html`. Consider using environment variables or CI/CD secrets.
+- **GitHub Token**: For blog publishing (editing and pushing markdown files to `posts`), you’ll need a secure GitHub token. Set it in session or via a serverless endpoint that safely exchanges OAuth tokens.
+
+## Environment Variables & Backend
+
+- **Google OAuth Client ID**: Provide in `header.html`.
+- **GitHub Token**: Store securely on server side or via a serverless function.
+- Consider adding a `.env` file or environment variables for local development.
 
 ## Contribution
 
-We welcome contributions:
-- **Blog Posts**: Submit Markdown files to the `posts` directory via pull requests.
-- **Code Enhancements**: Fork the repository, create a branch, commit changes, and submit a pull request.
-
-## Google Sign-In and GitHub Integration
-
-- Obtain a Google OAuth Client ID and configure it in `header.html`.
-- For blog publishing, set up a serverless function or a secure method to exchange OAuth tokens for GitHub tokens (not fully implemented here).
+- **Blog Posts**: Submit Markdown posts via `new-post.html` (if authenticated) or directly in the `posts` directory via PR.
+- **Code Enhancements**: Fork, branch, commit, and submit a PR. We welcome front-end refinements, additional frameworks (React, Vue), or improved tooling (Webpack, Vite).
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
+MIT License. See [LICENSE.md](LICENSE.md) for details.

@@ -13,8 +13,6 @@ async function submitPost() {
         return;
     }
 
-    // For simplicity, assume user also has a GitHub token in sessionStorage (not implemented).
-    // In a real scenario, you'd have a server exchange Google token -> GitHub token or store a personal token.
     const token = sessionStorage.getItem('githubToken');
     if (!token) {
         alert('No GitHub token available. Configure token retrieval.');

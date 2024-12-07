@@ -1,1 +1,1 @@
-// Already handled in common.js setupResponsiveNav()
+// Already handled by setupResponsiveNav in common.js

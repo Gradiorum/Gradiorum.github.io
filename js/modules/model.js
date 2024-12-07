@@ -1,3 +1,6 @@
+// Duplicate of modal.js, presumably a typo in the original code.
+// Retain for completeness, but not actively used.
+
 export function showModalWithImage(src) {
     const modal = document.createElement('div');
     modal.className = 'image-modal';

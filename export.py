@@ -1,9 +1,6 @@
 import os
 
 def export_code(output_filename='all_code_output.txt'):
-    # This script has been retained from the original code. 
-    # Adjust as needed if your directory structure changes.
-
     included_extensions = {'.js', '.html', '.css', '.json', '.py', '.md'}
     excluded_dirs = {'venv', '__pycache__', 'node_modules', 'browser-extension/data', '.git'}
 
