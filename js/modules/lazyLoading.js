@@ -14,3 +14,4 @@ export function setupLazyLoading() {
         imageObserver.observe(image);
     });
 }
+setupLazyLoading();

@@ -1,17 +1,15 @@
 import os
 
 def export_code(output_filename='all_code_output.txt'):
-    # Define the file extensions you want to include
-    included_extensions = {'.js', '.html', '.css', '.json', '.py', '.md'}
+    # This script has been retained from the original code. 
+    # Adjust as needed if your directory structure changes.
 
-    # Define directories to exclude
+    included_extensions = {'.js', '.html', '.css', '.json', '.py', '.md'}
     excluded_dirs = {'venv', '__pycache__', 'node_modules', 'browser-extension/data', '.git'}
 
     code_files = []
     for root, dirs, files in os.walk('.'):
-        # Modify dirs in-place to skip excluded directories
         dirs[:] = [d for d in dirs if d not in excluded_dirs]
-        
         for file in files:
             file_ext = os.path.splitext(file)[1].lower()
             if file_ext in included_extensions:
@@ -19,10 +17,8 @@ def export_code(output_filename='all_code_output.txt'):
 
     all_code = ''
     for file_path in code_files:
-        # Normalize the file path for better readability
         normalized_path = os.path.relpath(file_path, '.')
         all_code += f"\n# {'-'*20}\n# File: {normalized_path}\n# {'-'*20}\n\n"
-        
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 code = f.read()

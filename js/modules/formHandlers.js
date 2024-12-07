@@ -4,7 +4,8 @@ export function setupFormHandlers() {
         form.addEventListener('submit', event => {
             event.preventDefault();
             alert('Form submitted! Check console for data.');
-            console.log(new FormData(form));
+            console.log(Object.fromEntries(new FormData(form)));
         });
     });
 }
+setupFormHandlers();

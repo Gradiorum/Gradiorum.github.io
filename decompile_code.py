@@ -4,15 +4,13 @@ import re
 # Path to the large text file produced by your latest compilation script
 INPUT_FILE = "all_code_output.txt"
 
-# Directory where you want to recreate the files for the current project
-OUTPUT_ROOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Gradiorum")
+# Use the current directory (the directory where this script resides) as the output root
+OUTPUT_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# New pattern to identify file boundaries:
-# The file headers look like:
+# Pattern to identify file boundaries:
 # --------------------
 # File: filename
 # --------------------
-# We'll match this pattern and capture the filename.
 FILE_HEADER_PATTERN = re.compile(
     r"^#\s*-+\r?\n#\sFile:\s*(.+)\r?\n#\s*-+\r?\n", 
     re.MULTILINE
@@ -22,28 +20,21 @@ def decompile_code(input_file, output_dir):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     
-    # Read the entire compiled file
     with open(input_file, 'r', encoding='utf-8') as infile:
         content = infile.read()
     
-    # Find all file headers and their indices
-    # This is optional—it's just to gather filenames. The main logic uses re.split.
-    files = FILE_HEADER_PATTERN.findall(content)
-
-    # Split on file boundaries
+    # Split content by file headers
     blocks = re.split(FILE_HEADER_PATTERN, content)
 
-    # The structure after split is:
     # blocks[0] = text before first file header
     # blocks[1] = first filename
     # blocks[2] = first file content
     # blocks[3] = second filename
-    # blocks[4] = second file content
-    # ... and so on
+    # blocks[4] = second file content, etc.
 
     initial_text = blocks[0].strip()
     if initial_text:
-        # Save initial text to changelog.txt if there's any text before the first file header
+        # Save the initial text to changelog.txt if needed
         changelog_path = os.path.join(output_dir, "changelog.txt")
         with open(changelog_path, 'w', encoding='utf-8') as cfile:
             cfile.write(initial_text + "\n")
@@ -56,7 +47,7 @@ def decompile_code(input_file, output_dir):
             break
         fcontent = blocks[i+1].strip()
 
-        # Write out the file directly without modifications to filename
+        # Write out the file
         file_path = os.path.join(output_dir, fname)
         file_dir = os.path.dirname(file_path)
         if not os.path.exists(file_dir):

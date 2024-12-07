@@ -1,21 +1,9 @@
+// Example callback after Google Sign-In, if needed.
+// Currently handled directly in header.html via inline script callback.
+// You can add logic here if you want to handle redirection after login.
+
 (async function() {
-    const code = new URLSearchParams(window.location.search).get('code');
-    const clientId = 'YOUR_GITHUB_APP_CLIENT_ID';
-    const clientSecret = 'YOUR_GITHUB_APP_CLIENT_SECRET';
-
-    // Exchange code for access token via a serverless function or backend endpoint
-    const response = await fetch('https://your-backend.com/api/github-auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ clientId, clientSecret, code }),
-    });
-
-    const data = await response.json();
-    if (data.access_token) {
-        sessionStorage.setItem('githubToken', data.access_token);
-        window.location.href = 'blog.html';
-    } else {
-        alert('Authentication failed.');
-        window.location.href = 'login.html';
-    }
+    // If you had a server exchange, handle it here.
+    // For now, this might remain unused as we are using client-side only.
+    console.log("Callback page loaded. If necessary, handle token exchange here.");
 })();

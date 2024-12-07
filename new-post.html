@@ -4,25 +4,19 @@
     <meta charset="UTF-8">
     <title>New Post - Gradiorum</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS and Fonts -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Include common.js -->
-    <script src="js/common.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body data-theme="default">
-    <!-- Include the header -->
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <div data-include="header.html"></div>
-    <main>
-        <h1>New Blog Post</h1>
-        <input type="text" id="post-title" placeholder="Title" required>
-        <textarea id="post-content" placeholder="Write your post in Markdown" required></textarea>
-        <button onclick="submitPost()">Publish</button>
+    <main class="max-w-3xl mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">New Blog Post</h1>
+        <input type="text" id="post-title" class="w-full mb-4 px-3 py-2 border border-gray-300 rounded" placeholder="Title" required>
+        <textarea id="post-content" class="w-full mb-4 px-3 py-2 border border-gray-300 rounded h-64" placeholder="Write your post in Markdown" required></textarea>
+        <button onclick="submitPost()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">Publish</button>
     </main>
-    <!-- Include the footer -->
     <div data-include="footer.html"></div>
-    <!-- Include main.js as a module -->
     <script type="module" src="js/main.js"></script>
-    <!-- Include new-post.js -->
     <script src="js/new-post.js"></script>
 </body>
 </html>

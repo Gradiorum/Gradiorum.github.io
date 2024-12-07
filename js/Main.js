@@ -1,13 +1,7 @@
-import { setupThemeToggle } from './modules/themeToggle.js';
-import { setupResponsiveNav } from './modules/responsiveNav.js';
-import { setupFormHandlers } from './modules/formHandlers.js';
-import { setupLazyLoading } from './modules/lazyLoading.js';
-import { setupImageGallery } from './modules/imageGallery.js';
+import './modules/formHandlers.js';
+import './modules/lazyLoading.js';
+import './modules/imageGallery.js';
+import './modules/responsiveNav.js';
+import './modules/themeToggle.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    setupThemeToggle();
-    setupResponsiveNav();
-    setupFormHandlers();
-    setupLazyLoading();
-    setupImageGallery();
-});
+// Additional initialization can be done here.

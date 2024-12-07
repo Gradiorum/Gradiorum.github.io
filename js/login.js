@@ -1,9 +1,8 @@
-function authenticateWithGitHub() {
-    const clientId = 'YOUR_GITHUB_APP_CLIENT_ID';
-    const redirectUri = 'https://yourdomain.com/callback.html';
-    const scope = 'repo';
+// Google Sign-In is handled in header.html
+// Here you can add GitHub token logic if needed.
+// For now, this page just instructs user to sign in.
+// If needed, implement code to exchange Google token for GitHub write access token via YourBackendURL.
 
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
-
-    window.location.href = authUrl;
+function authenticateWithGoogle() {
+    // Handled by GSI button in header
 }

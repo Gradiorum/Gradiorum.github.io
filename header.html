@@ -1,20 +1,61 @@
-
-<header>
-    <div class="header-content">
-        <a href="index.html"><img src="assets/logo.png" alt="Gradiorum Logo" class="logo"></a>
-        <nav>
-            <button class="menu-toggle" aria-label="Toggle Navigation">&#9776;</button>
-            <ul>
-                <li><a href="index.html" tabindex="0">Home</a></li>
-                <li><a href="about.html" tabindex="0">About</a></li>
-                <li><a href="members.html" tabindex="0">Members</a></li>
-                <li><a href="projects.html" tabindex="0">Projects</a></li>
-                <li><a href="blog.html" tabindex="0">Blog</a></li>
-                <li><a href="videos.html" tabindex="0">Videos</a></li>
-                <li><a href="papers.html" tabindex="0">Papers</a></li>
-                <li><a href="contact.html" tabindex="0">Contact</a></li>
-            </ul>
-        </nav>
-        <button class="theme-toggle" aria-label="Toggle Theme">Dark Mode</button>
+<header class="bg-white dark:bg-gray-800 shadow-md py-4 px-6 flex justify-between items-center">
+    <a href="index.html" class="flex items-center space-x-2">
+        <img src="assets/logo.png" alt="Gradiorum Logo" class="h-8 w-auto">
+        <span class="font-bold text-xl dark:text-white">Gradiorum</span>
+    </a>
+    <nav class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="about.html" class="hover:underline">About</a>
+        <a href="members.html" class="hover:underline">Members</a>
+        <a href="projects.html" class="hover:underline">Projects</a>
+        <a href="blog.html" class="hover:underline">Blog</a>
+        <a href="videos.html" class="hover:underline">Videos</a>
+        <a href="papers.html" class="hover:underline">Papers</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+        <a href="luminaguard.html" class="hover:underline">LuminaGuard</a>
+        <a href="humanai.html" class="hover:underline">Human-AI Teaming</a>
+    </nav>
+    <div class="flex items-center space-x-4">
+        <button class="theme-toggle bg-gray-300 dark:bg-gray-700 text-sm px-2 py-1 rounded focus:outline-none" aria-label="Toggle Theme">
+            Dark Mode
+        </button>
+        <div id="google-signin-btn" class="text-sm bg-blue-600 text-white px-3 py-1 rounded cursor-pointer hover:bg-blue-500">
+            Sign In
+        </div>
+        <button class="menu-toggle md:hidden" aria-label="Toggle Navigation">
+            <svg class="w-6 h-6 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
     </div>
+    <!-- Google Sign-In Integration -->
+    <!-- Replace YOUR_GOOGLE_CLIENT_ID below with your actual Google Client ID -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        google.accounts.id.initialize({
+          client_id: "YOUR_GOOGLE_CLIENT_ID",
+          callback: (response) => {
+            // Callback once user signed in
+            sessionStorage.setItem('googleUser', JSON.stringify(response));
+            location.reload();
+          }
+        });
+        google.accounts.id.renderButton(
+          document.getElementById('google-signin-btn'),
+          { theme: "outline", size: "medium" } 
+        );
+        
+        // If already signed in
+        const user = sessionStorage.getItem('googleUser');
+        if(user) {
+          document.getElementById('google-signin-btn').textContent = "Sign Out";
+          document.getElementById('google-signin-btn').onclick = () => {
+            sessionStorage.removeItem('googleUser');
+            location.reload();
+          };
+        }
+      });
+    </script>
 </header>

@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Members - Gradiorum</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/common.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet the minds behind Gradiorum">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <div data-include="header.html"></div>
-    <main>
-        <section class="members">
-            <h1>Members</h1>
-            <div class="member-profile">
-                <img src="assets/william-stigall.jpg" alt="William A. Stigall">
-                <h2>William A. Stigall</h2>
-                <p>I am a 22-year-old with a lifelong interest in Artificial Intelligence and Intelligent Agents. I believe that everyone deserves an assistant reminiscent of Halo's Cortana, and I am dedicated to bringing that vision to reality. I enjoy applying AI solutions wherever possible, focusing on developing intelligent systems that enhance everyday life.</p>
-                <p>I graduated with a Bachelor of Science in Computer Science with a concentration in AI and a minor in Data Science from Kennesaw State University. I am currently attending the Georgia Institute of Technology for a Master's of Science in Computer Science, specializing in Machine Learning.</p>
+    <main class="max-w-3xl mx-auto p-6">
+        <section class="my-10">
+            <h1 class="text-4xl font-bold mb-4">Members</h1>
+            <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-6 space-y-6 md:space-y-0">
+                <img src="assets/william-stigall.jpg" alt="William A. Stigall" class="w-32 h-32 rounded-full object-cover">
+                <div>
+                    <h2 class="text-2xl font-semibold">William A. Stigall</h2>
+                    <p class="mb-4">I am a 22-year-old with a lifelong interest in AI and Intelligent Agents. I believe everyone deserves an assistant reminiscent of Halo’s Cortana, and I’m dedicated to bringing that vision to life. With a B.S. in Computer Science (AI concentration) and a Data Science minor from Kennesaw State University, I’m currently pursuing an M.S. in Computer Science (Machine Learning) at Georgia Institute of Technology.</p>
+                    <p class="mb-4">I focus on applying AI solutions to enhance everyday life, exploring reinforcement learning, human-AI teaming, and AI-driven user experience improvements.</p>
+                </div>
             </div>
-            <!-- Future members can be added here -->
         </section>
     </main>
     <div data-include="footer.html"></div>

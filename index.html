@@ -3,55 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Gradiorum - Home</title>
-    <meta name="description" content="Gradiorum is the frontier of innovation and technology. Discover our projects, blog, and more.">
+    <meta name="description" content="Gradiorum is at the frontier of innovation and technology. Discover our projects, research, and more.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Gradiorum - Home">
     <meta property="og:description" content="Gradiorum is the frontier of innovation and technology. Discover our projects, blog, and more.">
     <meta property="og:image" content="https://yourdomain.com/assets/og-image.png">
     <meta property="og:url" content="https://yourdomain.com/index.html">
     <meta name="twitter:card" content="summary_large_image">
-    <!-- CSS and Fonts -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Include common.js before the closing head tag -->
-    <script src="js/common.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/common.js" defer></script>
 </head>
-<body data-theme="default">
-    <!-- Include the header using data-include -->
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
     <div data-include="header.html"></div>
     <main>
-        <section class="hero">
-            <h1>Welcome to Gradiorum</h1>
-            <p>The Frontier of Innovation and Technology</p>
-            <button onclick="location.href='about.html'">Learn More</button>
+        <section class="hero text-center py-20 bg-blue-500 text-white">
+            <h1 class="text-5xl font-bold mb-6">Welcome to Gradiorum</h1>
+            <p class="text-xl mb-8">The Frontier of Innovation and Technology</p>
+            <button onclick="location.href='about.html'" class="px-6 py-3 bg-white text-blue-600 rounded font-semibold hover:bg-gray-200">
+                Learn More
+            </button>
         </section>
-        <section class="featured">
-            <h2>Featured Projects</h2>
-            <div class="projects">
-                <article>
-                    <img src="assets/via.png" alt="Via Toolkit">
-                    <h3>Via</h3>
-                    <p>A lightweight modular framework for AI integration.</p>
-                    <a href="via.html">Read More</a>
+        <section class="featured max-w-5xl mx-auto p-6">
+            <h2 class="text-3xl font-bold mb-8">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="assets/via.png" alt="Via Toolkit" class="rounded mb-4">
+                    <h3 class="text-2xl font-semibold mb-2">Via</h3>
+                    <p class="mb-4">A lightweight modular framework for AI integration.</p>
+                    <a href="via.html" class="text-blue-600 hover:underline">Read More</a>
                 </article>
-                <article>
-                    <img src="assets/ascendus.png" alt="Ascendus Toolkit">
-                    <h3>Ascendus</h3>
-                    <p>An advanced AI toolkit for scaling automation and efficiency.</p>
-                    <a href="ascendus.html">Read More</a>
+                <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition">
+                    <img src="assets/ascendus.png" alt="Ascendus Toolkit" class="rounded mb-4">
+                    <h3 class="text-2xl font-semibold mb-2">Ascendus</h3>
+                    <p class="mb-4">An advanced AI toolkit for scaling automation and efficiency.</p>
+                    <a href="ascendus.html" class="text-blue-600 hover:underline">Read More</a>
                 </article>
             </div>
         </section>
-        <section class="news">
-            <h2>Latest News</h2>
-            <div class="news-articles">
+        <section class="news max-w-5xl mx-auto p-6">
+            <h2 class="text-3xl font-bold mb-8">Latest News</h2>
+            <div class="news-articles grid md:grid-cols-2 gap-8" id="news-container">
                 <!-- Dynamic content loaded via JavaScript -->
             </div>
         </section>
     </main>
-    <!-- Include the footer using data-include -->
     <div data-include="footer.html"></div>
-    <!-- Include main.js as a module -->
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

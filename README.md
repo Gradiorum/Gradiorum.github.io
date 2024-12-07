@@ -1,46 +1,31 @@
 # Gradiorum
 
-Welcome to the official repository of **Gradiorum**, a platform dedicated to showcasing innovative projects at the frontier of technology and creativity. Gradiorum serves as a digital space not only to display our accomplishments but also to foster collaboration and free expression within the tech community.
+Gradiorum is a cutting-edge platform dedicated to showcasing technological innovation, AI-driven solutions, and creative works. It serves as both a portfolio of achievements and an open environment for knowledge sharing and collaboration.
 
-## About Gradiorum
+## Key Features
 
-Gradiorum represents the evolution of our commitment to pushing the boundaries of innovation. We focus on sharing creative and technical projects with the world, reflecting our dedication to future-facing technological leadership.
+- **Projects & Research**: Explore advanced toolkits like Via and Ascendus, delve into LuminaGuard’s adaptive lighting, and learn about ongoing human-AI teaming research.
+- **Blog**: Stay updated with the latest articles. Users can sign in via Google and contribute their own blog posts if granted the appropriate permissions.
+- **Papers & Publications**: Access our published papers and ongoing research efforts.
+
+## Architecture
+
+- **Frontend**: HTML, Tailwind CSS for styling, and vanilla JavaScript for interactivity.
+- **Auth**: Google Sign-In for user authentication. The site avoids direct user data storage.
+- **Backend**: GitHub as a backend for content storage. Blog posts are pulled from GitHub and can be pushed back using a GitHub personal access token.
+- **Deployment**: Hosted via Cloudflare.
 
 ## Contribution
 
-Gradiorum welcomes contributions from everyone. Whether you're looking to contribute to existing projects or want to share your own insights through blog posts, here’s how you can get involved:
+We welcome contributions:
+- **Blog Posts**: Submit Markdown files to the `posts` directory via pull requests.
+- **Code Enhancements**: Fork the repository, create a branch, commit changes, and submit a pull request.
 
-### Blog Contributions
+## Google Sign-In and GitHub Integration
 
-Want to share your thoughts or showcase your projects? You can contribute to our blog by submitting a DOCX or Markdown file to the `posts` directory of this repository. Here's how:
-
-1. Fork the repository.
-2. Add your blog post in DOCX or Markdown format to the `posts` directory.
-3. Create a pull request.
-
-We encourage contributions that foster innovation, share insightful analyses, and reflect creative thinking.
-
-### Code Contributions
-
-To contribute to the project code:
-
-1. Fork the repository.
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request.
-
-## Contact
-
-If you have any questions, proposals for collaboration, or need further information, please don't hesitate to contact us:
-
-- **Email**: gradiorumcorp@gmail.com
+- Obtain a Google OAuth Client ID and configure it in `header.html`.
+- For blog publishing, set up a serverless function or a secure method to exchange OAuth tokens for GitHub tokens (not fully implemented here).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgements
-
-- Thanks to all contributors who help make this project a reality.
-- Special thanks to those who engage with us to share innovative ideas and push the boundaries of technology.
+This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
