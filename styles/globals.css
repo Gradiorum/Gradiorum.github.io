@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom classes and overrides */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Optional neon-glow text utility */
+.neon-title {
+  text-shadow: 0 0 8px #00ff7f, 0 0 20px #00ff7f;
+}
+
+/* For a subtle background starfield or swirl, you can use: 
+body {
+  background: url('/images/starfield.png') repeat;
+  background-size: cover;
+}
+*/
+
+/* Example animations or transitions could be placed here */
+.hover\\:shadow-neon:hover {
+  box-shadow: 0 0 8px #00ff7f, 0 0 16px #00ff7f;
+}
+
+.prose-invert h1, .prose-invert h2, .prose-invert h3 {
+  color: #00ff7f;
+}

@@ -1,1270 +1,865 @@
-"""
-# --------------------
-# File: about.html
-# --------------------
+# --------------------------------------------------------------------------------
+# READ THIS FIRST
+# --------------------------------------------------------------------------------
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About - Gradiorum</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn about Gradiorum, a hub of innovation and advanced AI-driven projects.">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-3xl mx-auto p-6">
-        <section class="my-10">
-            <h1 class="text-4xl font-bold mb-4">About Gradiorum</h1>
-            <p class="text-lg mb-6">
-                Gradiorum stands at the intersection of innovation, technology, and art. 
-                We present cutting-edge projects, creative endeavors, and a spectrum of works spanning artificial intelligence, 
-                reinforcement learning, synthetic data generation, and beyond. Our mission is to push the boundaries of what’s possible, 
-                foster collaboration, and share knowledge widely.
-            </p>
-            
-            <h2 class="text-2xl font-semibold mb-2">Our Mission</h2>
-            <p class="mb-6">
-                At Gradiorum, we strive to pioneer forward-looking technological solutions. We leverage advanced AI frameworks, 
-                emerging paradigms, and rigorous research methodologies to accelerate progress. Transparency, education, and open collaboration 
-                are central to our ethos.
-            </p>
-            
-            <h2 class="text-2xl font-semibold mb-2">Timeline</h2>
-            <div class="relative border-l border-gray-200 dark:border-gray-700 pl-6">
-                <div class="mb-10 ml-4">
-                    <div class="flex items-center mb-1">
-                        <div class="bg-blue-500 w-3 h-3 rounded-full mr-2"></div>
-                        <h3 class="font-semibold">October 13, 2024</h3>
-                    </div>
-                    <p class="text-gray-700 dark:text-gray-300">
-                        Official name change from "FallingPlanet" to "Gradiorum".
-                    </p>
-                </div>
-                <div class="mb-10 ml-4">
-                    <div class="flex items-center mb-1">
-                        <div class="bg-blue-500 w-3 h-3 rounded-full mr-2"></div>
-                        <h3 class="font-semibold">October 20, 2024</h3>
-                    </div>
-                    <p class="text-gray-700 dark:text-gray-300">Completion of the toolkit rewrite:</p>
-                    <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
-                        <li><strong>Via</strong> (formerly Orbit): A lightweight modular framework for AI integration.</li>
-                        <li><strong>Ascendus</strong> (formerly Quasar): An advanced AI toolkit for scalable automation and efficiency.</li>
-                        <li><strong>Motus</strong>: A reinforcement learning library for dynamic AI solutions.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-</body>
-</html>
+This file completely replaces your existing site. All prior code is superseded.
+It uses:
+
+1. **Next.js** (React-based, with file-based routing).
+2. **Tailwind CSS** (for rapid and consistent UI styling).
+3. A custom neon/glow aesthetic and layout reminiscent of the original Xbox home screen (dark background, bright green highlights) and a “Nous-style” cinematic sense of immersion.
+
+**Key Points**:
+- The “blog” pages (under `/blog`) have dynamic routes `[slug].jsx`. You can easily fetch Markdown files or GitHub content. For demonstration, the code is set up to fetch from an imaginary data source (you can adapt).
+- “Projects” and “About” are placeholders that you can expand with real content or data fetching.
+- We added subtle neon glow states in `globals.css` and in Tailwind config (for the brand color).
+- Animations are optional. The example includes a mild “pulse” or “zoom” effect for hover states. You can enhance them further if desired.
+- This code is ready to parse with your `decompile_code.py` script if you save it as `all_new_code.txt`. Once processed, you can run `npm install` (or `yarn`) inside the new folder and then `npm run dev` to spin up your new Next.js site.
+
+---
 
 # --------------------
-# File: ascendus.html
+# File: package.json
 # --------------------
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Ascendus - Gradiorum</title>
-    <meta name="description" content="Ascendus is an advanced AI toolkit for scaling automation and efficiency.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-3xl mx-auto p-6">
-        <section class="my-10">
-            <h1 class="text-4xl font-bold mb-4">Ascendus</h1>
-            <p class="text-lg mb-6">
-                Ascendus offers an extensive suite of AI tools for large-scale deployments. It handles complex pipelines, orchestration, 
-                and optimization tasks, ensuring your AI solutions remain efficient and robust as they evolve.
-            </p>
-            <a href="https://github.com/Gradiorum/Ascendus" target="_blank" class="text-blue-600 hover:underline neon-link">View on GitHub</a>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-</body>
-</html>
-
-# --------------------
-# File: blog.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog - Gradiorum</title>
-    <meta name="description" content="Read the latest articles and updates from Gradiorum.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-5xl mx-auto p-6">
-        <h1 class="text-4xl font-bold mb-8">Blog</h1>
-        <div id="blog-posts" class="grid md:grid-cols-3 gap-6"></div>
-        <button id="new-post-btn" class="hidden mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">
-            New Post
-        </button>
-    </main>
-    <div data-include="footer.html"></div>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="module" src="js/main.js"></script>
-    <script src="js/blog.js"></script>
-</body>
-</html>
-
-# --------------------
-# File: callback.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Google OAuth Callback</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/common.js"></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <p class="p-6">Processing authentication...</p>
-    <script src="js/callback.js"></script>
-</body>
-</html>
-
-# --------------------
-# File: contact.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Contact - Gradiorum</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-3xl mx-auto p-6">
-        <section class="my-10">
-            <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
-            <p class="mb-4">For inquiries, collaboration proposals, or more details:</p>
-            <ul class="mb-6">
-                <li>Email: <a href="mailto:gradiorum@gmail.com" class="text-blue-600 hover:underline neon-link">gradiorum@gmail.com</a></li>
-            </ul>
-            <p>We welcome your feedback and look forward to hearing from you.</p>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-</body>
-</html>
-
-# --------------------
-# File: decompile_code.py
-# --------------------
-
-import os
-import re
-
-INPUT_FILE = "all_code_output.txt"
-OUTPUT_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-FILE_HEADER_PATTERN = re.compile(
-    r"^#\s*-+\r?\n#\sFile:\s*(.+)\r?\n#\s*-+\r?\n",
-    re.MULTILINE
-)
-
-IGNORED_FILES = []  # Add filenames to ignore if needed.
-
-def decompile_code(input_file, output_dir):
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    
-    with open(input_file, 'r', encoding='utf-8') as infile:
-        content = infile.read()
-    
-    blocks = re.split(FILE_HEADER_PATTERN, content)
-
-    initial_text = blocks[0].strip()
-    if initial_text:
-        changelog_path = os.path.join(output_dir, "changelog.txt")
-        with open(changelog_path, 'w', encoding='utf-8') as cfile:
-            cfile.write(initial_text + "\n")
-
-    for i in range(1, len(blocks), 2):
-        fname = blocks[i].strip()
-        if fname in IGNORED_FILES:
-            continue
-        if i+1 >= len(blocks):
-            break
-        fcontent = blocks[i+1].strip()
-
-        file_path = os.path.join(output_dir, fname)
-        file_dir = os.path.dirname(file_path)
-        if not os.path.exists(file_dir):
-            os.makedirs(file_dir)
-
-        with open(file_path, 'w', encoding='utf-8') as outfile:
-            outfile.write(fcontent + "\n")
-
-    print(f"Decompilation complete. Files recreated in: {output_dir}")
-
-if __name__ == "__main__":
-    decompile_code(INPUT_FILE, OUTPUT_ROOT_DIR)
-
-# --------------------
-# File: discordbots.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Discord Bots - Gradiorum</title>
-    <meta name="description" content="Explore our Discord Bots offering music, analytics, and more.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-4xl mx-auto p-6">
-        <section class="my-10">
-            <h1 class="text-4xl font-bold mb-4">Discord Bots</h1>
-            <p class="text-lg mb-6">
-                Gradiorum’s Discord integrations bring innovative capabilities straight into your community servers.
-            </p>
-            
-            <h2 class="text-2xl font-semibold mb-2">GradiorumMP3</h2>
-            <p class="mb-4">
-                GradiorumMP3 is a music manager bot that can play MP3 files, handle playlists, queue management, skipping, pausing, 
-                and resuming tracks. It transforms your Discord server into a social hub of shared listening experiences.
-            </p>
-            
-            <h2 class="text-2xl font-semibold mb-2">Polishadow</h2>
-            <p class="mb-4">
-                Polishadow monitors politicians’ stock trades and uses synthetic data insights to inform subscribers of potential insider patterns. 
-                It can paper trade strategies, issue alerts, and even offer subscription tiers so you always stay informed on the latest 
-                Wall Street moves.
-            </p>
-            
-            <p class="mb-6">Stay tuned for more bots as we continue to expand our Discord ecosystem.</p>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-</body>
-</html>
-
-# --------------------
-# File: export.py
-# --------------------
-
-import os
-
-def export_code(output_filename='all_code_output.txt'):
-    included_extensions = {'.js', '.html', '.css', '.json', '.py', '.md'}
-    excluded_dirs = {'venv', '__pycache__', 'node_modules', 'browser-extension/data', '.git'}
-
-    code_files = []
-    for root, dirs, files in os.walk('.'):
-        dirs[:] = [d for d in dirs if d not in excluded_dirs]
-        for file in files:
-            file_ext = os.path.splitext(file)[1].lower()
-            if file_ext in included_extensions:
-                code_files.append(os.path.join(root, file))
-
-    all_code = ''
-    for file_path in code_files:
-        normalized_path = os.path.relpath(file_path, '.')
-        all_code += f"\n# {'-'*20}\n# File: {normalized_path}\n# {'-'*20}\n\n"
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                code = f.read()
-                all_code += code + "\n"
-        except (UnicodeDecodeError, PermissionError) as e:
-            all_code += f"// Could not read file: {e}\n"
-
-    with open(output_filename, 'w', encoding='utf-8') as f:
-        f.write(all_code)
-
-    print(f"All code has been exported to {output_filename}")
-
-if __name__ == "__main__":
-    export_code()
-
-# --------------------
-# File: footer.html
-# --------------------
-
-<footer class="bg-gray-200 dark:bg-gray-800 py-8 mt-10 text-center text-gray-700 dark:text-gray-300 retro-footer">
-    <p>&copy; 2024 Gradiorum. All rights reserved.</p>
-    <div class="flex justify-center space-x-4 mt-4">
-        <a href="https://twitter.com/Gradiorum" class="hover:underline neon-link" aria-label="Gradiorum on Twitter">Twitter</a>
-        <a href="https://linkedin.com/company/Gradiorum" class="hover:underline neon-link" aria-label="Gradiorum on LinkedIn">LinkedIn</a>
-        <a href="https://youtube.com/channel/Gradiorum" class="hover:underline neon-link" aria-label="Gradiorum on YouTube">YouTube</a>
-    </div>
-    <div class="mt-6">
-        <p class="mb-2">Join our Mailing List for Updates</p>
-        <form id="newsletter-form" class="flex justify-center items-center space-x-2" aria-label="Newsletter Subscription">
-            <input type="email" name="email" class="px-3 py-2 rounded border border-gray-400" placeholder="Your email" aria-label="Email Address" required>
-            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">Subscribe</button>
-        </form>
-    </div>
-    <div class="mt-6 text-sm text-gray-600 dark:text-gray-400">
-        <p>
-            <strong>Disclaimer:</strong> All graphical assets on this website are generated by AI. We do not claim artistic authorship 
-            over these assets. If you are a graphic artist interested in collaborating or providing custom artwork, please reach out to us 
-            at <a href="mailto:gradiorum@gmail.com" class="text-blue-600 hover:underline neon-link">gradiorum@gmail.com</a>. 
-            We welcome your creative contributions to help elevate our visual identity.
-        </p>
-    </div>
-</footer>
-
-# --------------------
-# File: header.html
-# --------------------
-
-<header class="bg-white dark:bg-gray-800 shadow-md py-4 px-6 flex justify-between items-center retro-header">
-    <a href="index.html" class="flex items-center space-x-2">
-        <img src="assets/logo.png" alt="Gradiorum Logo" class="h-8 w-auto">
-        <span class="font-bold text-xl dark:text-white">Gradiorum</span>
-    </a>
-    <nav class="hidden md:flex space-x-6">
-        <a href="index.html" class="hover:underline neon-link">Home</a>
-        <a href="about.html" class="hover:underline neon-link">About</a>
-        <a href="members.html" class="hover:underline neon-link">Members</a>
-        <a href="projects.html" class="hover:underline neon-link">Projects</a>
-        <a href="blog.html" class="hover:underline neon-link">Blog</a>
-        <a href="videos.html" class="hover:underline neon-link">Videos</a>
-        <a href="papers.html" class="hover:underline neon-link">Papers</a>
-        <a href="contact.html" class="hover:underline neon-link">Contact</a>
-        <a href="luminaguard.html" class="hover:underline neon-link">LuminaGuard</a>
-        <a href="humanai.html" class="hover:underline neon-link">Human-AI Teaming</a>
-        <a href="discordbots.html" class="hover:underline neon-link">Discord Bots</a>
-    </nav>
-    <div class="flex items-center space-x-4">
-        <!-- Remember to set YOUR_GOOGLE_CLIENT_ID in an environment variable or config file -->
-        <button class="theme-toggle bg-gray-300 dark:bg-gray-700 text-sm px-2 py-1 rounded focus:outline-none" aria-label="Toggle Theme">
-            Toggle Theme
-        </button>
-        <div id="google-signin-btn" class="text-sm bg-blue-600 text-white px-3 py-1 rounded cursor-pointer hover:bg-blue-500">
-            Sign In
-        </div>
-        <button class="menu-toggle md:hidden" aria-label="Toggle Navigation">
-            <svg class="w-6 h-6 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
-    </div>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        google.accounts.id.initialize({
-          client_id: "YOUR_GOOGLE_CLIENT_ID", // Set this up in your environment
-          callback: (response) => {
-            sessionStorage.setItem('googleUser', JSON.stringify(response));
-            location.reload();
-          }
-        });
-        google.accounts.id.renderButton(
-          document.getElementById('google-signin-btn'),
-          { theme: "outline", size: "medium" }
-        );
-        
-        const user = sessionStorage.getItem('googleUser');
-        if(user) {
-          document.getElementById('google-signin-btn').textContent = "Sign Out";
-          document.getElementById('google-signin-btn').onclick = () => {
-            sessionStorage.removeItem('googleUser');
-            location.reload();
-          };
-        }
-      });
-    </script>
-</header>
-
-# --------------------
-# File: humanai.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Human-AI Teaming Research - Gradiorum</title>
-    <meta name="description" content="Explore our research on Human-AI Teaming">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-3xl mx-auto p-6">
-        <section class="my-10">
-            <h1 class="text-4xl font-bold mb-4">Human-AI Teaming</h1>
-            <p class="text-lg mb-6">
-                In partnership with Kennesaw State University, we are researching effective paradigms for collaboration 
-                between humans and intelligent agents. Our objective is to foster trust, interpretability, and performance in 
-                complex tasks—ranging from mission planning to critical decision-making.
-            </p>
-            <h2 class="text-2xl font-semibold mb-2">Scope and Objectives</h2>
-            <ul class="list-disc ml-6 mb-6">
-                <li>Developing interactive interfaces for joint human-AI strategy formation.</li>
-                <li>Ensuring explainability in AI-driven recommendations and predictions.</li>
-                <li>Exploring reinforcement learning and adaptive feedback loops for continuous improvement.</li>
-            </ul>
-            <p class="mb-6">
-                This project is in its early phases. We plan to publish working papers, demonstration videos, 
-                and frameworks as the work progresses. Stay tuned!
-            </p>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-</body>
-</html>
-
-# --------------------
-# File: index.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Gradiorum - Home</title>
-    <meta name="description" content="Gradiorum is at the frontier of innovation and technology. Discover our projects, research, and more.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Gradiorum - Home">
-    <meta property="og:description" content="Gradiorum: the frontier of innovation and technology. Discover our projects, blog, and more.">
-    <meta property="og:image" content="https://yourdomain.com/assets/og-image.png">
-    <meta property="og:url" content="https://yourdomain.com/index.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main>
-        <section class="hero text-center py-20 bg-blue-500 text-white pixel-border">
-            <h1 class="text-5xl font-bold mb-6 neon-text">Welcome to Gradiorum</h1>
-            <p class="text-xl mb-8">The Frontier of Innovation and Technology</p>
-            <button onclick="location.href='about.html'" class="px-6 py-3 bg-white text-blue-600 rounded font-semibold hover:bg-gray-200 neon-link">
-                Learn More
-            </button>
-        </section>
-        <section class="featured max-w-5xl mx-auto p-6">
-            <h2 class="text-3xl font-bold mb-8">Featured Projects</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition retro-card">
-                    <img src="assets/via.png" alt="Via Toolkit" class="rounded mb-4">
-                    <h3 class="text-2xl font-semibold mb-2">Via</h3>
-                    <p class="mb-4">A lightweight modular framework for AI integration.</p>
-                    <a href="via.html" class="text-blue-600 hover:underline neon-link">Read More</a>
-                </article>
-                <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition retro-card">
-                    <img src="assets/ascendus.png" alt="Ascendus Toolkit" class="rounded mb-4">
-                    <h3 class="text-2xl font-semibold mb-2">Ascendus</h3>
-                    <p class="mb-4">An advanced AI toolkit for scaling automation and efficiency.</p>
-                    <a href="ascendus.html" class="text-blue-600 hover:underline neon-link">Read More</a>
-                </article>
-            </div>
-        </section>
-        <section class="news max-w-5xl mx-auto p-6">
-            <h2 class="text-3xl font-bold mb-8">Latest News</h2>
-            <div class="news-articles grid md:grid-cols-2 gap-8" id="news-container">
-                <!-- Dynamically loaded content -->
-            </div>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-    <script type="module" src="js/main.js"></script>
-</body>
-</html>
-
-# --------------------
-# File: login.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login - Gradiorum</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-3xl mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-6">Creator Login</h1>
-        <p class="mb-4">Sign in with Google to manage and create blog posts:</p>
-        <div id="google-login-button" class="px-4 py-2 bg-blue-600 text-white rounded inline-block cursor-pointer">Login with Google</div>
-    </main>
-    <div data-include="footer.html"></div>
-    <script src="js/login.js"></script>
-</body>
-</html>
-
-# --------------------
-# File: luminaguard.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LuminaGuard - Gradiorum</title>
-    <meta name="description" content="LuminaGuard is an AI-driven adaptive lighting solution.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-4xl mx-auto p-6">
-        <section class="my-10">
-            <h1 class="text-4xl font-bold mb-4">LuminaGuard</h1>
-            <p class="text-lg mb-6">
-                LuminaGuard is an AI-driven adaptive lighting solution enhancing comfort, productivity, and well-being. It adjusts screen brightness, 
-                color temperature, and integrates with smart lighting systems to create harmonized environments. Under the hood, LuminaGuard uses 
-                reinforcement learning and ML-driven adaptation to refine conditions over time.
-            </p>
-            
-            <h2 class="text-2xl font-semibold mb-2">Key Features</h2>
-            <ul class="list-disc ml-6 mb-6">
-                <li>Real-time brightness and color adjustments.</li>
-                <li>Circadian-based scheduling and temperature changes.</li>
-                <li>Integration with popular IoT lighting ecosystems.</li>
-                <li>Adaptive ML engine for personalized lighting patterns.</li>
-            </ul>
-
-            <p class="mb-6">For the full code and instructions, see our repository:</p>
-            <pre class="bg-gray-800 text-white p-4 rounded overflow-auto text-sm">
-# Example Snippet:
-public class BrightnessController {
-    public void SetBrightness(byte targetBrightness) {
-        // WMI call to adjust brightness
-    }
+{
+  "name": "gradiorum-next-site",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "13.1.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.3.2",
+    "postcss": "8.4.21",
+    "autoprefixer": "10.4.14"
+  },
+  "devDependencies": {
+    "eslint": "8.30.0",
+    "eslint-config-next": "13.1.1"
+  }
 }
-            </pre>
-
-            <a href="https://github.com/Gradiorum/Gradiorum" target="_blank" class="text-blue-600 hover:underline neon-link">View Full Code on GitHub</a>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-</body>
-</html>
 
 # --------------------
-# File: members.html
+# File: next.config.js
 # --------------------
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Members - Gradiorum</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Meet the minds behind Gradiorum">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-3xl mx-auto p-6">
-        <section class="my-10">
-            <h1 class="text-4xl font-bold mb-4">Members</h1>
-            <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-6 space-y-6 md:space-y-0">
-                <img src="assets/william-stigall.jpg" alt="William A. Stigall" class="w-32 h-32 rounded-full object-cover pixel-border">
-                <div>
-                    <h2 class="text-2xl font-semibold">William A. Stigall</h2>
-                    <p class="mb-4">
-                        William is a 22-year-old AI enthusiast dedicated to bringing the concept of a personal AI assistant (akin to Halo’s Cortana) 
-                        into reality. With a B.S. in Computer Science (AI concentration) and a Data Science minor from Kennesaw State University, 
-                        and currently pursuing an M.S. in Machine Learning at Georgia Tech starting January, he focuses on applying AI solutions 
-                        to enhance everyday life, from reinforcement learning to human-AI teaming.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-</body>
-</html>
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  // You can enable experimental or advanced options here
+};
+
+module.exports = nextConfig;
 
 # --------------------
-# File: new-post.html
+# File: tailwind.config.js
 # --------------------
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New Post - Gradiorum</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-3xl mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-6">New Blog Post</h1>
-        <input type="text" id="post-title" class="w-full mb-4 px-3 py-2 border border-gray-300 rounded" placeholder="Title" required>
-        <textarea id="post-content" class="w-full mb-4 px-3 py-2 border border-gray-300 rounded h-64" placeholder="Write your post in Markdown" required></textarea>
-        <button onclick="submitPost()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">Publish</button>
-    </main>
-    <div data-include="footer.html"></div>
-    <script type="module" src="js/main.js"></script>
-    <script src="js/new-post.js"></script>
-</body>
-</html>
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./pages/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}"
+  ],
+  theme: {
+    extend: {
+      colors: {
+        xboxGreen: "#00ff7f", // A bright green for the “neon glow”
+      },
+      boxShadow: {
+        neon: "0 0 5px #00ff7f, 0 0 20px #00ff7f",
+      },
+      fontFamily: {
+        // example futuristic font
+        orbitron: ["Orbitron", "sans-serif"],
+      },
+      animation: {
+        'pulse-slow': 'pulse 3s infinite',
+      },
+    },
+  },
+  plugins: [],
+  darkMode: 'class',
+};
 
 # --------------------
-# File: papers.html
+# File: postcss.config.js
 # --------------------
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Our Papers - Gradiorum</title>
-    <meta name="description" content="Explore the research and publications from Gradiorum.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Our Papers - Gradiorum">
-    <meta property="og:description" content="Explore the research and publications from Gradiorum.">
-    <meta property="og:image" content="https://yourdomain.com/assets/og-image-papers.png">
-    <meta property="og:url" content="https://yourdomain.com/papers.html">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-5xl mx-auto p-6">
-        <h1 class="text-4xl font-bold mb-8">Our Papers</h1>
-        <section class="grid md:grid-cols-2 gap-8">
-            <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition retro-card">
-                <h2 class="text-2xl font-semibold mb-2">TransformingGameplay: A Transformer-Based Q-Network</h2>
-                <p class="mb-2"><strong>Authors:</strong> William A. Stigall, Jitendra Sai Kota</p>
-                <p class="mb-4 text-gray-700 dark:text-gray-300">
-                    This paper explores a transformer-based Q-Network for gameplay environments without convolutional layers, 
-                    analyzing performance and limitations in reinforcement learning tasks.
-                </p>
-                <p class="mb-4"><strong>Keywords:</strong> Transformer, Q-Network, RL</p>
-                <a href="https://arxiv.org/submit/5925810/view" target="_blank" class="text-blue-600 hover:underline neon-link">Read Paper</a>
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+
+# --------------------
+# File: pages/_app.jsx
+# --------------------
+
+import '@/styles/globals.css';
+
+export default function App({ Component, pageProps }) {
+  return (
+    <Component {...pageProps} />
+  );
+}
+
+# --------------------
+# File: pages/index.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+import Hero from "@/components/Hero";
+
+export default function Home() {
+  return (
+    <Layout>
+      <Hero />
+      <section className="max-w-7xl mx-auto px-6 py-12 text-center">
+        <h2 className="text-3xl font-bold mb-6">
+          Featured Projects
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Example project cards */}
+          <div className="bg-gray-900 text-white p-6 rounded-lg hover:shadow-neon hover:scale-105 transform transition">
+            <h3 className="text-2xl font-semibold mb-2">Via</h3>
+            <p className="mb-4">A lightweight modular framework for AI integration.</p>
+            <a
+              href="/projects#via"
+              className="inline-block px-4 py-2 text-black bg-xboxGreen rounded hover:bg-opacity-80 transition"
+            >
+              Learn More
+            </a>
+          </div>
+          <div className="bg-gray-900 text-white p-6 rounded-lg hover:shadow-neon hover:scale-105 transform transition">
+            <h3 className="text-2xl font-semibold mb-2">Ascendus</h3>
+            <p className="mb-4">An advanced AI toolkit for large-scale automation.</p>
+            <a
+              href="/projects#ascendus"
+              className="inline-block px-4 py-2 text-black bg-xboxGreen rounded hover:bg-opacity-80 transition"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+      </section>
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <h2 className="text-3xl font-bold mb-6 text-center">Latest News</h2>
+        <p className="text-gray-200 text-center">
+          Check out the <a href="/blog" className="text-xboxGreen underline">blog</a> for updates!
+        </p>
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: pages/about.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+
+export default function About() {
+  return (
+    <Layout title="About - Gradiorum">
+      <section className="max-w-5xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-6">About Gradiorum</h1>
+        <p className="text-lg text-gray-200 mb-6">
+          Gradiorum stands at the intersection of innovation, technology, and art. We present
+          cutting-edge projects, creative endeavors, and advanced AI-driven works spanning
+          artificial intelligence, reinforcement learning, synthetic data generation, and more.
+        </p>
+        <p className="text-lg text-gray-200 mb-6">
+          Our mission: to push the boundaries of what’s possible, foster collaboration,
+          and openly share knowledge with the global community.
+        </p>
+        <h2 className="text-3xl font-semibold mb-4">Our Mission</h2>
+        <p className="text-gray-300 mb-8">
+          We strive to pioneer forward-looking technological solutions using advanced AI frameworks,
+          emerging paradigms, and rigorous research methodologies. Transparency, education, and open
+          collaboration define our ethos.
+        </p>
+        <h2 className="text-3xl font-semibold mb-4">History & Timeline</h2>
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-xl font-semibold">October 13, 2024</h3>
+            <p className="text-gray-300">
+              Official name change from “FallingPlanet” to “Gradiorum”.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">October 20, 2024</h3>
+            <p className="text-gray-300 mb-2">Completion of the major toolkit rewrite:</p>
+            <ul className="list-disc ml-5 space-y-1 text-gray-300">
+              <li><strong>Via</strong> (formerly Orbit): A lightweight modular framework for AI integration.</li>
+              <li><strong>Ascendus</strong> (formerly Quasar): An advanced AI toolkit for scalable automation.</li>
+              <li><strong>Motus</strong>: A reinforcement learning library for dynamic AI solutions.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: pages/blog/index.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+import Link from "next/link";
+
+// Example placeholder blog listing
+export default function BlogIndex() {
+  // You could fetch blog posts from an API or GitHub here:
+  const mockPosts = [
+    {
+      slug: "williams-journey-and-our-vision",
+      title: "William’s Journey and Our Vision",
+      excerpt: "Our founder prepares for an MS at Georgia Tech, bridging the gap between AI research and everyday applications...",
+      date: "Dec 07, 2024",
+    },
+    {
+      slug: "synthetic-data-for-behavioral-health",
+      title: "Scaling Synthetic Data for Behavioral Health",
+      excerpt: "Investigating how LLMs can enrich classification datasets in healthcare with safe synthetic data...",
+      date: "Nov 15, 2024",
+    }
+  ];
+
+  return (
+    <Layout title="Blog - Gradiorum">
+      <section className="max-w-6xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-8 text-center">Blog</h1>
+        <div className="grid md:grid-cols-2 gap-8">
+          {mockPosts.map((post) => (
+            <article
+              key={post.slug}
+              className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"
+            >
+              <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
+              <p className="text-sm text-gray-400 mb-4">{post.date}</p>
+              <p className="text-gray-200 mb-6">{post.excerpt}</p>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="inline-block px-4 py-2 rounded bg-xboxGreen text-black font-semibold hover:bg-opacity-80"
+              >
+                Read More
+              </Link>
             </article>
-            <article class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-lg transition retro-card">
-                <h2 class="text-2xl font-semibold mb-2">Scaling Synthetic Data for Behavioral Health Classification</h2>
-                <p class="mb-2"><strong>Authors:</strong> William Stigall, Md Abdullah Al Hafiz Khan</p>
-                <p class="mb-4 text-gray-700 dark:text-gray-300">
-                    We investigate synthetic data generation using large language models (LLMs) to enrich behavioral 
-                    health classification datasets. Topics include prompt engineering, adversarial examples, and 
-                    quality control at scale.
-                </p>
-                <p class="mb-4"><strong>Keywords:</strong> Synthetic Data, Behavioral Health, LLMs</p>
-                <span class="inline-block px-3 py-1 bg-gray-400 text-white rounded opacity-50 cursor-not-allowed">
-                    Read Paper (Pending)
-                </span>
-                <p class="mt-2 text-gray-500">Link will be available once published.</p>
-            </article>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-    <script type="module" src="js/main.js"></script>
-</body>
-</html>
+          ))}
+        </div>
+      </section>
+    </Layout>
+  );
+}
 
 # --------------------
-# File: projects.html
+# File: pages/blog/[slug].jsx
 # --------------------
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Projects - Gradiorum</title>
-    <meta name="description" content="Discover various projects under Gradiorum's umbrella.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-5xl mx-auto p-6">
-        <section class="my-10">
-            <h1 class="text-4xl font-bold mb-8">Projects</h1>
-            <div id="projects-container" class="grid md:grid-cols-2 gap-8"></div>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="js/projects.js"></script>
-</body>
-</html>
+import { useRouter } from "next/router";
+import Layout from "@/components/Layout";
+
+export default function BlogPost() {
+  const { query } = useRouter();
+  const { slug } = query;
+
+  // You could fetch the post data from an API or file system here, based on `slug`.
+  // For demonstration, let's just show placeholder text:
+  const mockContent = `
+  # ${slug?.replaceAll('-', ' ')}
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam euismod nisl a urna pellentesque, 
+  at lobortis augue commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+  `;
+
+  return (
+    <Layout title={`Blog: ${slug || 'Loading...'}`}>
+      <section className="max-w-3xl mx-auto px-4 py-10 text-gray-100">
+        {slug ? (
+          <article className="prose prose-invert">
+            <div dangerouslySetInnerHTML={{ __html: mockContent }} />
+          </article>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: pages/contact.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+
+export default function Contact() {
+  return (
+    <Layout title="Contact - Gradiorum">
+      <section className="max-w-3xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
+        <p className="text-gray-200 mb-4">
+          For inquiries, collaboration proposals, or more details, send us an email:
+        </p>
+        <p className="mb-6">
+          <a href="mailto:gradiorum@gmail.com" className="text-xboxGreen underline">
+            gradiorum@gmail.com
+          </a>
+        </p>
+        <p className="text-gray-200">
+          We welcome your feedback and look forward to hearing from you.
+        </p>
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: pages/projects.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+
+export default function Projects() {
+  return (
+    <Layout title="Projects - Gradiorum">
+      <section className="max-w-5xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-8">Projects</h1>
+        <div className="grid md:grid-cols-2 gap-8">
+          <article id="via" className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
+            <h2 className="text-2xl font-semibold mb-4">Via</h2>
+            <p className="mb-4">
+              A lightweight, modular framework for AI integration. Simplifies connecting various AI components, enabling
+              rapid prototyping.
+            </p>
+            <a
+              href="https://github.com/Gradiorum/Via"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80"
+            >
+              View on GitHub
+            </a>
+          </article>
+          <article id="ascendus" className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
+            <h2 className="text-2xl font-semibold mb-4">Ascendus</h2>
+            <p className="mb-4">
+              An advanced AI toolkit for scalable automation and efficiency. Ideal for large-scale deployments and
+              complex orchestration tasks.
+            </p>
+            <a
+              href="https://github.com/Gradiorum/Ascendus"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80"
+            >
+              View on GitHub
+            </a>
+          </article>
+          <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
+            <h2 className="text-2xl font-semibold mb-4">LuminaGuard</h2>
+            <p className="mb-4">
+              An AI-driven adaptive lighting solution. Adjusts screen brightness, color temperature,
+              and integrates with smart lighting for optimized environments.
+            </p>
+            <a
+              href="https://github.com/Gradiorum/Gradiorum"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80"
+            >
+              View on GitHub
+            </a>
+          </article>
+          <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
+            <h2 className="text-2xl font-semibold mb-4">Motus</h2>
+            <p className="mb-4">
+              A reinforcement learning library for dynamic AI solutions. Provides specialized
+              RL modules for advanced problem solving.
+            </p>
+            <a
+              href="https://github.com/Gradiorum/Motus"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80"
+            >
+              View on GitHub
+            </a>
+          </article>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: pages/discordbots.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+
+export default function DiscordBots() {
+  return (
+    <Layout title="Discord Bots - Gradiorum">
+      <section className="max-w-4xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-6">Discord Bots</h1>
+        <p className="text-gray-200 mb-6">
+          Gradiorum’s Discord integrations bring innovative capabilities right into your community servers.
+        </p>
+        <article className="mb-8">
+          <h2 className="text-2xl font-semibold mb-2">GradiorumMP3</h2>
+          <p>
+            A music manager bot for Discord, capable of playing MP3 files, handling playlists, queue management, skipping, 
+            pausing, and resuming tracks—bringing a social listening experience to your server.
+          </p>
+        </article>
+        <article>
+          <h2 className="text-2xl font-semibold mb-2">Polishadow</h2>
+          <p>
+            Monitors politicians’ stock trades and leverages synthetic data insights to detect potential insider patterns. 
+            It can paper-trade strategies, issue alerts, and offer subscription tiers for timely updates on moves in the market.
+          </p>
+        </article>
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: pages/humanai.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+
+export default function HumanAITeaming() {
+  return (
+    <Layout title="Human-AI Teaming - Gradiorum">
+      <section className="max-w-3xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-6">Human-AI Teaming</h1>
+        <p className="text-gray-200 mb-6">
+          In partnership with Kennesaw State University, we research effective paradigms for collaboration between humans 
+          and intelligent agents. Our aim is to foster trust, interpretability, and high performance in complex tasks.
+        </p>
+        <h2 className="text-2xl font-semibold mb-4">Scope & Objectives</h2>
+        <ul className="list-disc ml-5 mb-6 text-gray-300 space-y-2">
+          <li>Develop interactive interfaces for joint human-AI strategy formation.</li>
+          <li>Ensure explainability in AI-driven recommendations.</li>
+          <li>Explore reinforcement learning & adaptive feedback loops for continuous improvement.</li>
+        </ul>
+        <p className="text-gray-300">
+          This project is in its early phases. We plan to publish working papers, demos, and frameworks as progress continues.
+        </p>
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: pages/papers.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+
+export default function Papers() {
+  return (
+    <Layout title="Our Papers - Gradiorum">
+      <section className="max-w-5xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-8">Our Papers</h1>
+        <div className="grid md:grid-cols-2 gap-8">
+          <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
+            <h2 className="text-2xl font-semibold mb-2">
+              TransformingGameplay: A Transformer-Based Q-Network
+            </h2>
+            <p className="mb-2"><strong>Authors:</strong> William A. Stigall, Jitendra Sai Kota</p>
+            <p className="text-gray-300 mb-4">
+              Explores a transformer-based Q-Network for gameplay environments without convolutional layers,
+              analyzing performance and limitations in RL tasks.
+            </p>
+            <p className="mb-4"><strong>Keywords:</strong> Transformer, Q-Network, RL</p>
+            <a
+              href="https://arxiv.org/submit/5925810/view"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80"
+            >
+              Read Paper
+            </a>
+          </article>
+          <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
+            <h2 className="text-2xl font-semibold mb-2">
+              Scaling Synthetic Data for Behavioral Health Classification
+            </h2>
+            <p className="mb-2"><strong>Authors:</strong> William Stigall, Md Abdullah Al Hafiz Khan</p>
+            <p className="text-gray-300 mb-4">
+              Investigates synthetic data generation using large language models (LLMs) to enhance
+              behavioral health classification datasets at scale.
+            </p>
+            <p className="mb-4"><strong>Keywords:</strong> Synthetic Data, Behavioral Health, LLMs</p>
+            <span className="inline-block px-3 py-1 bg-gray-400 text-white rounded opacity-50 cursor-not-allowed">
+              Read Paper (Pending)
+            </span>
+            <p className="mt-2 text-gray-500">
+              Link will be available once published.
+            </p>
+          </article>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: pages/members.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+
+export default function Members() {
+  return (
+    <Layout title="Members - Gradiorum">
+      <section className="max-w-3xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-6">Members</h1>
+        <div className="md:flex items-center md:space-x-6 mb-6">
+          <img
+            src="/images/william-stigall.jpg"
+            alt="William A. Stigall"
+            className="w-32 h-32 rounded-full object-cover border-2 border-xboxGreen mb-4 md:mb-0"
+          />
+          <div>
+            <h2 className="text-2xl font-semibold mb-2">William A. Stigall</h2>
+            <p className="text-gray-200">
+              William is a 22-year-old AI enthusiast with a B.S. in CS (AI concentration) and Data Science minor from
+              KSU. He’ll start an M.S. in Machine Learning at Georgia Tech in January. Dedicated to bridging the gap
+              between reinforcement learning, human-AI teaming, and everyday life.
+            </p>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: pages/videos.jsx
+# --------------------
+
+import Layout from "@/components/Layout";
+
+export default function Videos() {
+  return (
+    <Layout title="Videos - Gradiorum">
+      <section className="max-w-3xl mx-auto px-4 py-10 text-center">
+        <h1 className="text-4xl font-bold mb-6">Visit Our YouTube Channel</h1>
+        <p className="text-gray-200 mb-6">Access tutorials, demos, and talks.</p>
+        <a
+          href="https://www.youtube.com/channel/Gradiorum"
+          target="_blank"
+          rel="noreferrer"
+          className="px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80"
+        >
+          Go to YouTube Channel
+        </a>
+      </section>
+    </Layout>
+  );
+}
+
+# --------------------
+# File: components/Layout.jsx
+# --------------------
+
+import Head from "next/head";
+import Header from "./Header";
+import Footer from "./Footer";
+
+export default function Layout({ children, title }) {
+  const pageTitle = title ? `${title}` : "Gradiorum";
+
+  return (
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content="Gradiorum - Frontier of Innovation and Technology" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <div className="bg-black min-h-screen flex flex-col font-orbitron">
+        <Header />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </div>
+    </>
+  );
+}
+
+# --------------------
+# File: components/Header.jsx
+# --------------------
+
+import Link from "next/link";
+import { useState } from "react";
+import { useTheme } from "@/hooks/useTheme";
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <header className="w-full bg-gray-900 text-gray-200 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          {/* A placeholder for your logo */}
+          <div className="w-8 h-8 bg-xboxGreen rounded-full shadow-neon" />
+          <Link href="/" className="text-xl font-bold hover:text-xboxGreen transition">
+            Gradiorum
+          </Link>
+        </div>
+        <nav className="hidden md:flex space-x-6">
+          <Link href="/" className="hover:text-xboxGreen transition">Home</Link>
+          <Link href="/about" className="hover:text-xboxGreen transition">About</Link>
+          <Link href="/members" className="hover:text-xboxGreen transition">Members</Link>
+          <Link href="/projects" className="hover:text-xboxGreen transition">Projects</Link>
+          <Link href="/blog" className="hover:text-xboxGreen transition">Blog</Link>
+          <Link href="/videos" className="hover:text-xboxGreen transition">Videos</Link>
+          <Link href="/papers" className="hover:text-xboxGreen transition">Papers</Link>
+          <Link href="/contact" className="hover:text-xboxGreen transition">Contact</Link>
+          <Link href="/luminaguard" className="hover:text-xboxGreen transition">LuminaGuard</Link>
+          <Link href="/humanai" className="hover:text-xboxGreen transition">Human-AI Teaming</Link>
+          <Link href="/discordbots" className="hover:text-xboxGreen transition">Discord Bots</Link>
+        </nav>
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={() => toggleTheme()}
+            className="bg-gray-700 px-3 py-1 rounded hover:bg-gray-600 transition"
+          >
+            {theme === 'light' ? 'Dark' : 'Light'} Mode
+          </button>
+          <button onClick={() => setOpen(!open)} className="md:hidden">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="md:hidden bg-gray-800">
+          <nav className="flex flex-col p-4 space-y-3">
+            <Link href="/" className="hover:text-xboxGreen transition">Home</Link>
+            <Link href="/about" className="hover:text-xboxGreen transition">About</Link>
+            <Link href="/members" className="hover:text-xboxGreen transition">Members</Link>
+            <Link href="/projects" className="hover:text-xboxGreen transition">Projects</Link>
+            <Link href="/blog" className="hover:text-xboxGreen transition">Blog</Link>
+            <Link href="/videos" className="hover:text-xboxGreen transition">Videos</Link>
+            <Link href="/papers" className="hover:text-xboxGreen transition">Papers</Link>
+            <Link href="/contact" className="hover:text-xboxGreen transition">Contact</Link>
+            <Link href="/luminaguard" className="hover:text-xboxGreen transition">LuminaGuard</Link>
+            <Link href="/humanai" className="hover:text-xboxGreen transition">Human-AI Teaming</Link>
+            <Link href="/discordbots" className="hover:text-xboxGreen transition">Discord Bots</Link>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}
+
+# --------------------
+# File: components/Footer.jsx
+# --------------------
+
+export default function Footer() {
+  return (
+    <footer className="bg-gray-900 text-gray-200 py-8 mt-10 text-center">
+      <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Gradiorum. All rights reserved.</p>
+      <div className="flex justify-center space-x-4 mt-4">
+        <a
+          href="https://twitter.com/Gradiorum"
+          className="hover:text-xboxGreen transition"
+          aria-label="Twitter"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Twitter
+        </a>
+        <a
+          href="https://linkedin.com/company/Gradiorum"
+          className="hover:text-xboxGreen transition"
+          aria-label="LinkedIn"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://youtube.com/channel/Gradiorum"
+          className="hover:text-xboxGreen transition"
+          aria-label="YouTube"
+          target="_blank"
+          rel="noreferrer"
+        >
+          YouTube
+        </a>
+      </div>
+      <div className="mt-6">
+        <p className="mb-2">Join our Mailing List for Updates</p>
+        <form id="newsletter-form" className="flex justify-center items-center space-x-2">
+          <input
+            type="email"
+            name="email"
+            className="px-3 py-2 rounded border border-gray-600 focus:outline-none"
+            placeholder="Your email"
+            required
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80 transition"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+      <div className="mt-6 text-sm text-gray-500 max-w-2xl mx-auto">
+        <p>
+          <strong>Disclaimer:</strong> All graphical assets on this website are generated by AI. We do not claim 
+          artistic authorship over these assets. If you are a graphic artist and wish to collaborate or provide 
+          custom artwork, please reach out to us at{" "}
+          <a href="mailto:gradiorum@gmail.com" className="text-xboxGreen underline">
+            gradiorum@gmail.com
+          </a>.
+        </p>
+      </div>
+    </footer>
+  );
+}
+
+# --------------------
+# File: components/Hero.jsx
+# --------------------
+
+export default function Hero() {
+  return (
+    <section
+      className="relative w-full h-[60vh] bg-black flex items-center justify-center text-center"
+      style={{
+        backgroundImage: "url('/images/xbox-swirls.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-60" />
+      <div className="relative z-10 text-white max-w-2xl">
+        <h1 className="text-5xl font-bold mb-4 neon-title">
+          Welcome to Gradiorum
+        </h1>
+        <p className="text-xl mb-6">
+          The Frontier of Innovation &amp; Technology
+        </p>
+        <a
+          href="/about"
+          className="inline-block px-6 py-3 text-black bg-xboxGreen rounded font-semibold hover:bg-opacity-80 transition"
+        >
+          Learn More
+        </a>
+      </div>
+    </section>
+  );
+}
+
+# --------------------
+# File: hooks/useTheme.js
+# --------------------
+
+import { useEffect, useState } from "react";
+
+export function useTheme() {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme) {
+      setTheme(localTheme);
+      document.documentElement.classList.toggle("dark", localTheme === "dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
+
+  return { theme, toggleTheme };
+}
+
+# --------------------
+# File: styles/globals.css
+# --------------------
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom classes and overrides */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Optional neon-glow text utility */
+.neon-title {
+  text-shadow: 0 0 8px #00ff7f, 0 0 20px #00ff7f;
+}
+
+/* For a subtle background starfield or swirl, you can use: 
+body {
+  background: url('/images/starfield.png') repeat;
+  background-size: cover;
+}
+*/
+
+/* Example animations or transitions could be placed here */
+.hover\\:shadow-neon:hover {
+  box-shadow: 0 0 8px #00ff7f, 0 0 16px #00ff7f;
+}
+
+.prose-invert h1, .prose-invert h2, .prose-invert h3 {
+  color: #00ff7f;
+}
+
+# --------------------
+# File: public/images/README.md
+# --------------------
+
+# Images Directory
+
+Place your site's images and brand assets here. For example:
+- `xbox-swirls.jpg` for the Hero background
+- `starfield.png` if you do a starfield background
+- `logo.png` if you have an updated logo
+- `william-stigall.jpg` for the members page
 
 # --------------------
 # File: README.md
 # --------------------
 
-# Gradiorum
+# New Gradiorum Next.js Site
 
-Gradiorum is a platform at the nexus of innovation, AI-driven solutions, and creative exploration. Our mission is to push the boundaries of technology, while fostering collaboration and open knowledge sharing. We integrate research, tools, and interactive media to inspire and inform the global community.
+This is the **completely overhauled** Gradiorum site, built with:
+- **Next.js** (13.1+)
+- **Tailwind CSS** (3.3+)
+- A neon, futuristic aesthetic inspired by the original Xbox interface.
 
-## Personal Journey & Ambitions
-
-Starting in January, our lead member William A. Stigall will commence his Master of Science in Computer Science program at the Georgia Institute of Technology, specializing in Machine Learning. This academic endeavor aligns with Gradiorum’s larger vision of enabling personalized AI assistants in every household. We believe that by combining cutting-edge ML research with accessible frameworks, we can bridge the gap between advanced AI and everyday life.
-
-## Key Features
-
-- **Projects & Research**: Explore toolkits like Via and Ascendus, LuminaGuard’s adaptive lighting, and our human-AI teaming efforts.
-- **Blog**: Stay informed through our blog articles. Roles include:
-  - **Founder (e.g., William)**: Core team members shaping strategic direction.
-  - **Members**: Verified contributors within the Gradiorum network.
-  - **Guests**: External contributors who must be verified before publishing.
-- **Papers & Publications**: Access our academic work and ongoing research.
-- **Discord Bots**: Integrate GradiorumMP3 for music management, Polishadow for data-driven political trade insights, and more.
-
-## AI-Generated Imagery
-
-All graphical assets on this website are generated by AI. We do not claim artistic authorship over these images. If you are a graphic artist and wish to collaborate or provide custom artwork, please contact us at [gradiorum@gmail.com](mailto:gradiorum@gmail.com).
-
-## Authentication Setup
-
-- **Google Sign-In**: Set your `YOUR_GOOGLE_CLIENT_ID` in `header.html` or via environment variables.
-- **GitHub Token**: For blog publishing, store a secure GitHub token. This may be managed through server-side code or a serverless endpoint.
-
-## Future Directions
-
-- **Enhanced Blog Pipeline**: Support for guest posting, moderation, and version-controlled content.
-- **Community Involvement**: Encourage open-source contributions, code reviews, and shared research efforts.
-- **Scalability & Automation**: Integrations for CI/CD, deployment on cloud platforms, and continuous improvements to UI/UX.
-
-## License
-
-MIT License. See [LICENSE.md](LICENSE.md) for details.
-
-# --------------------
-# File: via.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Via - Gradiorum</title>
-    <meta name="description" content="Via is a lightweight modular AI framework.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-3xl mx-auto p-6">
-        <section class="my-10">
-            <h1 class="text-4xl font-bold mb-4">Via</h1>
-            <p class="text-lg mb-6">
-                Via is a lightweight, modular framework for AI integration. It simplifies and accelerates the process of plugging 
-                various AI components together, enabling rapid prototyping and scalable intelligent systems.
-            </p>
-            <a href="https://github.com/Gradiorum/Via" target="_blank" class="text-blue-600 hover:underline neon-link">View on GitHub</a>
-        </section>
-    </main>
-    <div data-include="footer.html"></div>
-</body>
-</html>
-
-# --------------------
-# File: videos.html
-# --------------------
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Gradiorum - Videos</title>
-    <meta name="description" content="Explore our video content.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="css/retro.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
-</head>
-<body class="retro-bg min-h-screen bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300" data-theme="light">
-    <div data-include="header.html"></div>
-    <main class="max-w-3xl mx-auto p-6 text-center">
-        <h1 class="text-4xl font-bold mb-6">Visit Our YouTube Channel</h1>
-        <p class="mb-6">Access tutorials, demos, and talks.</p>
-        <a href="https://www.youtube.com/channel/Gradiorum" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500 neon-link">
-            Go to YouTube Channel
-        </a>
-    </main>
-    <div data-include="footer.html"></div>
-</body>
-</html>
-
-# --------------------
-# File: css\retro.css
-# --------------------
-
-/* retro.css: Adds a retro-futuristic 8-bit style overlay */
-
-body.retro-bg {
-    font-family: 'Courier New', Courier, monospace;
-    background: #0c0f17 url('assets/starfield.png') repeat;
-    background-size: contain;
-    color: #ccc;
-}
-
-.pixel-border {
-    border: 2px solid #555;
-    box-shadow: 0 0 10px #222;
-}
-
-.neon-text {
-    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
-}
-
-.neon-link:hover {
-    text-shadow: 0 0 5px #0ff;
-    color: #0ff;
-}
-
-.retro-card {
-    border: 1px solid #444;
-    transition: transform 0.2s;
-}
-
-.retro-card:hover {
-    transform: scale(1.02);
-}
-
-.retro-footer {
-    border-top: 1px solid #444;
-}
-
-.retro-header {
-    border-bottom: 1px solid #444;
-}
-
-# --------------------
-# File: css\style.css
-# --------------------
-
-// Deprecated: rely on Tailwind + retro.css for styling.
-
-# --------------------
-# File: js\blog.js
-# --------------------
-
-document.addEventListener('DOMContentLoaded', () => {
-    const newPostBtn = document.getElementById('new-post-btn');
-    const user = sessionStorage.getItem('googleUser');
-
-    if (user) {
-        newPostBtn.style.display = 'block';
-        newPostBtn.addEventListener('click', () => {
-            window.location.href = 'new-post.html';
-        });
-    } else {
-        const loginPrompt = document.createElement('div');
-        loginPrompt.textContent = 'Sign in to create new posts';
-        loginPrompt.className = 'text-center text-sm text-gray-600 mt-4';
-        document.querySelector('main').appendChild(loginPrompt);
-    }
-
-    fetchPosts();
-});
-
-async function fetchPosts() {
-    // Fetch Markdown posts from the GitHub repository
-    const response = await fetch('https://api.github.com/repos/Gradiorum/Gradiorum/contents/posts');
-    const posts = await response.json();
-
-    const postsContainer = document.getElementById('blog-posts');
-    for (const post of posts) {
-        if (post.name.endsWith('.md')) {
-            const postContent = await fetch(post.download_url).then(res => res.text());
-            const postElement = document.createElement('div');
-            postElement.classList.add('bg-white', 'dark:bg-gray-800', 'p-4', 'rounded', 'shadow', 'hover:shadow-lg', 'transition');
-            postElement.innerHTML = marked.parse(postContent);
-            postsContainer.appendChild(postElement);
-        }
-    }
-}
-
-# --------------------
-# File: js\callback.js
-# --------------------
-
-// Currently not heavily used. Callback is handled in header.html if needed.
-
-# --------------------
-# File: js\common.js
-# --------------------
-
-async function includeHTML() {
-    const elements = document.querySelectorAll('[data-include]');
-    for (const el of elements) {
-        const file = el.getAttribute('data-include');
-        const response = await fetch(file);
-        if (response.ok) {
-            el.innerHTML = await response.text();
-            if (file.includes('header.html')) {
-                setupResponsiveNav();
-                setupThemeToggle();
-            }
-        } else {
-            console.error(`Failed to load ${file}: ${response.statusText}`);
-        }
-    }
-}
-
-document.addEventListener('DOMContentLoaded', includeHTML);
-
-function setupResponsiveNav() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('header nav');
-    if (menuToggle && nav) {
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('hidden');
-        });
-    }
-}
-
-function setupThemeToggle() {
-    const themeToggle = document.querySelector('.theme-toggle');
-    let currentTheme = localStorage.getItem('theme') || 'light';
-    setTheme(currentTheme);
-
-    themeToggle.addEventListener('click', () => {
-        currentTheme = document.body.getAttribute('data-theme');
-        if (currentTheme === 'light') {
-            setTheme('dark');
-        } else {
-            setTheme('light');
-        }
-    });
-
-    function setTheme(theme) {
-        document.body.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        if (theme === 'dark') {
-            themeToggle.textContent = 'Toggle Theme';
-        } else {
-            themeToggle.textContent = 'Toggle Theme';
-        }
-    }
-}
-
-# --------------------
-# File: js\login.js
-# --------------------
-
-// Placeholder for future enhancements. Currently uses sessionStorage for user sign-in status.
-
-# --------------------
-# File: js\Main.js
-# --------------------
-
-import './modules/formHandlers.js';
-import './modules/lazyLoading.js';
-import './modules/imageGallery.js';
-import './modules/responsiveNav.js';
-import './modules/themeToggle.js';
-
-# --------------------
-# File: js\new-post.js
-# --------------------
-
-async function submitPost() {
-    const title = document.getElementById('post-title').value.trim();
-    const content = document.getElementById('post-content').value.trim();
-    const user = sessionStorage.getItem('googleUser');
-
-    if (!title || !content) {
-        alert('Please fill out all fields.');
-        return;
-    }
-
-    if (!user) {
-        alert('You must be signed in to publish a post.');
-        return;
-    }
-
-    const token = sessionStorage.getItem('githubToken');
-    if (!token) {
-        alert('No GitHub token available. Configure token retrieval.');
-        return;
-    }
-
-    const fileName = `${title.replace(/\s+/g, '-').toLowerCase()}.md`;
-    const filePath = `posts/${fileName}`;
-    const message = `Add new post: ${title}`;
-    const sha = await getFileSha(filePath, token);
-
-    const data = {
-        message: message,
-        content: btoa(unescape(encodeURIComponent(content))),
-        sha: sha || undefined,
-        branch: 'main',
-    };
-
-    fetch(`https://api.github.com/repos/Gradiorum/Gradiorum/contents/${filePath}`, {
-        method: 'PUT',
-        headers: {
-            'Authorization': `token ${token}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Post published successfully!');
-            window.location.href = 'blog.html';
-        } else {
-            response.json().then(err => {
-                alert('Error publishing post: ' + err.message);
-            });
-        }
-    });
-}
-
-async function getFileSha(path, token) {
-    const response = await fetch(`https://api.github.com/repos/Gradiorum/Gradiorum/contents/${path}`, {
-        headers: { 'Authorization': `token ${token}` },
-    });
-
-    if (response.ok) {
-        const data = await response.json();
-        return data.sha;
-    }
-
-    return null;
-}
-
-# --------------------
-# File: js\projects.js
-# --------------------
-
-document.addEventListener('DOMContentLoaded', () => {
-    fetchProjects();
-});
-
-async function fetchProjects() {
-    const orgName = 'Gradiorum';
-    const userName = 'Gradiorum';
-    const projectsContainer = document.getElementById('projects-container');
-
-    const orgRepos = await fetchRepos(`https://api.github.com/orgs/${orgName}/repos`);
-    const userRepos = await fetchRepos(`https://api.github.com/users/${userName}/repos`);
-
-    const soloProjects = userRepos.filter(repo => repo.owner.login === userName && !repo.organization);
-    const orgProjects = orgRepos;
-
-    const orgSection = document.createElement('section');
-    orgSection.innerHTML = '<h2 class="text-2xl font-bold mb-4">Organization Projects</h2>';
-    await displayRepos(orgProjects, orgSection);
-    projectsContainer.appendChild(orgSection);
-
-    const soloSection = document.createElement('section');
-    soloSection.innerHTML = '<h2 class="text-2xl font-bold mb-4 mt-8">Solo Projects</h2>';
-    await displayRepos(soloProjects, soloSection);
-    projectsContainer.appendChild(soloSection);
-}
-
-async function fetchRepos(url) {
-    let repos = [];
-    try {
-        const response = await fetch(url);
-        if (response.ok) {
-            repos = await response.json();
-        } else {
-            console.error('Failed to fetch repositories:', response.statusText);
-        }
-    } catch (error) {
-        console.error('Error fetching repositories:', error);
-    }
-    return repos;
-}
-
-async function displayRepos(repos, container) {
-    const grid = document.createElement('div');
-    grid.className = 'grid md:grid-cols-2 gap-6';
-
-    for (const repo of repos) {
-        const repoDiv = document.createElement('div');
-        repoDiv.className = 'bg-white dark:bg-gray-800 p-4 rounded shadow hover:shadow-lg transition retro-card';
-
-        const repoName = document.createElement('h3');
-        repoName.className = 'text-xl font-semibold mb-2';
-        repoName.textContent = repo.name;
-        repoDiv.appendChild(repoName);
-
-        const readmeContent = await fetchReadme(repo);
-
-        const readmeDiv = document.createElement('div');
-        if (readmeContent) {
-            readmeDiv.innerHTML = marked.parse(readmeContent);
-        } else {
-            readmeDiv.textContent = 'No README available.';
-        }
-        repoDiv.appendChild(readmeDiv);
-
-        grid.appendChild(repoDiv);
-    }
-    container.appendChild(grid);
-}
-
-async function fetchReadme(repo) {
-    let readmeContent = null;
-    try {
-        const response = await fetch(`https://api.github.com/repos/${repo.full_name}/readme`, {
-            headers: { 'Accept': 'application/vnd.github.v3.raw' }
-        });
-        if (response.ok) {
-            readmeContent = await response.text();
-        } else {
-            console.warn(`No README found for ${repo.full_name}`);
-        }
-    } catch (error) {
-        console.error(`Error fetching README for ${repo.full_name}:`, error);
-    }
-    return readmeContent;
-}
-
-# --------------------
-# File: js\modules\formHandlers.js
-# --------------------
-
-export function setupFormHandlers() {
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', event => {
-            event.preventDefault();
-            alert('Form submitted! Check console for data.');
-            console.log(Object.fromEntries(new FormData(form)));
-        });
-    });
-}
-setupFormHandlers();
-
-# --------------------
-# File: js\modules\imageGallery.js
-# --------------------
-
-import { showModalWithImage } from './modal.js';
-
-export function setupImageGallery() {
-    const galleryImages = document.querySelectorAll('.gallery img');
-    galleryImages.forEach(image => {
-        image.addEventListener('click', () => {
-            showModalWithImage(image.getAttribute('src'));
-        });
-    });
-}
-setupImageGallery();
-
-# --------------------
-# File: js\modules\lazyLoading.js
-# --------------------
-
-export function setupLazyLoading() {
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.getAttribute('data-src');
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(image => {
-        imageObserver.observe(image);
-    });
-}
-setupLazyLoading();
-
-# --------------------
-# File: js\modules\modal.js
-# --------------------
-
-export function showModalWithImage(src) {
-    const modal = document.createElement('div');
-    modal.className = 'fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50';
-    const img = new Image();
-    img.src = src;
-    img.className = 'max-h-90% max-w-90%';
-    modal.appendChild(img);
-    modal.addEventListener('click', () => {
-        document.body.removeChild(modal);
-    });
-    document.body.appendChild(modal);
-}
-
-# --------------------
-# File: js\modules\responsiveNav.js
-# --------------------
-
-// Already handled by setupResponsiveNav in common.js
-
-# --------------------
-# File: js\modules\themeToggle.js
-# --------------------
-
-// Already handled by setupThemeToggle in common.js
-
-# --------------------
-# File: posts\2024-12-07-first-blog-post.md
-# --------------------
-
-## William’s Journey and Our Vision
-
-**By: William (Founder)**
-
-As I prepare to embark on my Master of Science in Computer Science at Georgia Tech this coming January, specializing in Machine Learning, I’m reminded of the broader goal we hold at Gradiorum: bringing personalized AI assistants into everyday life.
-
-From early forays into reinforcement learning to the nuanced complexities of human-AI teaming, our mission is rooted in practical innovation. Soon, I will be immersing myself in advanced coursework and research at one of the world’s leading institutions. This step is not just academic—it's a move towards realizing our dream: making AI assistants as ubiquitous and helpful as any common household technology.
-
-**Blog Roles at Gradiorum:**
-
-- **Founder (like me, William)**: We shape the strategic direction and share our vision.
-- **Members**: Our verified contributors who add depth to projects and research discussions.
-- **Guests**: Occasional voices from the larger tech and AI ecosystem. Guest posts are carefully verified before publication to ensure quality and relevance.
-
-We look forward to sharing insights, updates, and breakthroughs. Thank you for joining us on this journey.
-
-# --------------------
-# File: posts\README.md
-# --------------------
-
-// This README was replaced with the first blog post file above.
-// The original README in this directory is no longer needed.
-// You can keep this placeholder here if you like, or remove it.
-
-"""
