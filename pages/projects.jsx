@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function Projects() {
   return (
@@ -9,8 +9,8 @@ export default function Projects() {
           <article id="via" className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
             <h2 className="text-2xl font-semibold mb-4">Via</h2>
             <p className="mb-4">
-              A lightweight, modular framework for AI integration. Simplifies connecting various AI components, enabling
-              rapid prototyping.
+              A lightweight, modular framework for AI integration. Simplifies connecting various AI components,
+              enabling rapid prototyping.
             </p>
             <a
               href="https://github.com/Gradiorum/Via"

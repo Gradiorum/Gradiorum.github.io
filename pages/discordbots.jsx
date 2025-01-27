@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function DiscordBots() {
   return (
@@ -11,15 +11,16 @@ export default function DiscordBots() {
         <article className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">GradiorumMP3</h2>
           <p>
-            A music manager bot for Discord, capable of playing MP3 files, handling playlists, queue management, skipping, 
-            pausing, and resuming tracks—bringing a social listening experience to your server.
+            A music manager bot for Discord, capable of playing MP3 files, handling playlists, queue management,
+            skipping, pausing, and resuming tracks—bringing a social listening experience to your server.
           </p>
         </article>
         <article>
           <h2 className="text-2xl font-semibold mb-2">Polishadow</h2>
           <p>
-            Monitors politicians’ stock trades and leverages synthetic data insights to detect potential insider patterns. 
-            It can paper-trade strategies, issue alerts, and offer subscription tiers for timely updates on moves in the market.
+            Monitors politicians’ stock trades and leverages synthetic data insights to detect potential insider
+            patterns. It can paper-trade strategies, issue alerts, and offer subscription tiers for timely updates
+            on market moves.
           </p>
         </article>
       </section>

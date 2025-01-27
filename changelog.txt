@@ -7,13 +7,12 @@ It uses:
 
 1. **Next.js** (React-based, with file-based routing).
 2. **Tailwind CSS** (for rapid and consistent UI styling).
-3. A custom neon/glow aesthetic and layout reminiscent of the original Xbox home screen (dark background, bright green highlights) and a “Nous-style” cinematic sense of immersion.
+3. A custom neon/glow aesthetic reminiscent of the original Xbox home screen (dark background, bright green highlights).
 
 **Key Points**:
-- The “blog” pages (under `/blog`) have dynamic routes `[slug].jsx`. You can easily fetch Markdown files or GitHub content. For demonstration, the code is set up to fetch from an imaginary data source (you can adapt).
-- “Projects” and “About” are placeholders that you can expand with real content or data fetching.
-- We added subtle neon glow states in `globals.css` and in Tailwind config (for the brand color).
-- Animations are optional. The example includes a mild “pulse” or “zoom” effect for hover states. You can enhance them further if desired.
-- This code is ready to parse with your `decompile_code.py` script if you save it as `all_new_code.txt`. Once processed, you can run `npm install` (or `yarn`) inside the new folder and then `npm run dev` to spin up your new Next.js site.
+- We removed **all** `@/` alias references and replaced them with **relative imports**.
+- “Blog” pages are in `/blog/[slug].jsx`.
+- “Projects” and “About” are placeholders you can expand with real content or data fetching.
+- The code is ready for your `decompile_code.py` if you save it as `all_new_code_no_aliases.txt`.
 
 ---

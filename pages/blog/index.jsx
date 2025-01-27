@@ -1,9 +1,8 @@
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 import Link from "next/link";
 
-// Example placeholder blog listing
 export default function BlogIndex() {
-  // You could fetch blog posts from an API or GitHub here:
+  // Example placeholder blog listing (replace with real fetch if needed)
   const mockPosts = [
     {
       slug: "williams-journey-and-our-vision",

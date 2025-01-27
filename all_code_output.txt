@@ -7,14 +7,13 @@ It uses:
 
 1. **Next.js** (React-based, with file-based routing).
 2. **Tailwind CSS** (for rapid and consistent UI styling).
-3. A custom neon/glow aesthetic and layout reminiscent of the original Xbox home screen (dark background, bright green highlights) and a “Nous-style” cinematic sense of immersion.
+3. A custom neon/glow aesthetic reminiscent of the original Xbox home screen (dark background, bright green highlights).
 
 **Key Points**:
-- The “blog” pages (under `/blog`) have dynamic routes `[slug].jsx`. You can easily fetch Markdown files or GitHub content. For demonstration, the code is set up to fetch from an imaginary data source (you can adapt).
-- “Projects” and “About” are placeholders that you can expand with real content or data fetching.
-- We added subtle neon glow states in `globals.css` and in Tailwind config (for the brand color).
-- Animations are optional. The example includes a mild “pulse” or “zoom” effect for hover states. You can enhance them further if desired.
-- This code is ready to parse with your `decompile_code.py` script if you save it as `all_new_code.txt`. Once processed, you can run `npm install` (or `yarn`) inside the new folder and then `npm run dev` to spin up your new Next.js site.
+- We removed **all** `@/` alias references and replaced them with **relative imports**.
+- “Blog” pages are in `/blog/[slug].jsx`.
+- “Projects” and “About” are placeholders you can expand with real content or data fetching.
+- The code is ready for your `decompile_code.py` if you save it as `all_new_code_no_aliases.txt`.
 
 ---
 
@@ -76,7 +75,6 @@ module.exports = {
         neon: "0 0 5px #00ff7f, 0 0 20px #00ff7f",
       },
       fontFamily: {
-        // example futuristic font
         orbitron: ["Orbitron", "sans-serif"],
       },
       animation: {
@@ -103,7 +101,7 @@ module.exports = {
 # File: pages/_app.jsx
 # --------------------
 
-import '@/styles/globals.css';
+import '../styles/globals.css';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -115,8 +113,8 @@ export default function App({ Component, pageProps }) {
 # File: pages/index.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
-import Hero from "@/components/Hero";
+import Layout from "../components/Layout";
+import Hero from "../components/Hero";
 
 export default function Home() {
   return (
@@ -164,7 +162,7 @@ export default function Home() {
 # File: pages/about.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function About() {
   return (
@@ -213,12 +211,11 @@ export default function About() {
 # File: pages/blog/index.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 import Link from "next/link";
 
-// Example placeholder blog listing
 export default function BlogIndex() {
-  // You could fetch blog posts from an API or GitHub here:
+  // Example placeholder blog listing (replace with real fetch if needed)
   const mockPosts = [
     {
       slug: "williams-journey-and-our-vision",
@@ -266,14 +263,13 @@ export default function BlogIndex() {
 # --------------------
 
 import { useRouter } from "next/router";
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 
 export default function BlogPost() {
   const { query } = useRouter();
   const { slug } = query;
 
-  // You could fetch the post data from an API or file system here, based on `slug`.
-  // For demonstration, let's just show placeholder text:
+  // Demo placeholder content
   const mockContent = `
   # ${slug?.replaceAll('-', ' ')}
 
@@ -300,7 +296,7 @@ export default function BlogPost() {
 # File: pages/contact.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function Contact() {
   return (
@@ -327,7 +323,7 @@ export default function Contact() {
 # File: pages/projects.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function Projects() {
   return (
@@ -338,8 +334,8 @@ export default function Projects() {
           <article id="via" className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
             <h2 className="text-2xl font-semibold mb-4">Via</h2>
             <p className="mb-4">
-              A lightweight, modular framework for AI integration. Simplifies connecting various AI components, enabling
-              rapid prototyping.
+              A lightweight, modular framework for AI integration. Simplifies connecting various AI components,
+              enabling rapid prototyping.
             </p>
             <a
               href="https://github.com/Gradiorum/Via"
@@ -405,7 +401,7 @@ export default function Projects() {
 # File: pages/discordbots.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function DiscordBots() {
   return (
@@ -418,15 +414,16 @@ export default function DiscordBots() {
         <article className="mb-8">
           <h2 className="text-2xl font-semibold mb-2">GradiorumMP3</h2>
           <p>
-            A music manager bot for Discord, capable of playing MP3 files, handling playlists, queue management, skipping, 
-            pausing, and resuming tracks—bringing a social listening experience to your server.
+            A music manager bot for Discord, capable of playing MP3 files, handling playlists, queue management,
+            skipping, pausing, and resuming tracks—bringing a social listening experience to your server.
           </p>
         </article>
         <article>
           <h2 className="text-2xl font-semibold mb-2">Polishadow</h2>
           <p>
-            Monitors politicians’ stock trades and leverages synthetic data insights to detect potential insider patterns. 
-            It can paper-trade strategies, issue alerts, and offer subscription tiers for timely updates on moves in the market.
+            Monitors politicians’ stock trades and leverages synthetic data insights to detect potential insider
+            patterns. It can paper-trade strategies, issue alerts, and offer subscription tiers for timely updates
+            on market moves.
           </p>
         </article>
       </section>
@@ -438,7 +435,7 @@ export default function DiscordBots() {
 # File: pages/humanai.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function HumanAITeaming() {
   return (
@@ -446,7 +443,7 @@ export default function HumanAITeaming() {
       <section className="max-w-3xl mx-auto px-4 py-10">
         <h1 className="text-4xl font-bold mb-6">Human-AI Teaming</h1>
         <p className="text-gray-200 mb-6">
-          In partnership with Kennesaw State University, we research effective paradigms for collaboration between humans 
+          In partnership with Kennesaw State University, we research effective paradigms for collaboration between humans
           and intelligent agents. Our aim is to foster trust, interpretability, and high performance in complex tasks.
         </p>
         <h2 className="text-2xl font-semibold mb-4">Scope & Objectives</h2>
@@ -456,7 +453,8 @@ export default function HumanAITeaming() {
           <li>Explore reinforcement learning & adaptive feedback loops for continuous improvement.</li>
         </ul>
         <p className="text-gray-300">
-          This project is in its early phases. We plan to publish working papers, demos, and frameworks as progress continues.
+          This project is in its early phases. We plan to publish working papers, demos, and frameworks as progress
+          continues.
         </p>
       </section>
     </Layout>
@@ -467,7 +465,7 @@ export default function HumanAITeaming() {
 # File: pages/papers.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function Papers() {
   return (
@@ -521,7 +519,7 @@ export default function Papers() {
 # File: pages/members.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function Members() {
   return (
@@ -552,7 +550,7 @@ export default function Members() {
 # File: pages/videos.jsx
 # --------------------
 
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function Videos() {
   return (
@@ -606,7 +604,7 @@ export default function Layout({ children, title }) {
 
 import Link from "next/link";
 import { useState } from "react";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "../hooks/useTheme";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -730,8 +728,8 @@ export default function Footer() {
       </div>
       <div className="mt-6 text-sm text-gray-500 max-w-2xl mx-auto">
         <p>
-          <strong>Disclaimer:</strong> All graphical assets on this website are generated by AI. We do not claim 
-          artistic authorship over these assets. If you are a graphic artist and wish to collaborate or provide 
+          <strong>Disclaimer:</strong> All graphical assets on this website are generated by AI. We do not claim
+          artistic authorship over these assets. If you are a graphic artist and wish to collaborate or provide
           custom artwork, please reach out to us at{" "}
           <a href="mailto:gradiorum@gmail.com" className="text-xboxGreen underline">
             gradiorum@gmail.com
@@ -795,7 +793,7 @@ export function useTheme() {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
     document.documentElement.classList.toggle("dark", newTheme === "dark");
@@ -824,7 +822,7 @@ html, body {
   text-shadow: 0 0 8px #00ff7f, 0 0 20px #00ff7f;
 }
 
-/* For a subtle background starfield or swirl, you can use: 
+/* For a subtle background starfield or swirl, you can use:
 body {
   background: url('/images/starfield.png') repeat;
   background-size: cover;
@@ -856,10 +854,19 @@ Place your site's images and brand assets here. For example:
 # File: README.md
 # --------------------
 
-# New Gradiorum Next.js Site
+# New Gradiorum Next.js Site (No Aliases)
 
 This is the **completely overhauled** Gradiorum site, built with:
 - **Next.js** (13.1+)
 - **Tailwind CSS** (3.3+)
 - A neon, futuristic aesthetic inspired by the original Xbox interface.
 
+**Aliases Removed**: We replaced `@/` references with relative imports.
+
+## Quick Start
+
+1. **Install** dependencies:
+   ```bash
+   npm install
+   # or
+   yarn

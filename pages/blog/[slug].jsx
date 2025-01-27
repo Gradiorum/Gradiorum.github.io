@@ -1,12 +1,11 @@
 import { useRouter } from "next/router";
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 
 export default function BlogPost() {
   const { query } = useRouter();
   const { slug } = query;
 
-  // You could fetch the post data from an API or file system here, based on `slug`.
-  // For demonstration, let's just show placeholder text:
+  // Demo placeholder content
   const mockContent = `
   # ${slug?.replaceAll('-', ' ')}
 

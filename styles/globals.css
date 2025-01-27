@@ -14,7 +14,7 @@ html, body {
   text-shadow: 0 0 8px #00ff7f, 0 0 20px #00ff7f;
 }
 
-/* For a subtle background starfield or swirl, you can use: 
+/* For a subtle background starfield or swirl, you can use:
 body {
   background: url('/images/starfield.png') repeat;
   background-size: cover;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "../hooks/useTheme";
 
 export default function Header() {
   const [open, setOpen] = useState(false);

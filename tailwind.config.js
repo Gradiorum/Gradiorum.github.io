@@ -13,7 +13,6 @@ module.exports = {
         neon: "0 0 5px #00ff7f, 0 0 20px #00ff7f",
       },
       fontFamily: {
-        // example futuristic font
         orbitron: ["Orbitron", "sans-serif"],
       },
       animation: {
