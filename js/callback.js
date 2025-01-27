@@ -1,1 +1,1 @@
-// Currently not heavily used. Callback handled in header.html.
+// Currently not heavily used. Callback is handled in header.html if needed.

@@ -29,17 +29,15 @@ function setupResponsiveNav() {
 
 function setupThemeToggle() {
     const themeToggle = document.querySelector('.theme-toggle');
-    let currentTheme = localStorage.getItem('theme') || 'default';
+    let currentTheme = localStorage.getItem('theme') || 'light';
     setTheme(currentTheme);
 
     themeToggle.addEventListener('click', () => {
         currentTheme = document.body.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            setTheme('light');
-        } else if (currentTheme === 'light') {
-            setTheme('default');
-        } else {
+        if (currentTheme === 'light') {
             setTheme('dark');
+        } else {
+            setTheme('light');
         }
     });
 
@@ -47,11 +45,9 @@ function setupThemeToggle() {
         document.body.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
         if (theme === 'dark') {
-            themeToggle.textContent = 'Light Mode';
-        } else if (theme === 'light') {
-            themeToggle.textContent = 'High Contrast Mode';
+            themeToggle.textContent = 'Toggle Theme';
         } else {
-            themeToggle.textContent = 'Dark Mode';
+            themeToggle.textContent = 'Toggle Theme';
         }
     }
 }

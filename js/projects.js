@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchProjects() {
     const orgName = 'Gradiorum';
-    const userName = 'YourUsername';
+    const userName = 'Gradiorum';
     const projectsContainer = document.getElementById('projects-container');
 
     const orgRepos = await fetchRepos(`https://api.github.com/orgs/${orgName}/repos`);

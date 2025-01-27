@@ -9,7 +9,6 @@ FILE_HEADER_PATTERN = re.compile(
     re.MULTILINE
 )
 
-# Adjusted to allow ignoring certain files by pattern if desired:
 IGNORED_FILES = []  # Add filenames to ignore if needed.
 
 def decompile_code(input_file, output_dir):

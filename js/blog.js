@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchPosts() {
-    // Fetch Markdown posts from the GitHub repository as before:
-    const response = await fetch('https://api.github.com/repos/YourUsername/Gradiorum/contents/posts');
+    // Fetch Markdown posts from the GitHub repository
+    const response = await fetch('https://api.github.com/repos/Gradiorum/Gradiorum/contents/posts');
     const posts = await response.json();
 
     const postsContainer = document.getElementById('blog-posts');

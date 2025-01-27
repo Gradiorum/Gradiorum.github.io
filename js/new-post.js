@@ -31,7 +31,7 @@ async function submitPost() {
         branch: 'main',
     };
 
-    fetch(`https://api.github.com/repos/YourUsername/Gradiorum/contents/${filePath}`, {
+    fetch(`https://api.github.com/repos/Gradiorum/Gradiorum/contents/${filePath}`, {
         method: 'PUT',
         headers: {
             'Authorization': `token ${token}`,
@@ -52,7 +52,7 @@ async function submitPost() {
 }
 
 async function getFileSha(path, token) {
-    const response = await fetch(`https://api.github.com/repos/YourUsername/Gradiorum/contents/${path}`, {
+    const response = await fetch(`https://api.github.com/repos/Gradiorum/Gradiorum/contents/${path}`, {
         headers: { 'Authorization': `token ${token}` },
     });
 
