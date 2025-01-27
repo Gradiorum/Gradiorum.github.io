@@ -1,21 +1,178 @@
-# --------------------------------------------------------------------------------
-# READ THIS FIRST
-# --------------------------------------------------------------------------------
 
-This file completely replaces your existing site. All prior code is superseded.
-It uses:
+# --------------------
+# File: decompile_code.py
+# --------------------
 
-1. **Next.js** (React-based, with file-based routing).
-2. **Tailwind CSS** (for rapid and consistent UI styling).
-3. A custom neon/glow aesthetic reminiscent of the original Xbox home screen (dark background, bright green highlights).
+import os
+import re
 
-**Key Points**:
-- We removed **all** `@/` alias references and replaced them with **relative imports**.
-- “Blog” pages are in `/blog/[slug].jsx`.
-- “Projects” and “About” are placeholders you can expand with real content or data fetching.
-- The code is ready for your `decompile_code.py` if you save it as `all_new_code_no_aliases.txt`.
+INPUT_FILE = "all_code_output.txt"
+OUTPUT_ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
----
+# Regex to find each file’s boundary in the exported code
+FILE_HEADER_PATTERN = re.compile(
+    r"^#\s*-+\r?\n#\sFile:\s*(.+)\r?\n#\s*-+\r?\n",
+    re.MULTILINE
+)
+
+# If you have known extraneous files you do NOT want to recreate, list them here
+IGNORED_FILES = [
+    # "some_large_file.js",
+    # "secret_config.py"
+    # etc.
+]
+
+def decompile_code(input_file, output_dir):
+    # Ensure the output directory exists
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # Read the entire big text file
+    with open(input_file, 'r', encoding='utf-8') as infile:
+        content = infile.read()
+
+    # Split into blocks based on the # File: pattern
+    blocks = re.split(FILE_HEADER_PATTERN, content)
+
+    # The text prior to the first file block can be stored in a "changelog.txt"
+    initial_text = blocks[0].strip()
+    if initial_text:
+        changelog_path = os.path.join(output_dir, "changelog.txt")
+        with open(changelog_path, 'w', encoding='utf-8') as cfile:
+            cfile.write(initial_text + "\n")
+
+    # Each subsequent pair (i, i+1) is (filename, file_contents)
+    for i in range(1, len(blocks), 2):
+        fname = blocks[i].strip()
+        if i+1 >= len(blocks):
+            break
+
+        # The content block that belongs to `fname`
+        fcontent = blocks[i+1]
+
+        # If we intentionally want to ignore this file, skip it
+        if fname in IGNORED_FILES:
+            continue
+
+        # Save it out to the real filesystem
+        file_path = os.path.join(output_dir, fname)
+        file_dir = os.path.dirname(file_path)
+
+        if not os.path.exists(file_dir):
+            os.makedirs(file_dir)
+
+        # Write the file with a UTF-8 encoding
+        with open(file_path, 'w', encoding='utf-8') as outfile:
+            outfile.write(fcontent.strip() + "\n")
+
+    print(f"Decompilation complete. Files recreated in: {output_dir}")
+
+
+if __name__ == "__main__":
+    decompile_code(INPUT_FILE, OUTPUT_ROOT_DIR)
+
+
+# --------------------
+# File: export.py
+# --------------------
+
+import os
+
+def export_code(output_filename='all_code_output.txt'):
+    # Extensions you genuinely want to export
+    included_extensions = {
+        '.js', '.html', '.css', '.json', '.py', '.md', '.jsx'
+    }
+
+    # Directories to skip altogether
+    excluded_dirs = {
+        'venv',
+        '__pycache__',
+        'node_modules',
+        'browser-extension',
+        '.git',
+        '.vercel',
+        '.next',
+        'dist',
+        'build',
+        'out',
+        'coverage'
+    }
+
+    # Files to skip specifically
+    excluded_files = {
+        'all_code_output.txt',  # So we don't re-include the export file
+        'package-lock.json',    # Example—skip if you don’t want it
+        'yarn.lock',            # Example if you use Yarn
+        # Add more if needed
+    }
+
+    code_files = []
+
+    # Recursively walk the current directory
+    for root, dirs, files in os.walk('.'):
+        # Filter out any excluded directories
+        dirs[:] = [d for d in dirs if d not in excluded_dirs]
+
+        for file in files:
+            file_ext = os.path.splitext(file)[1].lower()
+            filename_only = os.path.basename(file)
+
+            # Skip if file is in the excluded_files set
+            if filename_only in excluded_files:
+                continue
+
+            # Only include recognized extensions
+            if file_ext in included_extensions:
+                file_path = os.path.join(root, file)
+                code_files.append(file_path)
+
+    all_code = []
+    for file_path in code_files:
+        # Relpath is purely for display in the output
+        normalized_path = os.path.relpath(file_path, '.')
+
+        # Start building up the final output string
+        header = f"\n# {'-'*20}\n# File: {normalized_path}\n# {'-'*20}\n\n"
+        all_code.append(header)
+
+        # Attempt to read the file’s contents
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                contents = f.read()
+            all_code.append(contents + "\n")
+        except (UnicodeDecodeError, PermissionError) as e:
+            all_code.append(f"// Could not read file: {e}\n")
+
+    # Join everything into one large text block
+    final_output = "".join(all_code)
+
+    # (Optional) check how many lines or how many characters, if you suspect an overflow
+    # print(f"Total characters in final output: {len(final_output)}")
+
+    # Write the final output
+    with open(output_filename, 'w', encoding='utf-8') as f:
+        f.write(final_output)
+
+    print(f"All code has been exported to {output_filename}")
+
+
+if __name__ == "__main__":
+    export_code()
+
+
+# --------------------
+# File: next.config.js
+# --------------------
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  // You can enable experimental or advanced options here
+};
+
+module.exports = nextConfig;
+
 
 # --------------------
 # File: package.json
@@ -44,17 +201,40 @@ It uses:
   }
 }
 
+
 # --------------------
-# File: next.config.js
+# File: postcss.config.js
 # --------------------
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  // You can enable experimental or advanced options here
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
 };
 
-module.exports = nextConfig;
+
+# --------------------
+# File: README.md
+# --------------------
+
+# New Gradiorum Next.js Site (No Aliases)
+
+This is the **completely overhauled** Gradiorum site, built with:
+- **Next.js** (13.1+)
+- **Tailwind CSS** (3.3+)
+- A neon, futuristic aesthetic inspired by the original Xbox interface.
+
+**Aliases Removed**: We replaced `@/` references with relative imports.
+
+## Quick Start
+
+1. **Install** dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+
 
 # --------------------
 # File: tailwind.config.js
@@ -86,80 +266,245 @@ module.exports = {
   darkMode: 'class',
 };
 
-# --------------------
-# File: postcss.config.js
-# --------------------
-
-module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-};
 
 # --------------------
-# File: pages/_app.jsx
+# File: components\Footer.jsx
 # --------------------
 
-import '../styles/globals.css';
-
-export default function App({ Component, pageProps }) {
+export default function Footer() {
   return (
-    <Component {...pageProps} />
-  );
-}
-
-# --------------------
-# File: pages/index.jsx
-# --------------------
-
-import Layout from "../components/Layout";
-import Hero from "../components/Hero";
-
-export default function Home() {
-  return (
-    <Layout>
-      <Hero />
-      <section className="max-w-7xl mx-auto px-6 py-12 text-center">
-        <h2 className="text-3xl font-bold mb-6">
-          Featured Projects
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Example project cards */}
-          <div className="bg-gray-900 text-white p-6 rounded-lg hover:shadow-neon hover:scale-105 transform transition">
-            <h3 className="text-2xl font-semibold mb-2">Via</h3>
-            <p className="mb-4">A lightweight modular framework for AI integration.</p>
-            <a
-              href="/projects#via"
-              className="inline-block px-4 py-2 text-black bg-xboxGreen rounded hover:bg-opacity-80 transition"
-            >
-              Learn More
-            </a>
-          </div>
-          <div className="bg-gray-900 text-white p-6 rounded-lg hover:shadow-neon hover:scale-105 transform transition">
-            <h3 className="text-2xl font-semibold mb-2">Ascendus</h3>
-            <p className="mb-4">An advanced AI toolkit for large-scale automation.</p>
-            <a
-              href="/projects#ascendus"
-              className="inline-block px-4 py-2 text-black bg-xboxGreen rounded hover:bg-opacity-80 transition"
-            >
-              Learn More
-            </a>
-          </div>
-        </div>
-      </section>
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold mb-6 text-center">Latest News</h2>
-        <p className="text-gray-200 text-center">
-          Check out the <a href="/blog" className="text-xboxGreen underline">blog</a> for updates!
+    <footer className="bg-gray-900 text-gray-200 py-8 mt-10 text-center">
+      <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Gradiorum. All rights reserved.</p>
+      <div className="flex justify-center space-x-4 mt-4">
+        <a
+          href="https://twitter.com/Gradiorum"
+          className="hover:text-xboxGreen transition"
+          aria-label="Twitter"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Twitter
+        </a>
+        <a
+          href="https://linkedin.com/company/Gradiorum"
+          className="hover:text-xboxGreen transition"
+          aria-label="LinkedIn"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://youtube.com/channel/Gradiorum"
+          className="hover:text-xboxGreen transition"
+          aria-label="YouTube"
+          target="_blank"
+          rel="noreferrer"
+        >
+          YouTube
+        </a>
+      </div>
+      <div className="mt-6">
+        <p className="mb-2">Join our Mailing List for Updates</p>
+        <form id="newsletter-form" className="flex justify-center items-center space-x-2">
+          <input
+            type="email"
+            name="email"
+            className="px-3 py-2 rounded border border-gray-600 focus:outline-none"
+            placeholder="Your email"
+            required
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80 transition"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+      <div className="mt-6 text-sm text-gray-500 max-w-2xl mx-auto">
+        <p>
+          <strong>Disclaimer:</strong> All graphical assets on this website are generated by AI. We do not claim
+          artistic authorship over these assets. If you are a graphic artist and wish to collaborate or provide
+          custom artwork, please reach out to us at{" "}
+          <a href="mailto:gradiorum@gmail.com" className="text-xboxGreen underline">
+            gradiorum@gmail.com
+          </a>.
         </p>
-      </section>
-    </Layout>
+      </div>
+    </footer>
   );
 }
 
+
 # --------------------
-# File: pages/about.jsx
+# File: components\Header.jsx
+# --------------------
+
+import Link from "next/link";
+import { useState } from "react";
+import { useTheme } from "../hooks/useTheme";
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <header className="w-full bg-gray-900 text-gray-200 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          {/* A placeholder for your logo */}
+          <div className="w-8 h-8 bg-xboxGreen rounded-full shadow-neon" />
+          <Link href="/" className="text-xl font-bold hover:text-xboxGreen transition">
+            Gradiorum
+          </Link>
+        </div>
+        <nav className="hidden md:flex space-x-6">
+          <Link href="/" className="hover:text-xboxGreen transition">Home</Link>
+          <Link href="/about" className="hover:text-xboxGreen transition">About</Link>
+          <Link href="/members" className="hover:text-xboxGreen transition">Members</Link>
+          <Link href="/projects" className="hover:text-xboxGreen transition">Projects</Link>
+          <Link href="/blog" className="hover:text-xboxGreen transition">Blog</Link>
+          <Link href="/videos" className="hover:text-xboxGreen transition">Videos</Link>
+          <Link href="/papers" className="hover:text-xboxGreen transition">Papers</Link>
+          <Link href="/contact" className="hover:text-xboxGreen transition">Contact</Link>
+          <Link href="/luminaguard" className="hover:text-xboxGreen transition">LuminaGuard</Link>
+          <Link href="/humanai" className="hover:text-xboxGreen transition">Human-AI Teaming</Link>
+          <Link href="/discordbots" className="hover:text-xboxGreen transition">Discord Bots</Link>
+        </nav>
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={() => toggleTheme()}
+            className="bg-gray-700 px-3 py-1 rounded hover:bg-gray-600 transition"
+          >
+            {theme === 'light' ? 'Dark' : 'Light'} Mode
+          </button>
+          <button onClick={() => setOpen(!open)} className="md:hidden">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="md:hidden bg-gray-800">
+          <nav className="flex flex-col p-4 space-y-3">
+            <Link href="/" className="hover:text-xboxGreen transition">Home</Link>
+            <Link href="/about" className="hover:text-xboxGreen transition">About</Link>
+            <Link href="/members" className="hover:text-xboxGreen transition">Members</Link>
+            <Link href="/projects" className="hover:text-xboxGreen transition">Projects</Link>
+            <Link href="/blog" className="hover:text-xboxGreen transition">Blog</Link>
+            <Link href="/videos" className="hover:text-xboxGreen transition">Videos</Link>
+            <Link href="/papers" className="hover:text-xboxGreen transition">Papers</Link>
+            <Link href="/contact" className="hover:text-xboxGreen transition">Contact</Link>
+            <Link href="/luminaguard" className="hover:text-xboxGreen transition">LuminaGuard</Link>
+            <Link href="/humanai" className="hover:text-xboxGreen transition">Human-AI Teaming</Link>
+            <Link href="/discordbots" className="hover:text-xboxGreen transition">Discord Bots</Link>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}
+
+
+# --------------------
+# File: components\Hero.jsx
+# --------------------
+
+export default function Hero() {
+  return (
+    <section
+      className="relative w-full h-[60vh] bg-black flex items-center justify-center text-center"
+      style={{
+        backgroundImage: "url('/images/xbox-swirls.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-60" />
+      <div className="relative z-10 text-white max-w-2xl">
+        <h1 className="text-5xl font-bold mb-4 neon-title">
+          Welcome to Gradiorum
+        </h1>
+        <p className="text-xl mb-6">
+          The Frontier of Innovation &amp; Technology
+        </p>
+        <a
+          href="/about"
+          className="inline-block px-6 py-3 text-black bg-xboxGreen rounded font-semibold hover:bg-opacity-80 transition"
+        >
+          Learn More
+        </a>
+      </div>
+    </section>
+  );
+}
+
+
+# --------------------
+# File: components\Layout.jsx
+# --------------------
+
+import Head from "next/head";
+import Header from "./Header";
+import Footer from "./Footer";
+
+export default function Layout({ children, title }) {
+  const pageTitle = title ? `${title}` : "Gradiorum";
+
+  return (
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content="Gradiorum - Frontier of Innovation and Technology" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <div className="bg-black min-h-screen flex flex-col font-orbitron">
+        <Header />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </div>
+    </>
+  );
+}
+
+
+# --------------------
+# File: hooks\useTheme.js
+# --------------------
+
+import { useEffect, useState } from "react";
+
+export function useTheme() {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme) {
+      setTheme(localTheme);
+      document.documentElement.classList.toggle("dark", localTheme === "dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
+
+  return { theme, toggleTheme };
+}
+
+
+# --------------------
+# File: pages\about.jsx
 # --------------------
 
 import Layout from "../components/Layout";
@@ -207,93 +552,9 @@ export default function About() {
   );
 }
 
-# --------------------
-# File: pages/blog/index.jsx
-# --------------------
-
-import Layout from "../../components/Layout";
-import Link from "next/link";
-
-export default function BlogIndex() {
-  // Example placeholder blog listing (replace with real fetch if needed)
-  const mockPosts = [
-    {
-      slug: "williams-journey-and-our-vision",
-      title: "William’s Journey and Our Vision",
-      excerpt: "Our founder prepares for an MS at Georgia Tech, bridging the gap between AI research and everyday applications...",
-      date: "Dec 07, 2024",
-    },
-    {
-      slug: "synthetic-data-for-behavioral-health",
-      title: "Scaling Synthetic Data for Behavioral Health",
-      excerpt: "Investigating how LLMs can enrich classification datasets in healthcare with safe synthetic data...",
-      date: "Nov 15, 2024",
-    }
-  ];
-
-  return (
-    <Layout title="Blog - Gradiorum">
-      <section className="max-w-6xl mx-auto px-4 py-10">
-        <h1 className="text-4xl font-bold mb-8 text-center">Blog</h1>
-        <div className="grid md:grid-cols-2 gap-8">
-          {mockPosts.map((post) => (
-            <article
-              key={post.slug}
-              className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"
-            >
-              <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-              <p className="text-sm text-gray-400 mb-4">{post.date}</p>
-              <p className="text-gray-200 mb-6">{post.excerpt}</p>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="inline-block px-4 py-2 rounded bg-xboxGreen text-black font-semibold hover:bg-opacity-80"
-              >
-                Read More
-              </Link>
-            </article>
-          ))}
-        </div>
-      </section>
-    </Layout>
-  );
-}
 
 # --------------------
-# File: pages/blog/[slug].jsx
-# --------------------
-
-import { useRouter } from "next/router";
-import Layout from "../../components/Layout";
-
-export default function BlogPost() {
-  const { query } = useRouter();
-  const { slug } = query;
-
-  // Demo placeholder content
-  const mockContent = `
-  # ${slug?.replaceAll('-', ' ')}
-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam euismod nisl a urna pellentesque, 
-  at lobortis augue commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-  `;
-
-  return (
-    <Layout title={`Blog: ${slug || 'Loading...'}`}>
-      <section className="max-w-3xl mx-auto px-4 py-10 text-gray-100">
-        {slug ? (
-          <article className="prose prose-invert">
-            <div dangerouslySetInnerHTML={{ __html: mockContent }} />
-          </article>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </section>
-    </Layout>
-  );
-}
-
-# --------------------
-# File: pages/contact.jsx
+# File: pages\contact.jsx
 # --------------------
 
 import Layout from "../components/Layout";
@@ -319,8 +580,212 @@ export default function Contact() {
   );
 }
 
+
 # --------------------
-# File: pages/projects.jsx
+# File: pages\discordbots.jsx
+# --------------------
+
+import Layout from "../components/Layout";
+
+export default function DiscordBots() {
+  return (
+    <Layout title="Discord Bots - Gradiorum">
+      <section className="max-w-4xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-6">Discord Bots</h1>
+        <p className="text-gray-200 mb-6">
+          Gradiorum’s Discord integrations bring innovative capabilities right into your community servers.
+        </p>
+        <article className="mb-8">
+          <h2 className="text-2xl font-semibold mb-2">GradiorumMP3</h2>
+          <p>
+            A music manager bot for Discord, capable of playing MP3 files, handling playlists, queue management,
+            skipping, pausing, and resuming tracks—bringing a social listening experience to your server.
+          </p>
+        </article>
+        <article>
+          <h2 className="text-2xl font-semibold mb-2">Polishadow</h2>
+          <p>
+            Monitors politicians’ stock trades and leverages synthetic data insights to detect potential insider
+            patterns. It can paper-trade strategies, issue alerts, and offer subscription tiers for timely updates
+            on market moves.
+          </p>
+        </article>
+      </section>
+    </Layout>
+  );
+}
+
+
+# --------------------
+# File: pages\humanai.jsx
+# --------------------
+
+import Layout from "../components/Layout";
+
+export default function HumanAITeaming() {
+  return (
+    <Layout title="Human-AI Teaming - Gradiorum">
+      <section className="max-w-3xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-6">Human-AI Teaming</h1>
+        <p className="text-gray-200 mb-6">
+          In partnership with Kennesaw State University, we research effective paradigms for collaboration between humans
+          and intelligent agents. Our aim is to foster trust, interpretability, and high performance in complex tasks.
+        </p>
+        <h2 className="text-2xl font-semibold mb-4">Scope & Objectives</h2>
+        <ul className="list-disc ml-5 mb-6 text-gray-300 space-y-2">
+          <li>Develop interactive interfaces for joint human-AI strategy formation.</li>
+          <li>Ensure explainability in AI-driven recommendations.</li>
+          <li>Explore reinforcement learning & adaptive feedback loops for continuous improvement.</li>
+        </ul>
+        <p className="text-gray-300">
+          This project is in its early phases. We plan to publish working papers, demos, and frameworks as progress
+          continues.
+        </p>
+      </section>
+    </Layout>
+  );
+}
+
+
+# --------------------
+# File: pages\index.jsx
+# --------------------
+
+import Layout from "../components/Layout";
+import Hero from "../components/Hero";
+
+export default function Home() {
+  return (
+    <Layout>
+      <Hero />
+      <section className="max-w-7xl mx-auto px-6 py-12 text-center">
+        <h2 className="text-3xl font-bold mb-6">
+          Featured Projects
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Example project cards */}
+          <div className="bg-gray-900 text-white p-6 rounded-lg hover:shadow-neon hover:scale-105 transform transition">
+            <h3 className="text-2xl font-semibold mb-2">Via</h3>
+            <p className="mb-4">A lightweight modular framework for AI integration.</p>
+            <a
+              href="/projects#via"
+              className="inline-block px-4 py-2 text-black bg-xboxGreen rounded hover:bg-opacity-80 transition"
+            >
+              Learn More
+            </a>
+          </div>
+          <div className="bg-gray-900 text-white p-6 rounded-lg hover:shadow-neon hover:scale-105 transform transition">
+            <h3 className="text-2xl font-semibold mb-2">Ascendus</h3>
+            <p className="mb-4">An advanced AI toolkit for large-scale automation.</p>
+            <a
+              href="/projects#ascendus"
+              className="inline-block px-4 py-2 text-black bg-xboxGreen rounded hover:bg-opacity-80 transition"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+      </section>
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <h2 className="text-3xl font-bold mb-6 text-center">Latest News</h2>
+        <p className="text-gray-200 text-center">
+          Check out the <a href="/blog" className="text-xboxGreen underline">blog</a> for updates!
+        </p>
+      </section>
+    </Layout>
+  );
+}
+
+
+# --------------------
+# File: pages\members.jsx
+# --------------------
+
+import Layout from "../components/Layout";
+
+export default function Members() {
+  return (
+    <Layout title="Members - Gradiorum">
+      <section className="max-w-3xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-6">Members</h1>
+        <div className="md:flex items-center md:space-x-6 mb-6">
+          <img
+            src="/images/william-stigall.jpg"
+            alt="William A. Stigall"
+            className="w-32 h-32 rounded-full object-cover border-2 border-xboxGreen mb-4 md:mb-0"
+          />
+          <div>
+            <h2 className="text-2xl font-semibold mb-2">William A. Stigall</h2>
+            <p className="text-gray-200">
+              William is a 22-year-old AI enthusiast with a B.S. in CS (AI concentration) and Data Science minor from
+              KSU. He’ll start an M.S. in Machine Learning at Georgia Tech in January. Dedicated to bridging the gap
+              between reinforcement learning, human-AI teaming, and everyday life.
+            </p>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+
+# --------------------
+# File: pages\papers.jsx
+# --------------------
+
+import Layout from "../components/Layout";
+
+export default function Papers() {
+  return (
+    <Layout title="Our Papers - Gradiorum">
+      <section className="max-w-5xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-8">Our Papers</h1>
+        <div className="grid md:grid-cols-2 gap-8">
+          <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
+            <h2 className="text-2xl font-semibold mb-2">
+              TransformingGameplay: A Transformer-Based Q-Network
+            </h2>
+            <p className="mb-2"><strong>Authors:</strong> William A. Stigall, Jitendra Sai Kota</p>
+            <p className="text-gray-300 mb-4">
+              Explores a transformer-based Q-Network for gameplay environments without convolutional layers,
+              analyzing performance and limitations in RL tasks.
+            </p>
+            <p className="mb-4"><strong>Keywords:</strong> Transformer, Q-Network, RL</p>
+            <a
+              href="https://arxiv.org/submit/5925810/view"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80"
+            >
+              Read Paper
+            </a>
+          </article>
+          <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
+            <h2 className="text-2xl font-semibold mb-2">
+              Scaling Synthetic Data for Behavioral Health Classification
+            </h2>
+            <p className="mb-2"><strong>Authors:</strong> William Stigall, Md Abdullah Al Hafiz Khan</p>
+            <p className="text-gray-300 mb-4">
+              Investigates synthetic data generation using large language models (LLMs) to enhance
+              behavioral health classification datasets at scale.
+            </p>
+            <p className="mb-4"><strong>Keywords:</strong> Synthetic Data, Behavioral Health, LLMs</p>
+            <span className="inline-block px-3 py-1 bg-gray-400 text-white rounded opacity-50 cursor-not-allowed">
+              Read Paper (Pending)
+            </span>
+            <p className="mt-2 text-gray-500">
+              Link will be available once published.
+            </p>
+          </article>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+
+# --------------------
+# File: pages\projects.jsx
 # --------------------
 
 import Layout from "../components/Layout";
@@ -397,157 +862,9 @@ export default function Projects() {
   );
 }
 
-# --------------------
-# File: pages/discordbots.jsx
-# --------------------
-
-import Layout from "../components/Layout";
-
-export default function DiscordBots() {
-  return (
-    <Layout title="Discord Bots - Gradiorum">
-      <section className="max-w-4xl mx-auto px-4 py-10">
-        <h1 className="text-4xl font-bold mb-6">Discord Bots</h1>
-        <p className="text-gray-200 mb-6">
-          Gradiorum’s Discord integrations bring innovative capabilities right into your community servers.
-        </p>
-        <article className="mb-8">
-          <h2 className="text-2xl font-semibold mb-2">GradiorumMP3</h2>
-          <p>
-            A music manager bot for Discord, capable of playing MP3 files, handling playlists, queue management,
-            skipping, pausing, and resuming tracks—bringing a social listening experience to your server.
-          </p>
-        </article>
-        <article>
-          <h2 className="text-2xl font-semibold mb-2">Polishadow</h2>
-          <p>
-            Monitors politicians’ stock trades and leverages synthetic data insights to detect potential insider
-            patterns. It can paper-trade strategies, issue alerts, and offer subscription tiers for timely updates
-            on market moves.
-          </p>
-        </article>
-      </section>
-    </Layout>
-  );
-}
 
 # --------------------
-# File: pages/humanai.jsx
-# --------------------
-
-import Layout from "../components/Layout";
-
-export default function HumanAITeaming() {
-  return (
-    <Layout title="Human-AI Teaming - Gradiorum">
-      <section className="max-w-3xl mx-auto px-4 py-10">
-        <h1 className="text-4xl font-bold mb-6">Human-AI Teaming</h1>
-        <p className="text-gray-200 mb-6">
-          In partnership with Kennesaw State University, we research effective paradigms for collaboration between humans
-          and intelligent agents. Our aim is to foster trust, interpretability, and high performance in complex tasks.
-        </p>
-        <h2 className="text-2xl font-semibold mb-4">Scope & Objectives</h2>
-        <ul className="list-disc ml-5 mb-6 text-gray-300 space-y-2">
-          <li>Develop interactive interfaces for joint human-AI strategy formation.</li>
-          <li>Ensure explainability in AI-driven recommendations.</li>
-          <li>Explore reinforcement learning & adaptive feedback loops for continuous improvement.</li>
-        </ul>
-        <p className="text-gray-300">
-          This project is in its early phases. We plan to publish working papers, demos, and frameworks as progress
-          continues.
-        </p>
-      </section>
-    </Layout>
-  );
-}
-
-# --------------------
-# File: pages/papers.jsx
-# --------------------
-
-import Layout from "../components/Layout";
-
-export default function Papers() {
-  return (
-    <Layout title="Our Papers - Gradiorum">
-      <section className="max-w-5xl mx-auto px-4 py-10">
-        <h1 className="text-4xl font-bold mb-8">Our Papers</h1>
-        <div className="grid md:grid-cols-2 gap-8">
-          <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
-            <h2 className="text-2xl font-semibold mb-2">
-              TransformingGameplay: A Transformer-Based Q-Network
-            </h2>
-            <p className="mb-2"><strong>Authors:</strong> William A. Stigall, Jitendra Sai Kota</p>
-            <p className="text-gray-300 mb-4">
-              Explores a transformer-based Q-Network for gameplay environments without convolutional layers,
-              analyzing performance and limitations in RL tasks.
-            </p>
-            <p className="mb-4"><strong>Keywords:</strong> Transformer, Q-Network, RL</p>
-            <a
-              href="https://arxiv.org/submit/5925810/view"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80"
-            >
-              Read Paper
-            </a>
-          </article>
-          <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition">
-            <h2 className="text-2xl font-semibold mb-2">
-              Scaling Synthetic Data for Behavioral Health Classification
-            </h2>
-            <p className="mb-2"><strong>Authors:</strong> William Stigall, Md Abdullah Al Hafiz Khan</p>
-            <p className="text-gray-300 mb-4">
-              Investigates synthetic data generation using large language models (LLMs) to enhance
-              behavioral health classification datasets at scale.
-            </p>
-            <p className="mb-4"><strong>Keywords:</strong> Synthetic Data, Behavioral Health, LLMs</p>
-            <span className="inline-block px-3 py-1 bg-gray-400 text-white rounded opacity-50 cursor-not-allowed">
-              Read Paper (Pending)
-            </span>
-            <p className="mt-2 text-gray-500">
-              Link will be available once published.
-            </p>
-          </article>
-        </div>
-      </section>
-    </Layout>
-  );
-}
-
-# --------------------
-# File: pages/members.jsx
-# --------------------
-
-import Layout from "../components/Layout";
-
-export default function Members() {
-  return (
-    <Layout title="Members - Gradiorum">
-      <section className="max-w-3xl mx-auto px-4 py-10">
-        <h1 className="text-4xl font-bold mb-6">Members</h1>
-        <div className="md:flex items-center md:space-x-6 mb-6">
-          <img
-            src="/images/william-stigall.jpg"
-            alt="William A. Stigall"
-            className="w-32 h-32 rounded-full object-cover border-2 border-xboxGreen mb-4 md:mb-0"
-          />
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">William A. Stigall</h2>
-            <p className="text-gray-200">
-              William is a 22-year-old AI enthusiast with a B.S. in CS (AI concentration) and Data Science minor from
-              KSU. He’ll start an M.S. in Machine Learning at Georgia Tech in January. Dedicated to bridging the gap
-              between reinforcement learning, human-AI teaming, and everyday life.
-            </p>
-          </div>
-        </div>
-      </section>
-    </Layout>
-  );
-}
-
-# --------------------
-# File: pages/videos.jsx
+# File: pages\videos.jsx
 # --------------------
 
 import Layout from "../components/Layout";
@@ -571,239 +888,154 @@ export default function Videos() {
   );
 }
 
+
 # --------------------
-# File: components/Layout.jsx
+# File: pages\_app.jsx
 # --------------------
 
-import Head from "next/head";
-import Header from "./Header";
-import Footer from "./Footer";
+import '../styles/globals.css';
 
-export default function Layout({ children, title }) {
-  const pageTitle = title ? `${title}` : "Gradiorum";
-
+export default function App({ Component, pageProps }) {
   return (
-    <>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content="Gradiorum - Frontier of Innovation and Technology" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <div className="bg-black min-h-screen flex flex-col font-orbitron">
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
-      </div>
-    </>
+    <Component {...pageProps} />
   );
 }
 
+
 # --------------------
-# File: components/Header.jsx
+# File: pages\blog\index.jsx
 # --------------------
 
+import Layout from "../../components/Layout";
 import Link from "next/link";
-import { useState } from "react";
-import { useTheme } from "../hooks/useTheme";
 
-export default function Header() {
-  const [open, setOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-
-  return (
-    <header className="w-full bg-gray-900 text-gray-200 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          {/* A placeholder for your logo */}
-          <div className="w-8 h-8 bg-xboxGreen rounded-full shadow-neon" />
-          <Link href="/" className="text-xl font-bold hover:text-xboxGreen transition">
-            Gradiorum
-          </Link>
-        </div>
-        <nav className="hidden md:flex space-x-6">
-          <Link href="/" className="hover:text-xboxGreen transition">Home</Link>
-          <Link href="/about" className="hover:text-xboxGreen transition">About</Link>
-          <Link href="/members" className="hover:text-xboxGreen transition">Members</Link>
-          <Link href="/projects" className="hover:text-xboxGreen transition">Projects</Link>
-          <Link href="/blog" className="hover:text-xboxGreen transition">Blog</Link>
-          <Link href="/videos" className="hover:text-xboxGreen transition">Videos</Link>
-          <Link href="/papers" className="hover:text-xboxGreen transition">Papers</Link>
-          <Link href="/contact" className="hover:text-xboxGreen transition">Contact</Link>
-          <Link href="/luminaguard" className="hover:text-xboxGreen transition">LuminaGuard</Link>
-          <Link href="/humanai" className="hover:text-xboxGreen transition">Human-AI Teaming</Link>
-          <Link href="/discordbots" className="hover:text-xboxGreen transition">Discord Bots</Link>
-        </nav>
-        <div className="flex items-center space-x-4">
-          <button
-            onClick={() => toggleTheme()}
-            className="bg-gray-700 px-3 py-1 rounded hover:bg-gray-600 transition"
-          >
-            {theme === 'light' ? 'Dark' : 'Light'} Mode
-          </button>
-          <button onClick={() => setOpen(!open)} className="md:hidden">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-      {open && (
-        <div className="md:hidden bg-gray-800">
-          <nav className="flex flex-col p-4 space-y-3">
-            <Link href="/" className="hover:text-xboxGreen transition">Home</Link>
-            <Link href="/about" className="hover:text-xboxGreen transition">About</Link>
-            <Link href="/members" className="hover:text-xboxGreen transition">Members</Link>
-            <Link href="/projects" className="hover:text-xboxGreen transition">Projects</Link>
-            <Link href="/blog" className="hover:text-xboxGreen transition">Blog</Link>
-            <Link href="/videos" className="hover:text-xboxGreen transition">Videos</Link>
-            <Link href="/papers" className="hover:text-xboxGreen transition">Papers</Link>
-            <Link href="/contact" className="hover:text-xboxGreen transition">Contact</Link>
-            <Link href="/luminaguard" className="hover:text-xboxGreen transition">LuminaGuard</Link>
-            <Link href="/humanai" className="hover:text-xboxGreen transition">Human-AI Teaming</Link>
-            <Link href="/discordbots" className="hover:text-xboxGreen transition">Discord Bots</Link>
-          </nav>
-        </div>
-      )}
-    </header>
-  );
-}
-
-# --------------------
-# File: components/Footer.jsx
-# --------------------
-
-export default function Footer() {
-  return (
-    <footer className="bg-gray-900 text-gray-200 py-8 mt-10 text-center">
-      <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Gradiorum. All rights reserved.</p>
-      <div className="flex justify-center space-x-4 mt-4">
-        <a
-          href="https://twitter.com/Gradiorum"
-          className="hover:text-xboxGreen transition"
-          aria-label="Twitter"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Twitter
-        </a>
-        <a
-          href="https://linkedin.com/company/Gradiorum"
-          className="hover:text-xboxGreen transition"
-          aria-label="LinkedIn"
-          target="_blank"
-          rel="noreferrer"
-        >
-          LinkedIn
-        </a>
-        <a
-          href="https://youtube.com/channel/Gradiorum"
-          className="hover:text-xboxGreen transition"
-          aria-label="YouTube"
-          target="_blank"
-          rel="noreferrer"
-        >
-          YouTube
-        </a>
-      </div>
-      <div className="mt-6">
-        <p className="mb-2">Join our Mailing List for Updates</p>
-        <form id="newsletter-form" className="flex justify-center items-center space-x-2">
-          <input
-            type="email"
-            name="email"
-            className="px-3 py-2 rounded border border-gray-600 focus:outline-none"
-            placeholder="Your email"
-            required
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80 transition"
-          >
-            Subscribe
-          </button>
-        </form>
-      </div>
-      <div className="mt-6 text-sm text-gray-500 max-w-2xl mx-auto">
-        <p>
-          <strong>Disclaimer:</strong> All graphical assets on this website are generated by AI. We do not claim
-          artistic authorship over these assets. If you are a graphic artist and wish to collaborate or provide
-          custom artwork, please reach out to us at{" "}
-          <a href="mailto:gradiorum@gmail.com" className="text-xboxGreen underline">
-            gradiorum@gmail.com
-          </a>.
-        </p>
-      </div>
-    </footer>
-  );
-}
-
-# --------------------
-# File: components/Hero.jsx
-# --------------------
-
-export default function Hero() {
-  return (
-    <section
-      className="relative w-full h-[60vh] bg-black flex items-center justify-center text-center"
-      style={{
-        backgroundImage: "url('/images/xbox-swirls.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="absolute inset-0 bg-black bg-opacity-60" />
-      <div className="relative z-10 text-white max-w-2xl">
-        <h1 className="text-5xl font-bold mb-4 neon-title">
-          Welcome to Gradiorum
-        </h1>
-        <p className="text-xl mb-6">
-          The Frontier of Innovation &amp; Technology
-        </p>
-        <a
-          href="/about"
-          className="inline-block px-6 py-3 text-black bg-xboxGreen rounded font-semibold hover:bg-opacity-80 transition"
-        >
-          Learn More
-        </a>
-      </div>
-    </section>
-  );
-}
-
-# --------------------
-# File: hooks/useTheme.js
-# --------------------
-
-import { useEffect, useState } from "react";
-
-export function useTheme() {
-  const [theme, setTheme] = useState("dark");
-
-  useEffect(() => {
-    const localTheme = localStorage.getItem("theme");
-    if (localTheme) {
-      setTheme(localTheme);
-      document.documentElement.classList.toggle("dark", localTheme === "dark");
-    } else {
-      document.documentElement.classList.add("dark");
+export default function BlogIndex() {
+  // Example placeholder blog listing (replace with real fetch if needed)
+  const mockPosts = [
+    {
+      slug: "williams-journey-and-our-vision",
+      title: "William’s Journey and Our Vision",
+      excerpt: "Our founder prepares for an MS at Georgia Tech, bridging the gap between AI research and everyday applications...",
+      date: "Dec 07, 2024",
+    },
+    {
+      slug: "synthetic-data-for-behavioral-health",
+      title: "Scaling Synthetic Data for Behavioral Health",
+      excerpt: "Investigating how LLMs can enrich classification datasets in healthcare with safe synthetic data...",
+      date: "Nov 15, 2024",
     }
-  }, []);
+  ];
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-  };
-
-  return { theme, toggleTheme };
+  return (
+    <Layout title="Blog - Gradiorum">
+      <section className="max-w-6xl mx-auto px-4 py-10">
+        <h1 className="text-4xl font-bold mb-8 text-center">Blog</h1>
+        <div className="grid md:grid-cols-2 gap-8">
+          {mockPosts.map((post) => (
+            <article
+              key={post.slug}
+              className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"
+            >
+              <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
+              <p className="text-sm text-gray-400 mb-4">{post.date}</p>
+              <p className="text-gray-200 mb-6">{post.excerpt}</p>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="inline-block px-4 py-2 rounded bg-xboxGreen text-black font-semibold hover:bg-opacity-80"
+              >
+                Read More
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+    </Layout>
+  );
 }
 
+
 # --------------------
-# File: styles/globals.css
+# File: pages\blog\[slug].jsx
+# --------------------
+
+import { useRouter } from "next/router";
+import Layout from "../../components/Layout";
+
+export default function BlogPost() {
+  const { query } = useRouter();
+  const { slug } = query;
+
+  // Demo placeholder content
+  const mockContent = `
+  # ${slug?.replaceAll('-', ' ')}
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam euismod nisl a urna pellentesque, 
+  at lobortis augue commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+  `;
+
+  return (
+    <Layout title={`Blog: ${slug || 'Loading...'}`}>
+      <section className="max-w-3xl mx-auto px-4 py-10 text-gray-100">
+        {slug ? (
+          <article className="prose prose-invert">
+            <div dangerouslySetInnerHTML={{ __html: mockContent }} />
+          </article>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </section>
+    </Layout>
+  );
+}
+
+
+# --------------------
+# File: posts\2024-12-07-first-blog-post.md
+# --------------------
+
+## William’s Journey and Our Vision
+
+**By: William (Founder)**
+
+As I prepare to embark on my Master of Science in Computer Science at Georgia Tech this coming January, specializing in Machine Learning, I’m reminded of the broader goal we hold at Gradiorum: bringing personalized AI assistants into everyday life.
+
+From early forays into reinforcement learning to the nuanced complexities of human-AI teaming, our mission is rooted in practical innovation. Soon, I will be immersing myself in advanced coursework and research at one of the world’s leading institutions. This step is not just academic—it's a move towards realizing our dream: making AI assistants as ubiquitous and helpful as any common household technology.
+
+**Blog Roles at Gradiorum:**
+
+- **Founder (like me, William)**: We shape the strategic direction and share our vision.
+- **Members**: Our verified contributors who add depth to projects and research discussions.
+- **Guests**: Occasional voices from the larger tech and AI ecosystem. Guest posts are carefully verified before publication to ensure quality and relevance.
+
+We look forward to sharing insights, updates, and breakthroughs. Thank you for joining us on this journey.
+
+
+# --------------------
+# File: posts\README.md
+# --------------------
+
+// This README was replaced with the first blog post file above.
+// The original README in this directory is no longer needed.
+// You can keep this placeholder here if you like, or remove it.
+
+"""
+
+
+# --------------------
+# File: public\images\README.md
+# --------------------
+
+# Images Directory
+
+Place your site's images and brand assets here. For example:
+- `xbox-swirls.jpg` for the Hero background
+- `starfield.png` if you do a starfield background
+- `logo.png` if you have an updated logo
+- `william-stigall.jpg` for the members page
+
+
+# --------------------
+# File: styles\globals.css
 # --------------------
 
 @tailwind base;
@@ -838,35 +1070,3 @@ body {
   color: #00ff7f;
 }
 
-# --------------------
-# File: public/images/README.md
-# --------------------
-
-# Images Directory
-
-Place your site's images and brand assets here. For example:
-- `xbox-swirls.jpg` for the Hero background
-- `starfield.png` if you do a starfield background
-- `logo.png` if you have an updated logo
-- `william-stigall.jpg` for the members page
-
-# --------------------
-# File: README.md
-# --------------------
-
-# New Gradiorum Next.js Site (No Aliases)
-
-This is the **completely overhauled** Gradiorum site, built with:
-- **Next.js** (13.1+)
-- **Tailwind CSS** (3.3+)
-- A neon, futuristic aesthetic inspired by the original Xbox interface.
-
-**Aliases Removed**: We replaced `@/` references with relative imports.
-
-## Quick Start
-
-1. **Install** dependencies:
-   ```bash
-   npm install
-   # or
-   yarn
