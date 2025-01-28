@@ -2,15 +2,14 @@ name = "gradiorum"
 compatibility_date = "2023-05-01"
 node_compat = true
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = '.vercel/output/static
 
+# IMPORTANT: Use proper quotes for TOML (usually double-quotes).
+pages_build_output_dir = ".vercel/output/static"
 
 [build]
-# next-on-pages does a specialized build that turns your Next.js app into a
-# Cloudflare Pages-compatible Worker with SSR. This requires you have
-# "@cloudflare/next-on-pages" installed in devDependencies.
+# This is the specialized build command for SSR on Cloudflare Pages using next-on-pages.
 command = "npx @cloudflare/next-on-pages build"
 
 [vars]
-# Example environment variables if needed:
-# NEXT_PUBLIC_API_URL = "https://api.example.com"
+# (Optional) Define environment variables here if needed.
+# e.g. NEXT_PUBLIC_API_URL = "https://api.example.com"
