@@ -3,7 +3,7 @@ import os
 def export_code(output_filename='all_code_output.txt'):
     # Extensions you genuinely want to export
     included_extensions = {
-        '.js', '.html', '.css', '.json', '.py', '.md', '.jsx'
+        '.js', '.html', '.css', '.json', '.py', '.md', '.jsx','yml'
     }
 
     # Directories to skip altogether
@@ -68,9 +68,6 @@ def export_code(output_filename='all_code_output.txt'):
 
     # Join everything into one large text block
     final_output = "".join(all_code)
-
-    # (Optional) check how many lines or how many characters, if you suspect an overflow
-    # print(f"Total characters in final output: {len(final_output)}")
 
     # Write the final output
     with open(output_filename, 'w', encoding='utf-8') as f:
