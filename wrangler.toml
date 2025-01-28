@@ -10,6 +10,10 @@ pages_build_output_dir = ".vercel/output/static"
 # This is the specialized build command for SSR on Cloudflare Pages using next-on-pages.
 command = "npx @cloudflare/next-on-pages build"
 
+[build.upload]
+format = "directory"
+dir = ".vercel/output/static"
+
 [vars]
 # (Optional) Define environment variables here if needed.
 # e.g. NEXT_PUBLIC_API_URL = "https://api.example.com"
