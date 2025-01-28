@@ -1,11 +1,14 @@
 name = "gradiorum"
 compatibility_date = "2023-05-01"
-
+node_compat = true
+compatibility_flags = ["nodejs_compat"]
 
 # IMPORTANT: Use proper quotes for TOML (usually double-quotes).
 pages_build_output_dir = ".vercel/output/static"
 
-
+[build]
+# This is the specialized build command for SSR on Cloudflare Pages using next-on-pages.
+command = "npx @cloudflare/next-on-pages build"
 
 
 
