@@ -1,12 +1,4 @@
 name = "gradiorum"
-compatibility_date = "2023-05-01"
-
-
-# IMPORTANT: Use proper quotes for TOML (usually double-quotes).
+compatibility_date = "2025-01-28"
+compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
-
-
-
-[vars]
-# (Optional) Define environment variables here if needed.
-# e.g. NEXT_PUBLIC_API_URL = "https://api.example.com"
