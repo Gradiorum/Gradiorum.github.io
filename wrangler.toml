@@ -1,0 +1,13 @@
+name = "gradiorum-next"
+compatibility_date = "2023-05-01"
+node_compat = true
+
+[build]
+# next-on-pages does a specialized build that turns your Next.js app into a
+# Cloudflare Pages-compatible Worker with SSR. This requires you have
+# "@cloudflare/next-on-pages" installed in devDependencies.
+command = "npx @cloudflare/next-on-pages build"
+
+[vars]
+# Example environment variables if needed:
+# NEXT_PUBLIC_API_URL = "https://api.example.com"
