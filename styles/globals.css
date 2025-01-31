@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global reset */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Optional neon-glow title effect */
+.neon-title {
+  text-shadow: 0 0 8px #00ff7f, 0 0 20px #00ff7f;
+}
+
+/* Gradient background utilities */
+.bg-gradient-neon {
+  background: linear-gradient(45deg, #00ff7f, #007f5f);
+}
+
+.text-gradient-holographic {
+  background: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Theme Styles */
+.theme-dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.theme-light {
+  --background: #ffffff;
+  --foreground: #171717;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.theme-holographic {
+  --background: linear-gradient(135deg, #2b1055, #7582e0);
+  --foreground: #ffffff;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.theme-neon {
+  --background: #000;
+  --foreground: #00ff7f;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.theme-gradient {
+  --background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff);
+  --foreground: #ffffff;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Example hover neon effect */
+.hover\:shadow-neon:hover {
+  box-shadow: 0 0 8px #00ff7f, 0 0 16px #00ff7f;
+}
