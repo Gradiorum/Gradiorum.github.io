@@ -7,20 +7,23 @@ export default function ChatInput({ onSend }) {
     e.preventDefault();
     if (!text.trim()) return;
     onSend({ role: "user", content: text });
-    // For demo purposes, simulate an AI response
-    onSend({ role: "assistant", content: "This is a simulated AI response. Your message was: " + text });
+    // Simulate an AI response for demo purposes
+    onSend({
+      role: "assistant",
+      content: "This is a simulated AI response. Your message was: " + text,
+    });
     setText("");
   };
 
   return (
-    <form onSubmit={handleSend} className="w-full flex">
+    <form onSubmit={handleSend} className="flex mt-4">
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className="chat-input flex-grow bg-gray-700 text-white"
+        className="chat-input flex-grow"
         placeholder="Type your message..."
       />
-      <button type="submit" className="ml-2 px-4 py-2 bg-[var(--accent-color)] text-black rounded hover:shadow-neon">
+      <button type="submit" className="send-button">
         Send
       </button>
     </form>
