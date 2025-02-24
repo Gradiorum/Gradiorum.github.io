@@ -1,18 +1,313 @@
-# --------------------------------------------------------------------------------
-# READ THIS FIRST
-# --------------------------------------------------------------------------------
+--------------------
+File: tailwind.config.js
+--------------------
+/** @type {import('tailwindcss').Config} / module.exports = { content: [ "./pages/**/.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}" ], theme: { extend: { colors: { xboxGreen: "#00ff7f", // A bright green for the “neon glow” }, boxShadow: { neon: "0 0 5px #00ff7f, 0 0 20px #00ff7f", }, fontFamily: { orbitron: ["Orbitron", "sans-serif"], }, animation: { 'pulse-slow': 'pulse 3s infinite', }, }, }, plugins: [], darkMode: 'class', };
 
-This file completely replaces your existing site. All prior code is superseded.
-It uses:
+--------------------
+File: .wrangler\tmp\bundle-WSSZLG\checked-fetch.js
+--------------------
+const urls = new Set();
 
-1. **Next.js** (React-based, with file-based routing).
-2. **Tailwind CSS** (for rapid and consistent UI styling).
-3. A custom neon/glow aesthetic reminiscent of the original Xbox home screen (dark background, bright green highlights).
+function checkURL(request, init) { \tconst url = \t\trequest instanceof URL \t\t\t? request \t\t\t: new URL( \t\t\t\t\t(typeof request === "string" \t\t\t\t\t\t? new Request(request, init) \t\t\t\t\t\t: request \t\t\t\t\t).url \t\t\t); \tif (url.port && url.port !== "443" && url.protocol === "https:") { \t\tif (!urls.has(url.toString())) { \t\t\turls.add(url.toString()); \t\t\tconsole.warn( \t\t\t\tWARNING: known issue with \fetch()` requests to custom HTTPS ports in published Workers:\n + \t\t\t\t\t - ${url.toString()} - the custom port will be ignored when the Worker is published using the `wrangler deploy` command.\n` \t\t\t); \t\t} \t} }
 
-**Key Points**:
-- We removed **all** `@/` alias references and replaced them with **relative imports**.
-- “Blog” pages are in `/blog/[slug].jsx`.
-- “Projects” and “About” are placeholders you can expand with real content or data fetching.
-- The code is ready for your `decompile_code.py` if you save it as `all_new_code_no_aliases.txt`.
+globalThis.fetch = new Proxy(globalThis.fetch, { \tapply(target, thisArg, argArray) { \t\tconst [request, init] = argArray; \t\tcheckURL(request, init); \t\treturn Reflect.apply(target, thisArg, argArray); \t}, });
 
----
+--------------------
+File: .wrangler\tmp\bundle-WSSZLG\middleware-insertion-facade.js
+--------------------
+import worker, * as OTHER_EXPORTS from "C:\\Users\\WillR\\AppData\\Roaming\\npm\\node_modules\\wrangler\\templates\\pages-shim.ts"; import * as MIDDLEWARE_0 from "C:\\Users\\WillR\\AppData\\Roaming\\npm\\node_modules\\wrangler\\templates\\middleware\\middleware-ensure-req-body-drained.ts"; import * as MIDDLEWARE_1 from "C:\\Users\\WillR\\AppData\\Roaming\\npm\\node_modules\\wrangler\\templates\\middleware\\middleware-miniflare3-json-error.ts";
+
+export * from "C:\\Users\\WillR\\AppData\\Roaming\\npm\\node_modules\\wrangler\\templates\\pages-shim.ts";
+
+export const INTERNAL_WRANGLER_MIDDLEWARE = [ \t \t__MIDDLEWARE_0__.default,MIDDLEWARE_1.default ] export default worker;
+
+--------------------
+File: .wrangler\tmp\dev-EcO1OJ\pages-shim.js
+--------------------
+var __defProp = Object.defineProperty; var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+
+// .wrangler/tmp/bundle-WSSZLG/checked-fetch.js var urls = /* @PURE */ new Set(); function checkURL(request, init) { const url = request instanceof URL ? request : new URL( (typeof request === "string" ? new Request(request, init) : request).url ); if (url.port && url.port !== "443" && url.protocol === "https:") { if (!urls.has(url.toString())) { urls.add(url.toString()); console.warn( `WARNING: known issue with \`fetch()\` requests to custom HTTPS ports in published Workers:\n - ${url.toString()} - the custom port will be ignored when the Worker is published using the \`wrangler deploy\` command.\n` ); } } } __name(checkURL, "checkURL"); globalThis.fetch = new Proxy(globalThis.fetch, { apply(target, thisArg, argArray) { const [request, init] = argArray; checkURL(request, init); return Reflect.apply(target, thisArg, argArray); } });
+
+// C:/Users/WillR/AppData/Roaming/npm/node_modules/wrangler/templates/pages-shim.ts var pages_shim_default = { async fetch(request, env, context) { const response = await env.ASSETS.fetch(request.url, request); return new Response(response.body, response); } };
+
+// C:/Users/WillR/AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-ensure-req-body-drained.ts var drainBody = /* @PURE */ __name(async (request, env, _ctx, middlewareCtx) => { try { return await middlewareCtx.next(request, env); } finally { try { if (request.body !== null && !request.bodyUsed) { const reader = request.body.getReader(); while (!(await reader.read()).done) { } } } catch (e) { console.error("Failed to drain the unused request body.", e); } } }, "drainBody"); var middleware_ensure_req_body_drained_default = drainBody;
+
+// C:/Users/WillR/AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-miniflare3-json-error.ts function reduceError(e) { return { name: e?.name, message: e?.message ?? String(e), stack: e?.stack, cause: e?.cause === void 0 ? void 0 : reduceError(e.cause) }; } __name(reduceError, "reduceError"); var jsonError = /* @PURE */ __name(async (request, env, _ctx, middlewareCtx) => { try { return await middlewareCtx.next(request, env); } catch (e) { const error = reduceError(e); return new Response(JSON.stringify(error), { status: 500, headers: { "MF-Experimental-Error-Stack": "true" } }); } }, "jsonError"); var middleware_miniflare3_json_error_default = jsonError;
+
+// .wrangler/tmp/bundle-WSSZLG/middleware-insertion-facade.js var INTERNAL_WRANGLER_MIDDLEWARE = [ middleware_ensure_req_body_drained_default, middleware_miniflare3_json_error_default ]; var middleware_insertion_facade_default = pages_shim_default;
+
+// C:/Users/WillR/AppData/Roaming/npm/node_modules/wrangler/templates/middleware/common.ts var facade_middleware = []; function facade_register(...args) { facade_middleware.push(...args.flat()); } __name(facade_register, "facade_register"); function facade_invokeChain(request, env, ctx, dispatch, middlewareChain) { const [head, ...tail] = middlewareChain; const middlewareCtx = { dispatch, next(newRequest, newEnv) { return facade_invokeChain(newRequest, newEnv, ctx, dispatch, tail); } }; return head(request, env, ctx, middlewareCtx); } __name(facade_invokeChain, "facade_invokeChain"); function facade_invoke(request, env, ctx, dispatch, finalMiddleware) { return facade_invokeChain(request, env, ctx, dispatch, [ ...facade_middleware, finalMiddleware ]); } __name(facade_invoke, "facade_invoke");
+
+// .wrangler/tmp/bundle-WSSZLG/middleware-loader.entry.ts var Facade_ScheduledController = class { constructor(scheduledTime, cron, noRetry) { this.scheduledTime = scheduledTime; this.cron = cron; this.#noRetry = noRetry; } #noRetry; noRetry() { if (!(this instanceof Facade_ScheduledController)) { throw new TypeError("Illegal invocation"); } this.#noRetry(); } }; __name(Facade_ScheduledController, "Facade_ScheduledController"); function wrapExportedHandler(worker) { if (INTERNAL_WRANGLER_MIDDLEWARE === void 0 || INTERNAL_WRANGLER_MIDDLEWARE.length === 0) { return worker; } for (const middleware of INTERNAL_WRANGLER_MIDDLEWARE) { facade_register(middleware); } const fetchDispatcher = /* @PURE / __name(function(request, env, ctx) { if (worker.fetch === void 0) { throw new Error("Handler does not export a fetch() function."); } return worker.fetch(request, env, ctx); }, "fetchDispatcher"); return { ...worker, fetch(request, env, ctx) { const dispatcher = / @PURE */ __name(function(type, init) { if (type === "scheduled" && worker.scheduled !== void 0) { const controller = new Facade_ScheduledController( Date.now(), init.cron ?? "", () => { } ); return worker.scheduled(controller, env, ctx); } }, "dispatcher"); return facade_invoke(request, env, ctx, dispatcher, fetchDispatcher); } }; } __name(wrapExportedHandler, "wrapExportedHandler"); function wrapWorkerEntrypoint(klass) { if (INTERNAL_WRANGLER_MIDDLEWARE === void 0 || INTERNAL_WRANGLER_MIDDLEWARE.length === 0) { return klass; } for (const middleware of INTERNAL_WRANGLER_MIDDLEWARE) { facade_register(middleware); } return class extends klass { #fetchDispatcher = (request, env, ctx) => { this.env = env; this.ctx = ctx; if (super.fetch === void 0) { throw new Error("Entrypoint class does not define a fetch() function."); } return super.fetch(request); }; #dispatcher = (type, init) => { if (type === "scheduled" && super.scheduled !== void 0) { const controller = new Facade_ScheduledController( Date.now(), init.cron ?? "", () => { } ); return super.scheduled(controller); } }; fetch(request) { return facade_invoke( request, this.env, this.ctx, this.#dispatcher, this.#fetchDispatcher ); } }; } __name(wrapWorkerEntrypoint, "wrapWorkerEntrypoint"); var WRAPPED_ENTRY; if (typeof middleware_insertion_facade_default === "object") { WRAPPED_ENTRY = wrapExportedHandler(middleware_insertion_facade_default); } else if (typeof middleware_insertion_facade_default === "function") { WRAPPED_ENTRY = wrapWorkerEntrypoint(middleware_insertion_facade_default); } var middleware_loader_entry_default = WRAPPED_ENTRY; export { INTERNAL_WRANGLER_MIDDLEWARE, middleware_loader_entry_default as default };
+
+--------------------
+File: components/ChatInput.jsx
+--------------------
+import { useState } from "react";
+
+export default function ChatInput({ onSend }) { const [text, setText] = useState("");
+
+const handleSend = (e) => { e.preventDefault(); if (!text.trim()) return; onSend({ role: "user", content: text }); // For demo purposes, simulate an AI response onSend({ role: "assistant", content: "This is a simulated AI response. Your message was: " + text }); setText(""); };
+
+return ( <form onSubmit={handleSend} className="w-full flex"> <textarea value={text} onChange={(e) => setText(e.target.value)} className="chat-input flex-grow bg-gray-700 text-white" placeholder="Type your message..." /> <button type="submit" className="ml-2 px-4 py-2 bg-[var(--accent-color)] text-black rounded hover:shadow-neon"> Send </button> </form> ); }
+
+--------------------
+File: components/ChatWindow.jsx
+--------------------
+export default function ChatWindow({ messages }) { return ( <div className="chat-window"> {messages.map((msg, index) => ( <div key={index} className={mb-3 ${msg.role === "user" ? "text-right" : "text-left"}} > <span className={inline-block p-3 rounded ${ msg.role === "user" ? "bg-[var(--accent-color)] text-black" : "bg-gray-600 text-white" }} > {msg.content} </span> </div> ))} </div> ); }
+
+--------------------
+File: components/ColorPicker.jsx
+--------------------
+import { useState } from "react";
+
+export default function ColorPicker({ currentColor, onChange }) { const [color, setColor] = useState(currentColor);
+
+const handleChange = (e) => { setColor(e.target.value); onChange(e.target.value); };
+
+return ( <input type="color" value={color} onChange={handleChange} className="w-16 h-10 p-0 border-0" /> ); }
+
+--------------------
+File: components/Footer.jsx
+--------------------
+export default function Footer() { return ( <footer className="w-full bg-gray-900 text-gray-400 p-4 text-center"> <p>© {new Date().getFullYear()} Gradiorum Corporation. All rights reserved.</p> </footer> ); }
+
+--------------------
+File: components/Header.jsx
+--------------------
+import Link from "next/link";
+
+export default function Header() { return ( <header className="w-full bg-gray-900 text-gray-200 p-4 flex justify-between items-center"> <div className="flex items-center space-x-2"> <img src="/images/logo.png" alt="Gradiorum Logo" className="w-10 h-10" /> <Link href="/" className="text-xl font-bold">Gradiorum</Link> </div> <nav className="hidden md:flex space-x-4"> <Link href="/" className="hover:text-[var(--accent-color)]">Home</Link> <Link href="/dashboard" className="hover:text-[var(--accent-color)]">Dashboard</Link> <Link href="/blog" className="hover:text-[var(--accent-color)]">Blog</Link> <Link href="/settings" className="hover:text-[var(--accent-color)]">Settings</Link> </nav> <div className="flex space-x-2"> <Link href="/auth/signin" className="hover:text-[var(--accent-color)]">Sign In</Link> <Link href="/auth/signup" className="hover:text-[var(--accent-color)]">Sign Up</Link> </div> </header> ); }
+
+--------------------
+File: components/Hero.jsx
+--------------------
+export default function Hero() { return ( <section className="relative w-full h-[60vh] bg-black flex items-center justify-center text-center" style={{ backgroundImage: "url('/images/xbox-swirls.jpg')", backgroundSize: "cover", backgroundPosition: "center", }} > <div className="absolute inset-0 bg-black bg-opacity-60" /> <div className="relative z-10 text-white max-w-2xl"> <h1 className="text-5xl font-bold mb-4 neon-title"> Welcome to Gradiorum </h1> <p className="text-xl mb-6"> The Frontier of Innovation & Technology </p> <a href="/about" className="inline-block px-6 py-3 text-black bg-xboxGreen rounded font-semibold hover:bg-opacity-80 transition" > Learn More </a> </div> </section> ); }
+
+--------------------
+File: components/Layout.jsx
+--------------------
+import Head from "next/head"; import Header from "./Header"; import Footer from "./Footer";
+
+export default function Layout({ children, title }) { const pageTitle = title ? ${title} : "Gradiorum";
+
+return ( <> <Head> <title>{pageTitle}</title> <meta name="description" content="Gradiorum - Frontier of Innovation and Technology" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> </Head> <div className="bg-black min-h-screen flex flex-col"> <Header /> {/* Main content centered both vertically and horizontally */} <div className="flex-grow flex items-center justify-center"> <main className="w-full max-w-4xl px-4"> {children} </main> </div> <Footer /> </div> </> ); }
+
+--------------------
+File: components/Sidebar.jsx
+--------------------
+import Link from "next/link";
+
+export default function Sidebar() { // Placeholder list of projects/workflows const items = [ { name: "Project Alpha", link: "/dashboard?project=alpha" }, { name: "Workflow Beta", link: "/dashboard?workflow=beta" }, { name: "Custom Model", link: "/dashboard?model=custom" } ];
+
+return ( <aside className="w-64 bg-gray-800 text-gray-200 p-4"> <h2 className="text-xl font-bold mb-4">Projects & Workflows</h2> <ul className="space-y-2"> {items.map((item, i) => ( <li key={i}> <Link href={item.link} className="hover:text-accent">{item.name}</Link> </li> ))} </ul> <div className="mt-6"> <h3 className="font-semibold mb-2">Model Selector</h3> {/* This is a placeholder – later you can add inputs to let users enter a model name and API key */} <select className="w-full p-2 rounded bg-gray-700 text-white"> <option value="default">Default GPT Model</option> <option value="custom">Add New Model...</option> </select> </div> </aside> ); }
+
+--------------------
+File: gradiorum/package.json
+--------------------
+{ "name": "gradiorum", "version": "0.1.0", "private": true, "scripts": { "dev": "next dev --turbopack", "build": "next build", "start": "next start", "lint": "next lint", "pages:build": "npx @cloudflare/next-on-pages", "preview": "npm run pages:build && wrangler pages dev", "deploy": "npm run pages:build && wrangler pages deploy", "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts" }, "dependencies": { "next": "15.1.5", "react": "^19.0.0", "react-dom": "^19.0.0" }, "devDependencies": { "@cloudflare/next-on-pages": "^1.13.7", "@cloudflare/workers-types": "^4.20250124.3", "@eslint/eslintrc": "^3", "@types/node": "^20", "@types/react": "^19", "@types/react-dom": "^19", "eslint": "^9", "eslint-config-next": "15.1.5", "postcss": "^8", "tailwindcss": "^3.4.1", "typescript": "^5", "vercel": "^39.3.0", "wrangler": "^3.105.1" } }
+
+--------------------
+File: gradiorum/README.md
+--------------------
+This is a Next.js project bootstrapped with c3.
+
+Getting Started
+First, run the development server:
+
+bash
+Copy
+Edit
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+--------------------
+File: gradiorum/tsconfig.json
+--------------------
+{ "compilerOptions": { "target": "ES2017", "lib": ["dom", "dom.iterable", "esnext"], "allowJs": true, "skipLibCheck": true, "strict": true, "noEmit": true, "esModuleInterop": true, "module": "esnext", "moduleResolution": "bundler", "resolveJsonModule": true, "isolatedModules": true, "jsx": "preserve", "incremental": true, "plugins": [ { "name": "next" } ], "paths": { "@/": ["./src/"] }, "types": [ "@cloudflare/workers-types/2023-07-01" ] }, "include": ["next-env.d.ts", "/*.ts", "/.tsx", ".next/types/**/.ts"], "exclude": ["node_modules"] }
+
+--------------------
+File: gradiorum/wrangler.json
+--------------------
+{ "$schema": "node_modules/wrangler/config-schema.json", "name": "gradiorum", "compatibility_date": "2025-01-24", "compatibility_flags": [ "nodejs_compat" ], "pages_build_output_dir": ".vercel/output/static", "observability": { "enabled": true } // Additional bindings and configuration may be added here as needed. }
+
+--------------------
+File: gradiorum/src/app/globals.css
+--------------------
+@tailwind base; @tailwind components; @tailwind utilities;
+
+:root { --background: #ffffff; --foreground: #171717; }
+
+@media (prefers-color-scheme: dark) { :root { --background: #0a0a0a; --foreground: #ededed; } }
+
+body { color: var(--foreground); background: var(--background); font-family: Arial, Helvetica, sans-serif; }
+
+--------------------
+File: hooks/useTheme.js
+--------------------
+import { useEffect, useState } from "react";
+
+const DEFAULT_THEME = { background: "#0a0a0a", foreground: "#ededed", accent: "#00ff7f" };
+
+export function useTheme() { const [theme, setTheme] = useState(DEFAULT_THEME);
+
+useEffect(() => { const savedTheme = localStorage.getItem("gradiorum-theme"); if (savedTheme) { setTheme(JSON.parse(savedTheme)); applyTheme(JSON.parse(savedTheme)); } else { applyTheme(DEFAULT_THEME); } }, []);
+
+const applyTheme = (theme) => { document.documentElement.style.setProperty("--background-color", theme.background); document.documentElement.style.setProperty("--foreground-color", theme.foreground); document.documentElement.style.setProperty("--accent-color", theme.accent); };
+
+const changeTheme = (newTheme) => { setTheme(newTheme); localStorage.setItem("gradiorum-theme", JSON.stringify(newTheme)); applyTheme(newTheme); };
+
+return { theme, changeTheme }; }
+
+--------------------
+File: pages/about.jsx
+--------------------
+import Layout from "../components/Layout";
+
+export default function About() { return ( <Layout title="About - Gradiorum"> <section className="max-w-5xl mx-auto px-4 py-10"> <h1 className="text-4xl font-bold mb-6">About Gradiorum</h1> <p className="text-lg text-gray-200 mb-6"> Gradiorum stands at the intersection of innovation, technology, and art. We present cutting-edge projects, creative endeavors, and advanced AI-driven works spanning artificial intelligence, reinforcement learning, synthetic data generation, and more. </p> <p className="text-lg text-gray-200 mb-6"> Our mission: to push the boundaries of what’s possible, foster collaboration, and openly share knowledge with the global community. </p> <h2 className="text-3xl font-semibold mb-4">Our Mission</h2> <p className="text-gray-300 mb-8"> We strive to pioneer forward-looking technological solutions using advanced AI frameworks, emerging paradigms, and rigorous research methodologies. Transparency, education, and open collaboration define our ethos. </p> <h2 className="text-3xl font-semibold mb-4">History & Timeline</h2> <div className="space-y-8"> <div> <h3 className="text-xl font-semibold">October 13, 2024</h3> <p className="text-gray-300">Official name change from “FallingPlanet” to “Gradiorum”.</p> </div> <div> <h3 className="text-xl font-semibold">October 20, 2024</h3> <p className="text-gray-300 mb-2">Completion of the major toolkit rewrite:</p> <ul className="list-disc ml-5 space-y-1 text-gray-300"> <li><strong>Via</strong> (formerly Orbit): A lightweight modular framework for AI integration.</li> <li><strong>Ascendus</strong> (formerly Quasar): An advanced AI toolkit for scalable automation.</li> <li><strong>Motus</strong>: A reinforcement learning library for dynamic AI solutions.</li> </ul> </div> </div> </section> </Layout> ); }
+
+--------------------
+File: pages/contact.jsx
+--------------------
+import Layout from "../components/Layout";
+
+export default function Contact() { return ( <Layout title="Contact - Gradiorum"> <section className="max-w-3xl mx-auto px-4 py-10"> <h1 className="text-4xl font-bold mb-6">Contact Us</h1> <p className="text-gray-200 mb-4"> For inquiries, collaboration proposals, or more details, send us an email: </p> <p className="mb-6"> <a href="mailto:gradiorum@gmail.com" className="text-xboxGreen underline"> gradiorum@gmail.com </a> </p> <p className="text-gray-200"> We welcome your feedback and look forward to hearing from you. </p> </section> </Layout> ); }
+
+--------------------
+File: pages/discordbots.jsx
+--------------------
+import Layout from "../components/Layout";
+
+export default function DiscordBots() { return ( <Layout title="Discord Bots - Gradiorum"> <section className="max-w-4xl mx-auto px-4 py-10"> <h1 className="text-4xl font-bold mb-6">Discord Bots</h1> <p className="text-gray-200 mb-6"> Gradiorum’s Discord integrations bring innovative capabilities right into your community servers. </p> <article className="mb-8"> <h2 className="text-2xl font-semibold mb-2">GradiorumMP3</h2> <p> A music manager bot for Discord, capable of playing MP3 files, handling playlists, queue management, skipping, pausing, and resuming tracks—bringing a social listening experience to your server. </p> </article> <article> <h2 className="text-2xl font-semibold mb-2">Polishadow</h2> <p> Monitors politicians’ stock trades and leverages synthetic data insights to detect potential insider patterns. It can paper-trade strategies, issue alerts, and offer subscription tiers for timely updates on market moves. </p> </article> </section> </Layout> ); }
+
+--------------------
+File: pages/humanai.jsx
+--------------------
+import Layout from "../components/Layout";
+
+export default function HumanAITeaming() { return ( <Layout title="Human-AI Teaming - Gradiorum"> <section className="max-w-3xl mx-auto px-4 py-10"> <h1 className="text-4xl font-bold mb-6">Human-AI Teaming</h1> <p className="text-gray-200 mb-6"> In partnership with Kennesaw State University, we research effective paradigms for collaboration between humans and intelligent agents. Our aim is to foster trust, interpretability, and high performance in complex tasks. </p> <h2 className="text-2xl font-semibold mb-4">Scope & Objectives</h2> <ul className="list-disc ml-5 mb-6 text-gray-300 space-y-2"> <li>Develop interactive interfaces for joint human-AI strategy formation.</li> <li>Ensure explainability in AI-driven recommendations.</li> <li>Explore reinforcement learning & adaptive feedback loops for continuous improvement.</li> </ul> <p className="text-gray-300"> This project is in its early phases. We plan to publish working papers, demos, and frameworks as progress continues. </p> </section> </Layout> ); }
+
+--------------------
+File: pages/index.jsx
+--------------------
+import { useState } from "react"; import Header from "../components/Header"; import Footer from "../components/Footer"; import ChatWindow from "../components/ChatWindow"; import ChatInput from "../components/ChatInput";
+
+export default function Home() { const [messages, setMessages] = useState([ { role: "system", content: "Welcome to Gradiorum AI. How can I help you today?" } ]);
+
+const addMessage = (newMessage) => { setMessages((prev) => [...prev, newMessage]); };
+
+return ( <div className="min-h-screen" style={{ backgroundColor: "var(--background-color)", color: "var(--foreground-color)" }}> <Header /> {/* Center the chat area within the available vertical space */} <main className="flex-grow flex items-center justify-center" style={{ padding: "2rem" }}> <div className="chat-container w-full max-w-2xl"> <h1 className="text-3xl font-bold mb-4 neon-text text-center">Gradiorum Chat</h1> <ChatWindow messages={messages} /> <ChatInput onSend={addMessage} /> </div> </main> <Footer /> </div> ); }
+
+--------------------
+File: pages/members.jsx
+--------------------
+import Layout from "../components/Layout";
+
+export default function Members() { return ( <Layout title="Members - Gradiorum"> <section className="max-w-3xl mx-auto px-4 py-10"> <h1 className="text-4xl font-bold mb-6">Members</h1> <div className="md:flex items-center md:space-x-6 mb-6"> <img src="/images/william-stigall.jpg" alt="William A. Stigall" className="w-32 h-32 rounded-full object-cover border-2 border-xboxGreen mb-4 md:mb-0" /> <div> <h2 className="text-2xl font-semibold mb-2">William A. Stigall</h2> <p className="text-gray-200"> William is a 22-year-old AI enthusiast with a B.S. in CS (AI concentration) and Data Science minor from KSU. He’ll start an M.S. in Machine Learning at Georgia Tech in January. Dedicated to bridging the gap between reinforcement learning, human-AI teaming, and everyday life. </p> </div> </div> </section> </Layout> ); }
+
+--------------------
+File: pages/papers.jsx
+--------------------
+import Layout from "../components/Layout";
+
+export default function Papers() { return ( <Layout title="Our Papers - Gradiorum"> <section className="max-w-5xl mx-auto px-4 py-10"> <h1 className="text-4xl font-bold mb-8">Our Papers</h1> <div className="grid md:grid-cols-2 gap-8"> <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"> <h2 className="text-2xl font-semibold mb-2">TransformingGameplay: A Transformer-Based Q-Network</h2> <p className="mb-2"><strong>Authors:</strong> William A. Stigall, Jitendra Sai Kota</p> <p className="text-gray-300 mb-4"> Explores a transformer-based Q-Network for gameplay environments without convolutional layers, analyzing performance and limitations in RL tasks. </p> <p className="mb-4"><strong>Keywords:</strong> Transformer, Q-Network, RL</p> <a href="https://arxiv.org/submit/5925810/view" target="_blank" rel="noreferrer" className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80" > Read Paper </a> </article> <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"> <h2 className="text-2xl font-semibold mb-2">Scaling Synthetic Data for Behavioral Health Classification</h2> <p className="mb-2"><strong>Authors:</strong> William Stigall, Md Abdullah Al Hafiz Khan</p> <p className="text-gray-300 mb-4"> Investigates synthetic data generation using large language models (LLMs) to enhance behavioral health classification datasets at scale. </p> <p className="mb-4"><strong>Keywords:</strong> Synthetic Data, Behavioral Health, LLMs</p> <span className="inline-block px-3 py-1 bg-gray-400 text-white rounded opacity-50 cursor-not-allowed"> Read Paper (Pending) </span> <p className="mt-2 text-gray-500">Link will be available once published.</p> </article> </div> </section> </Layout> ); }
+
+--------------------
+File: pages/projects.jsx
+--------------------
+import Layout from "../components/Layout";
+
+export default function Projects() { return ( <Layout title="Projects - Gradiorum"> <section className="max-w-5xl mx-auto px-4 py-10"> <h1 className="text-4xl font-bold mb-8">Projects</h1> <div className="grid md:grid-cols-2 gap-8"> <article id="via" className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"> <h2 className="text-2xl font-semibold mb-4">Via</h2> <p className="mb-4"> A lightweight, modular framework for AI integration. Simplifies connecting various AI components, enabling rapid prototyping. </p> <a href="https://github.com/Gradiorum/Via" target="_blank" rel="noreferrer" className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80" > View on GitHub </a> </article> <article id="ascendus" className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"> <h2 className="text-2xl font-semibold mb-4">Ascendus</h2> <p className="mb-4"> An advanced AI toolkit for scalable automation and efficiency. Ideal for large-scale deployments and complex orchestration tasks. </p> <a href="https://github.com/Gradiorum/Ascendus" target="_blank" rel="noreferrer" className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80" > View on GitHub </a> </article> <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"> <h2 className="text-2xl font-semibold mb-4">LuminaGuard</h2> <p className="mb-4"> An AI-driven adaptive lighting solution. Adjusts screen brightness, color temperature, and integrates with smart lighting for optimized environments. </p> <a href="https://github.com/Gradiorum/Gradiorum" target="_blank" rel="noreferrer" className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80" > View on GitHub </a> </article> <article className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"> <h2 className="text-2xl font-semibold mb-4">Motus</h2> <p className="mb-4"> A reinforcement learning library for dynamic AI solutions. Provides specialized RL modules for advanced problem solving. </p> <a href="https://github.com/Gradiorum/Motus" target="_blank" rel="noreferrer" className="inline-block px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80" > View on GitHub </a> </article> </div> </section> </Layout> ); }
+
+--------------------
+File: pages/videos.jsx
+--------------------
+import Layout from "../components/Layout";
+
+export default function Videos() { return ( <Layout title="Videos - Gradiorum"> <section className="max-w-3xl mx-auto px-4 py-10 text-center"> <h1 className="text-4xl font-bold mb-6">Visit Our YouTube Channel</h1> <p className="text-gray-200 mb-6">Access tutorials, demos, and talks.</p> <a href="https://www.youtube.com/channel/Gradiorum" target="_blank" rel="noreferrer" className="px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80" > Go to YouTube Channel </a> </section> </Layout> ); }
+
+--------------------
+File: pages/_app.jsx
+--------------------
+import '../styles/globals.css';
+
+export default function App({ Component, pageProps }) { return ( <Component {...pageProps} /> ); }
+
+--------------------
+File: pages/blog/index.jsx
+--------------------
+import Layout from "../../components/Layout"; import Link from "next/link";
+
+export default function BlogIndex() { // Example placeholder blog listing const mockPosts = [ { slug: "williams-journey-and-our-vision", title: "William’s Journey and Our Vision", excerpt: "Our founder prepares for an MS at Georgia Tech, bridging the gap between AI research and everyday applications...", date: "Dec 07, 2024", }, { slug: "synthetic-data-for-behavioral-health", title: "Scaling Synthetic Data for Behavioral Health", excerpt: "Investigating how LLMs can enrich classification datasets in healthcare with safe synthetic data...", date: "Nov 15, 2024", } ];
+
+return ( <Layout title="Blog - Gradiorum"> <section className="max-w-6xl mx-auto px-4 py-10"> <h1 className="text-4xl font-bold mb-8 text-center">Blog</h1> <div className="grid md:grid-cols-2 gap-8"> {mockPosts.map((post) => ( <article key={post.slug} className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition" > <h2 className="text-2xl font-semibold mb-2">{post.title}</h2> <p className="text-sm text-gray-400 mb-4">{post.date}</p> <p className="text-gray-200 mb-6">{post.excerpt}</p> <Link href={/blog/${post.slug}} className="inline-block px-4 py-2 rounded bg-xboxGreen text-black font-semibold hover:bg-opacity-80" > Read More </Link> </article> ))} </div> </section> </Layout> ); }
+
+--------------------
+File: pages/blog/[slug].jsx
+--------------------
+import { useRouter } from "next/router"; import Layout from "../../components/Layout";
+
+export default function BlogPost() { const { query } = useRouter(); const { slug } = query;
+
+// Demo placeholder content const mockContent = ` <h2>${slug?.replaceAll('-', ' ')}</h2> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam euismod nisl a urna pellentesque, at lobortis augue commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> `;
+
+return ( <Layout title={`Blog: ${slug || 'Loading...'}`}> <section className="max-w-3xl mx-auto px-4 py-10 text-gray-100"> {slug ? ( <article className="prose prose-invert"> <div dangerouslySetInnerHTML={{ __html: mockContent }} /> </article> ) : ( <p>Loading...</p> )} </section> </Layout> ); }
+
+--------------------
+File: posts/2024-12-07-first-blog-post.md
+--------------------
+William’s Journey and Our Vision By: William (Founder)
+
+As I prepare to embark on my Master of Science in Computer Science at Georgia Tech this coming January, specializing in Machine Learning, I’m reminded of the broader goal we hold at Gradiorum: bringing personalized AI assistants into everyday life.
+
+From early forays into reinforcement learning to the nuanced complexities of human-AI teaming, our mission is rooted in practical innovation. Soon, I will be immersing myself in advanced coursework and research at one of the world’s leading institutions. This step is not just academic—it’s a move towards realizing our dream: making AI assistants as ubiquitous and helpful as any common household technology.
+
+Blog Roles at Gradiorum:
+
+Founder (like me, William): We shape the strategic direction and share our vision. Members: Our verified contributors who add depth to projects and research discussions. Guests: Occasional voices from the larger tech and AI ecosystem. Guest posts are carefully verified before publication to ensure quality and relevance.
+
+We look forward to sharing insights, updates, and breakthroughs. Thank you for joining us on this journey.
+
+--------------------
+File: posts/README.md
+--------------------
+// This README was replaced with the first blog post file above. // The original README in this directory is no longer needed. // You can keep this placeholder here if you like, or remove it.
+
+--------------------
+File: public/images/README.md
+--------------------
+Images Directory
+Place your site's images and brand assets here. For example:
+
+xbox-swirls.jpg for the Hero background
+starfield.png if you do a starfield background
+logo.png if you have an updated logo
+william-stigall.jpg for the members page
+--------------------
+File: styles/globals.css
+--------------------
+@tailwind base; @tailwind components; @tailwind utilities;
+
+/* Global reset and base styles */ html, body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+
+/* Utility class for centering containers */ .container-center { margin-left: auto; margin-right: auto; }
+
+/* Neon glow text utility */ .neon-title, .neon-text { text-shadow: 0 0 8px var(--accent-color), 0 0 20px var(--accent-color); }
+
+/* Chat interface styling */ .chat-container { display: flex; flex-direction: column; width: 100%; max-width: 800px; margin: 0 auto; background-color: #1a1a1a; border-radius: 8px; padding: 16px; }
+
+.chat-window { flex-grow: 1; max-height: 500px; overflow-y: auto; background-color: #2a2a2a; padding: 12px; border-radius: 8px; margin-bottom: 12px; }
+
+.chat-input { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 1rem; resize: vertical; min-height: 50px; }
+
+/* Page wrapper for centered content */ .page-wrapper { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Hover neon effect */ .hover\:shadow-neon:hover { box-shadow: 0 0 8px var(--accent-color), 0 0 16px var(--accent-color); }
+
+/* Dark mode overrides if needed */ .dark { background-color: var(--background-color); color: var(--foreground-color); }
+
+--------------------

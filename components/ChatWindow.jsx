@@ -20,4 +20,3 @@ export default function ChatWindow({ messages }) {
       </div>
     );
   }
-  

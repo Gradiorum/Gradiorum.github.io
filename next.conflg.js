@@ -4,4 +4,3 @@ module.exports = {
     trailingSlash: true, // Optional: Adds trailing slashes to routes
     // Other configurations
   };
-  
