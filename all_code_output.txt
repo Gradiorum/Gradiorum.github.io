@@ -1,3 +1,4 @@
+
 # --------------------
 # File: decompile_code.py
 # --------------------
@@ -171,6 +172,18 @@ module.exports = nextConfig;
 
 
 # --------------------
+# File: next.conflg.js
+# --------------------
+
+// next.config.js
+module.exports = {
+    output: 'export',
+    trailingSlash: true, // Optional: Adds trailing slashes to routes
+    // Other configurations
+  };
+  
+
+# --------------------
 # File: package.json
 # --------------------
 
@@ -268,151 +281,392 @@ module.exports = {
 
 
 # --------------------
-# File: components/Footer.jsx
+# File: .wrangler\tmp\bundle-WSSZLG\checked-fetch.js
+# --------------------
+
+const urls = new Set();
+
+function checkURL(request, init) {
+	const url =
+		request instanceof URL
+			? request
+			: new URL(
+					(typeof request === "string"
+						? new Request(request, init)
+						: request
+					).url
+				);
+	if (url.port && url.port !== "443" && url.protocol === "https:") {
+		if (!urls.has(url.toString())) {
+			urls.add(url.toString());
+			console.warn(
+				`WARNING: known issue with \`fetch()\` requests to custom HTTPS ports in published Workers:\n` +
+					` - ${url.toString()} - the custom port will be ignored when the Worker is published using the \`wrangler deploy\` command.\n`
+			);
+		}
+	}
+}
+
+globalThis.fetch = new Proxy(globalThis.fetch, {
+	apply(target, thisArg, argArray) {
+		const [request, init] = argArray;
+		checkURL(request, init);
+		return Reflect.apply(target, thisArg, argArray);
+	},
+});
+
+
+# --------------------
+# File: .wrangler\tmp\bundle-WSSZLG\middleware-insertion-facade.js
+# --------------------
+
+				import worker, * as OTHER_EXPORTS from "C:\\Users\\WillR\\AppData\\Roaming\\npm\\node_modules\\wrangler\\templates\\pages-shim.ts";
+				import * as __MIDDLEWARE_0__ from "C:\\Users\\WillR\\AppData\\Roaming\\npm\\node_modules\\wrangler\\templates\\middleware\\middleware-ensure-req-body-drained.ts";
+import * as __MIDDLEWARE_1__ from "C:\\Users\\WillR\\AppData\\Roaming\\npm\\node_modules\\wrangler\\templates\\middleware\\middleware-miniflare3-json-error.ts";
+
+				export * from "C:\\Users\\WillR\\AppData\\Roaming\\npm\\node_modules\\wrangler\\templates\\pages-shim.ts";
+
+				export const __INTERNAL_WRANGLER_MIDDLEWARE__ = [
+					
+					__MIDDLEWARE_0__.default,__MIDDLEWARE_1__.default
+				]
+				export default worker;
+
+# --------------------
+# File: .wrangler\tmp\dev-EcO1OJ\pages-shim.js
+# --------------------
+
+var __defProp = Object.defineProperty;
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+
+// .wrangler/tmp/bundle-WSSZLG/checked-fetch.js
+var urls = /* @__PURE__ */ new Set();
+function checkURL(request, init) {
+  const url = request instanceof URL ? request : new URL(
+    (typeof request === "string" ? new Request(request, init) : request).url
+  );
+  if (url.port && url.port !== "443" && url.protocol === "https:") {
+    if (!urls.has(url.toString())) {
+      urls.add(url.toString());
+      console.warn(
+        `WARNING: known issue with \`fetch()\` requests to custom HTTPS ports in published Workers:
+ - ${url.toString()} - the custom port will be ignored when the Worker is published using the \`wrangler deploy\` command.
+`
+      );
+    }
+  }
+}
+__name(checkURL, "checkURL");
+globalThis.fetch = new Proxy(globalThis.fetch, {
+  apply(target, thisArg, argArray) {
+    const [request, init] = argArray;
+    checkURL(request, init);
+    return Reflect.apply(target, thisArg, argArray);
+  }
+});
+
+// C:/Users/WillR/AppData/Roaming/npm/node_modules/wrangler/templates/pages-shim.ts
+var pages_shim_default = {
+  async fetch(request, env, context) {
+    const response = await env.ASSETS.fetch(request.url, request);
+    return new Response(response.body, response);
+  }
+};
+
+// C:/Users/WillR/AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-ensure-req-body-drained.ts
+var drainBody = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx) => {
+  try {
+    return await middlewareCtx.next(request, env);
+  } finally {
+    try {
+      if (request.body !== null && !request.bodyUsed) {
+        const reader = request.body.getReader();
+        while (!(await reader.read()).done) {
+        }
+      }
+    } catch (e) {
+      console.error("Failed to drain the unused request body.", e);
+    }
+  }
+}, "drainBody");
+var middleware_ensure_req_body_drained_default = drainBody;
+
+// C:/Users/WillR/AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-miniflare3-json-error.ts
+function reduceError(e) {
+  return {
+    name: e?.name,
+    message: e?.message ?? String(e),
+    stack: e?.stack,
+    cause: e?.cause === void 0 ? void 0 : reduceError(e.cause)
+  };
+}
+__name(reduceError, "reduceError");
+var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx) => {
+  try {
+    return await middlewareCtx.next(request, env);
+  } catch (e) {
+    const error = reduceError(e);
+    return Response.json(error, {
+      status: 500,
+      headers: { "MF-Experimental-Error-Stack": "true" }
+    });
+  }
+}, "jsonError");
+var middleware_miniflare3_json_error_default = jsonError;
+
+// .wrangler/tmp/bundle-WSSZLG/middleware-insertion-facade.js
+var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
+  middleware_ensure_req_body_drained_default,
+  middleware_miniflare3_json_error_default
+];
+var middleware_insertion_facade_default = pages_shim_default;
+
+// C:/Users/WillR/AppData/Roaming/npm/node_modules/wrangler/templates/middleware/common.ts
+var __facade_middleware__ = [];
+function __facade_register__(...args) {
+  __facade_middleware__.push(...args.flat());
+}
+__name(__facade_register__, "__facade_register__");
+function __facade_invokeChain__(request, env, ctx, dispatch, middlewareChain) {
+  const [head, ...tail] = middlewareChain;
+  const middlewareCtx = {
+    dispatch,
+    next(newRequest, newEnv) {
+      return __facade_invokeChain__(newRequest, newEnv, ctx, dispatch, tail);
+    }
+  };
+  return head(request, env, ctx, middlewareCtx);
+}
+__name(__facade_invokeChain__, "__facade_invokeChain__");
+function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
+  return __facade_invokeChain__(request, env, ctx, dispatch, [
+    ...__facade_middleware__,
+    finalMiddleware
+  ]);
+}
+__name(__facade_invoke__, "__facade_invoke__");
+
+// .wrangler/tmp/bundle-WSSZLG/middleware-loader.entry.ts
+var __Facade_ScheduledController__ = class {
+  constructor(scheduledTime, cron, noRetry) {
+    this.scheduledTime = scheduledTime;
+    this.cron = cron;
+    this.#noRetry = noRetry;
+  }
+  #noRetry;
+  noRetry() {
+    if (!(this instanceof __Facade_ScheduledController__)) {
+      throw new TypeError("Illegal invocation");
+    }
+    this.#noRetry();
+  }
+};
+__name(__Facade_ScheduledController__, "__Facade_ScheduledController__");
+function wrapExportedHandler(worker) {
+  if (__INTERNAL_WRANGLER_MIDDLEWARE__ === void 0 || __INTERNAL_WRANGLER_MIDDLEWARE__.length === 0) {
+    return worker;
+  }
+  for (const middleware of __INTERNAL_WRANGLER_MIDDLEWARE__) {
+    __facade_register__(middleware);
+  }
+  const fetchDispatcher = /* @__PURE__ */ __name(function(request, env, ctx) {
+    if (worker.fetch === void 0) {
+      throw new Error("Handler does not export a fetch() function.");
+    }
+    return worker.fetch(request, env, ctx);
+  }, "fetchDispatcher");
+  return {
+    ...worker,
+    fetch(request, env, ctx) {
+      const dispatcher = /* @__PURE__ */ __name(function(type, init) {
+        if (type === "scheduled" && worker.scheduled !== void 0) {
+          const controller = new __Facade_ScheduledController__(
+            Date.now(),
+            init.cron ?? "",
+            () => {
+            }
+          );
+          return worker.scheduled(controller, env, ctx);
+        }
+      }, "dispatcher");
+      return __facade_invoke__(request, env, ctx, dispatcher, fetchDispatcher);
+    }
+  };
+}
+__name(wrapExportedHandler, "wrapExportedHandler");
+function wrapWorkerEntrypoint(klass) {
+  if (__INTERNAL_WRANGLER_MIDDLEWARE__ === void 0 || __INTERNAL_WRANGLER_MIDDLEWARE__.length === 0) {
+    return klass;
+  }
+  for (const middleware of __INTERNAL_WRANGLER_MIDDLEWARE__) {
+    __facade_register__(middleware);
+  }
+  return class extends klass {
+    #fetchDispatcher = (request, env, ctx) => {
+      this.env = env;
+      this.ctx = ctx;
+      if (super.fetch === void 0) {
+        throw new Error("Entrypoint class does not define a fetch() function.");
+      }
+      return super.fetch(request);
+    };
+    #dispatcher = (type, init) => {
+      if (type === "scheduled" && super.scheduled !== void 0) {
+        const controller = new __Facade_ScheduledController__(
+          Date.now(),
+          init.cron ?? "",
+          () => {
+          }
+        );
+        return super.scheduled(controller);
+      }
+    };
+    fetch(request) {
+      return __facade_invoke__(
+        request,
+        this.env,
+        this.ctx,
+        this.#dispatcher,
+        this.#fetchDispatcher
+      );
+    }
+  };
+}
+__name(wrapWorkerEntrypoint, "wrapWorkerEntrypoint");
+var WRAPPED_ENTRY;
+if (typeof middleware_insertion_facade_default === "object") {
+  WRAPPED_ENTRY = wrapExportedHandler(middleware_insertion_facade_default);
+} else if (typeof middleware_insertion_facade_default === "function") {
+  WRAPPED_ENTRY = wrapWorkerEntrypoint(middleware_insertion_facade_default);
+}
+var middleware_loader_entry_default = WRAPPED_ENTRY;
+export {
+  __INTERNAL_WRANGLER_MIDDLEWARE__,
+  middleware_loader_entry_default as default
+};
+//# sourceMappingURL=pages-shim.js.map
+
+
+# --------------------
+# File: components\ChatInput.jsx
+# --------------------
+
+import { useState } from "react";
+
+export default function ChatInput({ onSend }) {
+  const [text, setText] = useState("");
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    if (text.trim() === "") return;
+    onSend({ role: "user", content: text });
+    // For demo purposes, we echo a response:
+    onSend({ role: "assistant", content: "This is a placeholder response." });
+    setText("");
+  };
+
+  return (
+    <form onSubmit={handleSend} className="flex space-x-2">
+      <input
+        type="text"
+        placeholder="Type your message..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        className="flex-grow p-2 rounded bg-gray-600 text-white"
+      />
+      <button type="submit" className="px-4 py-2 bg-accent text-black rounded">Send</button>
+    </form>
+  );
+}
+
+
+# --------------------
+# File: components\ChatWindow.jsx
+# --------------------
+
+export default function ChatWindow({ messages }) {
+    return (
+      <div className="h-80 overflow-y-auto bg-gray-700 rounded p-4 mb-4">
+        {messages.map((msg, index) => (
+          <div key={index} className={`mb-2 ${msg.role === "user" ? "text-right" : "text-left"}`}>
+            <span className={`inline-block p-2 rounded ${msg.role === "user" ? "bg-accent text-black" : "bg-gray-600"}`}>
+              {msg.content}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  
+
+# --------------------
+# File: components\ColorPicker.jsx
+# --------------------
+
+import { useState } from "react";
+
+export default function ColorPicker({ currentColor, onChange }) {
+  const [color, setColor] = useState(currentColor);
+
+  const handleChange = (e) => {
+    setColor(e.target.value);
+    onChange(e.target.value);
+  };
+
+  return (
+    <input
+      type="color"
+      value={color}
+      onChange={handleChange}
+      className="w-16 h-10 p-0 border-0"
+    />
+  );
+}
+
+
+# --------------------
+# File: components\Footer.jsx
 # --------------------
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-200 py-8 mt-10 text-center">
-      <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Gradiorum. All rights reserved.</p>
-      <div className="flex justify-center space-x-4 mt-4">
-        <a
-          href="https://twitter.com/Gradiorum"
-          className="hover:text-xboxGreen transition"
-          aria-label="Twitter"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Twitter
-        </a>
-        <a
-          href="https://linkedin.com/company/Gradiorum"
-          className="hover:text-xboxGreen transition"
-          aria-label="LinkedIn"
-          target="_blank"
-          rel="noreferrer"
-        >
-          LinkedIn
-        </a>
-        <a
-          href="https://youtube.com/channel/Gradiorum"
-          className="hover:text-xboxGreen transition"
-          aria-label="YouTube"
-          target="_blank"
-          rel="noreferrer"
-        >
-          YouTube
-        </a>
-      </div>
-      <div className="mt-6">
-        <p className="mb-2">Join our Mailing List for Updates</p>
-        <form id="newsletter-form" className="flex justify-center items-center space-x-2">
-          <input
-            type="email"
-            name="email"
-            className="px-3 py-2 rounded border border-gray-600 focus:outline-none"
-            placeholder="Your email"
-            required
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 bg-xboxGreen text-black rounded hover:bg-opacity-80 transition"
-          >
-            Subscribe
-          </button>
-        </form>
-      </div>
-      <div className="mt-6 text-sm text-gray-500 max-w-2xl mx-auto">
-        <p>
-          <strong>Disclaimer:</strong> All graphical assets on this website are generated by AI. We do not claim
-          artistic authorship over these assets. If you are a graphic artist and wish to collaborate or provide
-          custom artwork, please reach out to us at{" "}
-          <a href="mailto:gradiorum@gmail.com" className="text-xboxGreen underline">
-            gradiorum@gmail.com
-          </a>.
-        </p>
-      </div>
+    <footer className="w-full bg-gray-900 text-gray-400 p-4 text-center">
+      <p>&copy; {new Date().getFullYear()} Gradiorum Corporation. All rights reserved.</p>
     </footer>
   );
 }
 
 
 # --------------------
-# File: components/Header.jsx
+# File: components\Header.jsx
 # --------------------
 
 import Link from "next/link";
-import { useState } from "react";
-import { useTheme } from "../hooks/useTheme";
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-
   return (
-    <header className="w-full bg-gray-900 text-gray-200 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          {/* A placeholder for your logo */}
-          <div className="w-8 h-8 bg-xboxGreen rounded-full shadow-neon" />
-          <Link href="/" className="text-xl font-bold hover:text-xboxGreen transition">
-            Gradiorum
-          </Link>
-        </div>
-        <nav className="hidden md:flex space-x-6">
-          <Link href="/" className="hover:text-xboxGreen transition">Home</Link>
-          <Link href="/about" className="hover:text-xboxGreen transition">About</Link>
-          <Link href="/members" className="hover:text-xboxGreen transition">Members</Link>
-          <Link href="/projects" className="hover:text-xboxGreen transition">Projects</Link>
-          <Link href="/blog" className="hover:text-xboxGreen transition">Blog</Link>
-          <Link href="/videos" className="hover:text-xboxGreen transition">Videos</Link>
-          <Link href="/papers" className="hover:text-xboxGreen transition">Papers</Link>
-          <Link href="/contact" className="hover:text-xboxGreen transition">Contact</Link>
-          <Link href="/luminaguard" className="hover:text-xboxGreen transition">LuminaGuard</Link>
-          <Link href="/humanai" className="hover:text-xboxGreen transition">Human-AI Teaming</Link>
-          <Link href="/discordbots" className="hover:text-xboxGreen transition">Discord Bots</Link>
-        </nav>
-        <div className="flex items-center space-x-4">
-          <button
-            onClick={() => toggleTheme()}
-            className="bg-gray-700 px-3 py-1 rounded hover:bg-gray-600 transition"
-          >
-            {theme === 'light' ? 'Dark' : 'Light'} Mode
-          </button>
-          <button onClick={() => setOpen(!open)} className="md:hidden">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
+    <header className="w-full bg-gray-900 text-gray-200 p-4 flex justify-between items-center">
+      <div className="flex items-center space-x-2">
+        <img src="/images/logo.png" alt="Gradiorum Logo" className="w-8 h-8" />
+        <Link href="/" className="text-xl font-bold">Gradiorum</Link>
       </div>
-      {open && (
-        <div className="md:hidden bg-gray-800">
-          <nav className="flex flex-col p-4 space-y-3">
-            <Link href="/" className="hover:text-xboxGreen transition">Home</Link>
-            <Link href="/about" className="hover:text-xboxGreen transition">About</Link>
-            <Link href="/members" className="hover:text-xboxGreen transition">Members</Link>
-            <Link href="/projects" className="hover:text-xboxGreen transition">Projects</Link>
-            <Link href="/blog" className="hover:text-xboxGreen transition">Blog</Link>
-            <Link href="/videos" className="hover:text-xboxGreen transition">Videos</Link>
-            <Link href="/papers" className="hover:text-xboxGreen transition">Papers</Link>
-            <Link href="/contact" className="hover:text-xboxGreen transition">Contact</Link>
-            <Link href="/luminaguard" className="hover:text-xboxGreen transition">LuminaGuard</Link>
-            <Link href="/humanai" className="hover:text-xboxGreen transition">Human-AI Teaming</Link>
-            <Link href="/discordbots" className="hover:text-xboxGreen transition">Discord Bots</Link>
-          </nav>
-        </div>
-      )}
+      <nav className="hidden md:flex space-x-4">
+        <Link href="/" className="hover:text-accent">Home</Link>
+        <Link href="/dashboard" className="hover:text-accent">Dashboard</Link>
+        <Link href="/blog" className="hover:text-accent">Blog</Link>
+        <Link href="/settings" className="hover:text-accent">Settings</Link>
+      </nav>
+      <div className="flex space-x-2">
+        <Link href="/auth/signin" className="hover:text-accent">Sign In</Link>
+        <Link href="/auth/signup" className="hover:text-accent">Sign Up</Link>
+      </div>
     </header>
   );
 }
 
 
 # --------------------
-# File: components/Hero.jsx
+# File: components\Hero.jsx
 # --------------------
 
 export default function Hero() {
@@ -446,7 +700,7 @@ export default function Hero() {
 
 
 # --------------------
-# File: components/Layout.jsx
+# File: components\Layout.jsx
 # --------------------
 
 import Head from "next/head";
@@ -474,7 +728,44 @@ export default function Layout({ children, title }) {
 
 
 # --------------------
-# File: gradiorum/package.json
+# File: components\Sidebar.jsx
+# --------------------
+
+import Link from "next/link";
+
+export default function Sidebar() {
+  // Placeholder list of projects/workflows
+  const items = [
+    { name: "Project Alpha", link: "/dashboard?project=alpha" },
+    { name: "Workflow Beta", link: "/dashboard?workflow=beta" },
+    { name: "Custom Model", link: "/dashboard?model=custom" }
+  ];
+
+  return (
+    <aside className="w-64 bg-gray-800 text-gray-200 p-4">
+      <h2 className="text-xl font-bold mb-4">Projects & Workflows</h2>
+      <ul className="space-y-2">
+        {items.map((item, i) => (
+          <li key={i}>
+            <Link href={item.link} className="hover:text-accent">{item.name}</Link>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-6">
+        <h3 className="font-semibold mb-2">Model Selector</h3>
+        {/* This is a placeholder – later you can add inputs to let users enter a model name and API key */}
+        <select className="w-full p-2 rounded bg-gray-700 text-white">
+          <option value="default">Default GPT Model</option>
+          <option value="custom">Add New Model...</option>
+        </select>
+      </div>
+    </aside>
+  );
+}
+
+
+# --------------------
+# File: gradiorum\package.json
 # --------------------
 
 {
@@ -513,8 +804,9 @@ export default function Layout({ children, title }) {
   }
 }
 
+
 # --------------------
-# File: gradiorum/README.md
+# File: gradiorum\README.md
 # --------------------
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`c3`](https://developers.cloudflare.com/pages/get-started/c3).
@@ -730,3 +1022,509 @@ html, body { margin: 0; padding: 0; }
 /* Example animations or transitions could be placed here */ .hover:\shadow-neon:hover { box-shadow: 0 0 8px #00ff7f, 0 0 16px #00ff7f; }
 
 .prose-invert h1, .prose-invert h2, .prose-invert h3 { color: #00ff7f; }
+
+
+# --------------------
+# File: gradiorum\tsconfig.json
+# --------------------
+
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": [
+        "@cloudflare/workers-types/2023-07-01"
+    ]
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+
+# --------------------
+# File: gradiorum\wrangler.json
+# --------------------
+
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gradiorum",
+  "compatibility_date": "2025-01-24",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "pages_build_output_dir": ".vercel/output/static",
+  "observability": {
+    "enabled": true
+  }
+  /**
+   * Smart Placement
+   * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+   */
+  // "placement": { "mode": "smart" },
+
+  /**
+   * Bindings
+   * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
+   * databases, object storage, AI inference, real-time communication and more.
+   * https://developers.cloudflare.com/workers/runtime-apis/bindings/
+   */
+
+  /**
+   * Environment Variables
+   * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
+   */
+  // "vars": { "MY_VARIABLE": "production_value" },
+  /**
+   * Note: Use secrets to store sensitive data.
+   * https://developers.cloudflare.com/workers/configuration/secrets/
+   */
+
+  /**
+   * Static Assets
+   * https://developers.cloudflare.com/workers/static-assets/binding/
+   */
+  // "assets": { "directory": "./public/", "binding": "ASSETS" },
+
+  /**
+   * Service Bindings (communicate between multiple Workers)
+   * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
+   */
+  // "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
+}
+
+
+# --------------------
+# File: gradiorum\src\app\globals.css
+# --------------------
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+# --------------------
+# File: hooks\useTheme.js
+# --------------------
+
+import { useEffect, useState } from "react";
+
+const DEFAULT_THEME = {
+  background: "#0a0a0a",
+  foreground: "#ededed",
+  accent: "#00ff7f"
+};
+
+export function useTheme() {
+  const [theme, setTheme] = useState(DEFAULT_THEME);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("gradiorum-theme");
+    if (savedTheme) {
+      setTheme(JSON.parse(savedTheme));
+      applyTheme(JSON.parse(savedTheme));
+    } else {
+      applyTheme(DEFAULT_THEME);
+    }
+  }, []);
+
+  const applyTheme = (theme) => {
+    document.documentElement.style.setProperty("--background-color", theme.background);
+    document.documentElement.style.setProperty("--foreground-color", theme.foreground);
+    document.documentElement.style.setProperty("--accent-color", theme.accent);
+  };
+
+  const changeTheme = (newTheme) => {
+    setTheme(newTheme);
+    localStorage.setItem("gradiorum-theme", JSON.stringify(newTheme));
+    applyTheme(newTheme);
+  };
+
+  return { theme, changeTheme };
+}
+
+
+# --------------------
+# File: pages\dashboard.jsx
+# --------------------
+
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
+
+export default function Dashboard() {
+  return (
+    <div className="min-h-screen flex" style={{ backgroundColor: "var(--background-color)", color: "var(--foreground-color)" }}>
+      <Sidebar />
+      <div className="flex-grow p-8">
+        <Header />
+        <h1 className="text-4xl font-bold mb-6">Your Projects & Workflows</h1>
+        {/* Placeholder content */}
+        <p>This area will allow you to create new workflows, view chat history per project, and manage your AI integrations.</p>
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
+
+# --------------------
+# File: pages\index.jsx
+# --------------------
+
+import { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import ChatWindow from "../components/ChatWindow";
+import ChatInput from "../components/ChatInput";
+
+export default function Home() {
+  // A simple state for chat messages
+  const [messages, setMessages] = useState([
+    { role: "system", content: "Welcome to Gradiorum AI. How can I help you today?" }
+  ]);
+
+  const addMessage = (newMessage) => {
+    setMessages([...messages, newMessage]);
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "var(--background-color)", color: "var(--foreground-color)" }}>
+      <Header />
+      <main className="flex-grow container mx-auto px-4 py-8">
+        {/* GPT-like Chat Interface */}
+        <div className="max-w-4xl mx-auto bg-gray-800 rounded-lg shadow-lg p-6">
+          <h1 className="text-3xl font-bold mb-4 neon-text">Gradiorum Chat</h1>
+          <ChatWindow messages={messages} />
+          <ChatInput onSend={addMessage} />
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+
+# --------------------
+# File: pages\settings.jsx
+# --------------------
+
+import { useTheme } from "../hooks/useTheme";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import ColorPicker from "../components/ColorPicker";
+
+export default function Settings() {
+  const { theme, changeTheme } = useTheme();
+
+  const handleColorChange = (colorType, newColor) => {
+    changeTheme({ ...theme, [colorType]: newColor });
+  };
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: "var(--background-color)", color: "var(--foreground-color)" }}>
+      <Header />
+      <main className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-4">Customize Your UI</h1>
+        <div className="space-y-6">
+          <div>
+            <label className="block mb-2">Background Color:</label>
+            <ColorPicker currentColor={theme.background} onChange={(color) => handleColorChange("background", color)} />
+          </div>
+          <div>
+            <label className="block mb-2">Foreground (Text) Color:</label>
+            <ColorPicker currentColor={theme.foreground} onChange={(color) => handleColorChange("foreground", color)} />
+          </div>
+          <div>
+            <label className="block mb-2">Accent Color:</label>
+            <ColorPicker currentColor={theme.accent} onChange={(color) => handleColorChange("accent", color)} />
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+
+# --------------------
+# File: pages\auth\signin.jsx
+# --------------------
+
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+
+export default function SignIn() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center" style={{ backgroundColor: "var(--background-color)", color: "var(--foreground-color)" }}>
+      <Header />
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-4">Sign In</h1>
+        {/* Sign-in form placeholder */}
+        <form className="max-w-md mx-auto">
+          <input type="email" placeholder="Email" className="w-full p-3 mb-4 rounded" />
+          <input type="password" placeholder="Password" className="w-full p-3 mb-4 rounded" />
+          <button type="submit" className="w-full p-3 bg-accent text-black rounded">Sign In</button>
+        </form>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+
+# --------------------
+# File: pages\auth\signup.jsx
+# --------------------
+
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+
+export default function SignUp() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center" style={{ backgroundColor: "var(--background-color)", color: "var(--foreground-color)" }}>
+      <Header />
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
+        {/* Sign-up form placeholder */}
+        <form className="max-w-md mx-auto">
+          <input type="text" placeholder="Username" className="w-full p-3 mb-4 rounded" />
+          <input type="email" placeholder="Email" className="w-full p-3 mb-4 rounded" />
+          <input type="password" placeholder="Password" className="w-full p-3 mb-4 rounded" />
+          <button type="submit" className="w-full p-3 bg-accent text-black rounded">Sign Up</button>
+        </form>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+
+# --------------------
+# File: pages\blog\index.jsx
+# --------------------
+
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Link from "next/link";
+
+export default function BlogIndex() {
+  // Example placeholder posts
+  const posts = [
+    { slug: "post-one", title: "Post One", excerpt: "This is the first blog post.", date: "2024-12-07" },
+    { slug: "post-two", title: "Post Two", excerpt: "This is the second blog post.", date: "2024-11-15" }
+  ];
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: "var(--background-color)", color: "var(--foreground-color)" }}>
+      <Header />
+      <main className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-6">Blog</h1>
+        <div className="space-y-6">
+          {posts.map((post) => (
+            <div key={post.slug} className="p-4 bg-gray-800 rounded">
+              <h2 className="text-2xl font-bold">{post.title}</h2>
+              <p className="text-sm text-gray-400">{post.date}</p>
+              <p className="mt-2">{post.excerpt}</p>
+              <Link href={`/blog/${post.slug}`} className="text-accent underline">Read More</Link>
+            </div>
+          ))}
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+
+# --------------------
+# File: pages\blog\[slug].jsx
+# --------------------
+
+import { useRouter } from "next/router";
+import Layout from "../../components/Layout";
+
+export default function BlogPost() {
+  const { query } = useRouter();
+  const { slug } = query;
+
+  // Demo placeholder content
+  const mockContent = `
+  # ${slug?.replaceAll('-', ' ')}
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam euismod nisl a urna pellentesque, 
+  at lobortis augue commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+  `;
+
+  return (
+    <Layout title={`Blog: ${slug || 'Loading...'}`}>
+      <section className="max-w-3xl mx-auto px-4 py-10 text-gray-100">
+        {slug ? (
+          <article className="prose prose-invert">
+            <div dangerouslySetInnerHTML={{ __html: mockContent }} />
+          </article>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </section>
+    </Layout>
+  );
+}
+
+
+# --------------------
+# File: posts\2024-12-07-first-blog-post.md
+# --------------------
+
+## William’s Journey and Our Vision
+
+**By: William (Founder)**
+
+As I prepare to embark on my Master of Science in Computer Science at Georgia Tech this coming January, specializing in Machine Learning, I’m reminded of the broader goal we hold at Gradiorum: bringing personalized AI assistants into everyday life.
+
+From early forays into reinforcement learning to the nuanced complexities of human-AI teaming, our mission is rooted in practical innovation. Soon, I will be immersing myself in advanced coursework and research at one of the world’s leading institutions. This step is not just academic—it's a move towards realizing our dream: making AI assistants as ubiquitous and helpful as any common household technology.
+
+**Blog Roles at Gradiorum:**
+
+- **Founder (like me, William)**: We shape the strategic direction and share our vision.
+- **Members**: Our verified contributors who add depth to projects and research discussions.
+- **Guests**: Occasional voices from the larger tech and AI ecosystem. Guest posts are carefully verified before publication to ensure quality and relevance.
+
+We look forward to sharing insights, updates, and breakthroughs. Thank you for joining us on this journey.
+
+
+# --------------------
+# File: posts\README.md
+# --------------------
+
+// This README was replaced with the first blog post file above.
+// The original README in this directory is no longer needed.
+// You can keep this placeholder here if you like, or remove it.
+
+"""
+
+
+# --------------------
+# File: public\images\README.md
+# --------------------
+
+# Images Directory
+
+Place your site's images and brand assets here. For example:
+- `xbox-swirls.jpg` for the Hero background
+- `starfield.png` if you do a starfield background
+- `logo.png` if you have an updated logo
+- `william-stigall.jpg` for the members page
+
+
+# --------------------
+# File: styles\globals.css
+# --------------------
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global reset */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Optional neon-glow title effect */
+.neon-title {
+  text-shadow: 0 0 8px #00ff7f, 0 0 20px #00ff7f;
+}
+
+/* Gradient background utilities */
+.bg-gradient-neon {
+  background: linear-gradient(45deg, #00ff7f, #007f5f);
+}
+
+.text-gradient-holographic {
+  background: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Theme Styles */
+.theme-dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.theme-light {
+  --background: #ffffff;
+  --foreground: #171717;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.theme-holographic {
+  --background: linear-gradient(135deg, #2b1055, #7582e0);
+  --foreground: #ffffff;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.theme-neon {
+  --background: #000;
+  --foreground: #00ff7f;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.theme-gradient {
+  --background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff);
+  --foreground: #ffffff;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Example hover neon effect */
+.hover\:shadow-neon:hover {
+  box-shadow: 0 0 8px #00ff7f, 0 0 16px #00ff7f;
+}
+

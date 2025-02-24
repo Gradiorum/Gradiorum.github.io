@@ -1,24 +1,35 @@
 import { useEffect, useState } from "react";
 
+const DEFAULT_THEME = {
+  background: "#0a0a0a",
+  foreground: "#ededed",
+  accent: "#00ff7f"
+};
+
 export function useTheme() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(DEFAULT_THEME);
 
   useEffect(() => {
-    const localTheme = localStorage.getItem("theme");
-    if (localTheme) {
-      setTheme(localTheme);
-      document.documentElement.classList.toggle("dark", localTheme === "dark");
+    const savedTheme = localStorage.getItem("gradiorum-theme");
+    if (savedTheme) {
+      setTheme(JSON.parse(savedTheme));
+      applyTheme(JSON.parse(savedTheme));
     } else {
-      document.documentElement.classList.add("dark");
+      applyTheme(DEFAULT_THEME);
     }
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  const applyTheme = (theme) => {
+    document.documentElement.style.setProperty("--background-color", theme.background);
+    document.documentElement.style.setProperty("--foreground-color", theme.foreground);
+    document.documentElement.style.setProperty("--accent-color", theme.accent);
   };
 
-  return { theme, toggleTheme };
+  const changeTheme = (newTheme) => {
+    setTheme(newTheme);
+    localStorage.setItem("gradiorum-theme", JSON.stringify(newTheme));
+    applyTheme(newTheme);
+  };
+
+  return { theme, changeTheme };
 }

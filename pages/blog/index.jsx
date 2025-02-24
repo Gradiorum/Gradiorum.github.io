@@ -1,46 +1,31 @@
-import Layout from "../../components/Layout";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import Link from "next/link";
 
 export default function BlogIndex() {
-  // Example placeholder blog listing (replace with real fetch if needed)
-  const mockPosts = [
-    {
-      slug: "williams-journey-and-our-vision",
-      title: "William’s Journey and Our Vision",
-      excerpt: "Our founder prepares for an MS at Georgia Tech, bridging the gap between AI research and everyday applications...",
-      date: "Dec 07, 2024",
-    },
-    {
-      slug: "synthetic-data-for-behavioral-health",
-      title: "Scaling Synthetic Data for Behavioral Health",
-      excerpt: "Investigating how LLMs can enrich classification datasets in healthcare with safe synthetic data...",
-      date: "Nov 15, 2024",
-    }
+  // Example placeholder posts
+  const posts = [
+    { slug: "post-one", title: "Post One", excerpt: "This is the first blog post.", date: "2024-12-07" },
+    { slug: "post-two", title: "Post Two", excerpt: "This is the second blog post.", date: "2024-11-15" }
   ];
 
   return (
-    <Layout title="Blog - Gradiorum">
-      <section className="max-w-6xl mx-auto px-4 py-10">
-        <h1 className="text-4xl font-bold mb-8 text-center">Blog</h1>
-        <div className="grid md:grid-cols-2 gap-8">
-          {mockPosts.map((post) => (
-            <article
-              key={post.slug}
-              className="bg-gray-900 text-white p-6 rounded hover:shadow-neon transition"
-            >
-              <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-              <p className="text-sm text-gray-400 mb-4">{post.date}</p>
-              <p className="text-gray-200 mb-6">{post.excerpt}</p>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="inline-block px-4 py-2 rounded bg-xboxGreen text-black font-semibold hover:bg-opacity-80"
-              >
-                Read More
-              </Link>
-            </article>
+    <div className="min-h-screen" style={{ backgroundColor: "var(--background-color)", color: "var(--foreground-color)" }}>
+      <Header />
+      <main className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-6">Blog</h1>
+        <div className="space-y-6">
+          {posts.map((post) => (
+            <div key={post.slug} className="p-4 bg-gray-800 rounded">
+              <h2 className="text-2xl font-bold">{post.title}</h2>
+              <p className="text-sm text-gray-400">{post.date}</p>
+              <p className="mt-2">{post.excerpt}</p>
+              <Link href={`/blog/${post.slug}`} className="text-accent underline">Read More</Link>
+            </div>
           ))}
         </div>
-      </section>
-    </Layout>
+      </main>
+      <Footer />
+    </div>
   );
 }
