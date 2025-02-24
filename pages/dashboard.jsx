@@ -8,9 +8,8 @@ export default function Dashboard() {
       <Sidebar />
       <div className="flex-grow p-8">
         <Header />
-        <h1 className="text-4xl font-bold mb-6">Your Projects & Workflows</h1>
-        {/* Placeholder content */}
-        <p>This area will allow you to create new workflows, view chat history per project, and manage your AI integrations.</p>
+        <h1 className="text-4xl font-bold mb-6 text-center">Projects & Workflows</h1>
+        <p className="text-center">This area will allow you to create new workflows, view chat history per project, and manage your AI integrations.</p>
       </div>
       <Footer />
     </div>

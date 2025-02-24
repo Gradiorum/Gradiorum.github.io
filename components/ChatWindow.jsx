@@ -1,9 +1,18 @@
 export default function ChatWindow({ messages }) {
     return (
-      <div className="h-80 overflow-y-auto bg-gray-700 rounded p-4 mb-4">
+      <div className="chat-window">
         {messages.map((msg, index) => (
-          <div key={index} className={`mb-2 ${msg.role === "user" ? "text-right" : "text-left"}`}>
-            <span className={`inline-block p-2 rounded ${msg.role === "user" ? "bg-accent text-black" : "bg-gray-600"}`}>
+          <div
+            key={index}
+            className={`mb-3 ${msg.role === "user" ? "text-right" : "text-left"}`}
+          >
+            <span
+              className={`inline-block p-3 rounded ${
+                msg.role === "user"
+                  ? "bg-[var(--accent-color)] text-black"
+                  : "bg-gray-600 text-white"
+              }`}
+            >
               {msg.content}
             </span>
           </div>

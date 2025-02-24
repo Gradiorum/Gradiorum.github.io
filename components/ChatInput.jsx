@@ -5,23 +5,24 @@ export default function ChatInput({ onSend }) {
 
   const handleSend = (e) => {
     e.preventDefault();
-    if (text.trim() === "") return;
+    if (!text.trim()) return;
     onSend({ role: "user", content: text });
-    // For demo purposes, we echo a response:
-    onSend({ role: "assistant", content: "This is a placeholder response." });
+    // For demo purposes, simulate an AI response
+    onSend({ role: "assistant", content: "This is a simulated AI response. Your message was: " + text });
     setText("");
   };
 
   return (
-    <form onSubmit={handleSend} className="flex space-x-2">
-      <input
-        type="text"
-        placeholder="Type your message..."
+    <form onSubmit={handleSend} className="w-full flex">
+      <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className="flex-grow p-2 rounded bg-gray-600 text-white"
+        className="chat-input flex-grow bg-gray-700 text-white"
+        placeholder="Type your message..."
       />
-      <button type="submit" className="px-4 py-2 bg-accent text-black rounded">Send</button>
+      <button type="submit" className="ml-2 px-4 py-2 bg-[var(--accent-color)] text-black rounded hover:shadow-neon">
+        Send
+      </button>
     </form>
   );
 }

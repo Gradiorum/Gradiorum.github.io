@@ -13,9 +13,9 @@ export default function Settings() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--background-color)", color: "var(--foreground-color)" }}>
       <Header />
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-4">Customize Your UI</h1>
-        <div className="space-y-6">
+      <main className="page-wrapper py-10">
+        <h1 className="text-3xl font-bold mb-6 text-center">Customize Your UI</h1>
+        <div className="max-w-md mx-auto space-y-6">
           <div>
             <label className="block mb-2">Background Color:</label>
             <ColorPicker currentColor={theme.background} onChange={(color) => handleColorChange("background", color)} />
