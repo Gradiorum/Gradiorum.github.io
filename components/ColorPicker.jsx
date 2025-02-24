@@ -9,10 +9,10 @@ export default function ColorPicker({ currentColor, onChange }) {
   };
 
   return (
-    <input
-      type="color"
-      value={color}
-      onChange={handleChange}
+    <input 
+      type="color" 
+      value={color} 
+      onChange={handleChange} 
       className="w-16 h-10 p-0 border-0"
     />
   );
