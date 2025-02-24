@@ -1,6 +1,6 @@
-// next.config.js
+// next.config.js alternative configuration
 module.exports = {
     output: 'export',
     trailingSlash: true, // Optional: Adds trailing slashes to routes
-    // Other configurations
-  };
+    // Additional production configurations can be added here
+};

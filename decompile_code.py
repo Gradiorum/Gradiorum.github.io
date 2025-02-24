@@ -42,7 +42,7 @@ def decompile_code(input_file, output_dir):
         if i+1 >= len(blocks):
             break
 
-        # The content block that belongs to `fname`
+        # The content block that belongs to fname
         fcontent = blocks[i+1]
 
         # If we intentionally want to ignore this file, skip it

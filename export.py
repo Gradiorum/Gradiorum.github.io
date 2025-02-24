@@ -3,7 +3,7 @@ import os
 def export_code(output_filename='all_code_output.txt'):
     # Extensions you genuinely want to export
     included_extensions = {
-        '.js', '.html', '.css', '.json', '.py', '.md', '.jsx','yml'
+        '.js', '.html', '.css', '.json', '.py', '.md', '.jsx', 'ts', 'tsx', 'yml'
     }
 
     # Directories to skip altogether
