@@ -1,38 +1,24 @@
 import { useEffect, useState } from "react";
 
-const AVAILABLE_THEMES = [
-  "theme-dark",
-  "theme-light",
-  "theme-holographic",
-  "theme-neon",
-  "theme-gradient"
-];
-
 export function useTheme() {
-  const [theme, setTheme] = useState("theme-dark");
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
-    if (localTheme && AVAILABLE_THEMES.includes(localTheme)) {
+    if (localTheme) {
       setTheme(localTheme);
-      AVAILABLE_THEMES.forEach((t) =>
-        document.documentElement.classList.remove(t)
-      );
-      document.documentElement.classList.add(localTheme);
+      document.documentElement.classList.toggle("dark", localTheme === "dark");
     } else {
-      document.documentElement.classList.add("theme-dark");
+      document.documentElement.classList.add("dark");
     }
   }, []);
 
-  const changeTheme = (newTheme) => {
-    if (!AVAILABLE_THEMES.includes(newTheme)) return;
-    AVAILABLE_THEMES.forEach((t) =>
-      document.documentElement.classList.remove(t)
-    );
-    document.documentElement.classList.add(newTheme);
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 
-  return { theme, changeTheme, availableThemes: AVAILABLE_THEMES };
+  return { theme, toggleTheme };
 }

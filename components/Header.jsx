@@ -4,22 +4,13 @@ import { useTheme } from "../hooks/useTheme";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const { theme, changeTheme } = useTheme();
-
-  // Define display labels for each theme option.
-  const themeOptions = [
-    { value: "theme-dark", label: "Dark Mode" },
-    { value: "theme-light", label: "Light Mode" },
-    { value: "theme-holographic", label: "Holographic" },
-    { value: "theme-neon", label: "Neon" },
-    { value: "theme-gradient", label: "Gradient" },
-  ];
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="w-full bg-gray-900 text-gray-200 shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          {/* Placeholder for your logo */}
+          {/* A placeholder for your logo */}
           <div className="w-8 h-8 bg-xboxGreen rounded-full shadow-neon" />
           <Link href="/" className="text-xl font-bold hover:text-xboxGreen transition">
             Gradiorum
@@ -39,20 +30,12 @@ export default function Header() {
           <Link href="/discordbots" className="hover:text-xboxGreen transition">Discord Bots</Link>
         </nav>
         <div className="flex items-center space-x-4">
-          {/* Theme Dropdown */}
-          <div className="relative">
-            <select
-              value={theme}
-              onChange={(e) => changeTheme(e.target.value)}
-              className="bg-gray-700 text-white px-3 py-1 rounded focus:outline-none"
-            >
-              {themeOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          <button
+            onClick={() => toggleTheme()}
+            className="bg-gray-700 px-3 py-1 rounded hover:bg-gray-600 transition"
+          >
+            {theme === 'light' ? 'Dark' : 'Light'} Mode
+          </button>
           <button onClick={() => setOpen(!open)} className="md:hidden">
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
